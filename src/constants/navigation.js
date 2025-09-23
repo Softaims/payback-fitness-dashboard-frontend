@@ -3,19 +3,19 @@ import { Crown, Coins, HelpCircle, Shield, FileText, Mail, LogOut, User } from "
 export const navigationLinks = [
   {
     label: "Manage Subscriptions",
-    path: "/dashboard",
+    path: "#",
     icon: Crown,
     exact: true,
   },
   {
     label: "PF Coins",
-    path: "/pf-coins",
+    path: "#",
     icon: Coins,
     exact: false,
   },
   {
     label: "FAQ's",
-    path: "/faqs",
+    path: "#",
     icon: HelpCircle,
     exact: false,
   },
@@ -24,19 +24,19 @@ export const navigationLinks = [
 export const bottomNavigationLinks = [
   {
     label: "Privacy Policy",
-    path: "/privacy-policy",
+    path: "#",
     icon: Shield,
     exact: false,
   },
   {
     label: "Terms & Conditions",
-    path: "/terms-conditions",
+    path: "#",
     icon: FileText,
     exact: false,
   },
   {
     label: "Contact Us",
-    path: "/contact-us",
+    path: "#",
     icon: Mail,
     exact: false,
   },

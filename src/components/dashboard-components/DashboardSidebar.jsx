@@ -50,7 +50,7 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
   return (
     <>
       <aside
-        className={`fixed md:static border-r-1 border-gray-700 w-64 h-screen bg-[#0B0F0D] flex flex-col z-30 transition-transform duration-300 ease-in-out overflow-y-auto
+        className={`fixed md:static border-r-1 border-[#ffffff]/7 w-64 h-screen bg-[#0B0F0D] flex flex-col z-30 transition-transform duration-300 ease-in-out overflow-y-auto
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         {/* Menu Section */}
@@ -66,7 +66,7 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
         </div>
 
         {/* Bottom Links */}
-        <div className="px-4 pb-8 border-t border-gray-700 mb-10">
+        <div className="px-4 pb-8 border-t border-[#ffffff]/7 mb-10">
           <ul className="space-y-1 pt-4">
             {bottomNavigationLinks.map((link) =>
               link.path === "/logout" ? (
