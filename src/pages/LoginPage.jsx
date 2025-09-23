@@ -49,6 +49,8 @@ const LoginPage = () => {
         }
       );
       setUser(response?.data?.user);
+      localStorage.setItem("access_token", response?.data?.session?.access_token);
+      localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
       customToast.success("Login Successful");
     } catch (error) {
       console.error("Login failed:", error);

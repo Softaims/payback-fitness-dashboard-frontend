@@ -11,7 +11,6 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
   const [loading, setLoading] = useState(false);
   const [resendCooldown, setResendCooldown] = useState(0);
   const inputRefs = useRef([]);
-
   // Auto-focus first input on mount
   useEffect(() => {
     if (inputRefs.current[0]) {
@@ -93,7 +92,7 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
 
     setLoading(true);
     try {
-      await api.post(
+      const response = await api.post(
         "/api/auth/verify-forgot-password-otp",
         {
           email: userEmail,
@@ -103,7 +102,10 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
           isProtected: false,
         }
       );
-      customToast.success("OTP verified successfully! You can now reset your password.");
+      localStorage.setItem("access_token", response?.data?.session?.access_token);
+      localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
+
+      customToast.success("OTP verified successfully");
       onNext();
     } catch (error) {
       console.error("Verification failed:", error);

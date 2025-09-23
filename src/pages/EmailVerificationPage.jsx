@@ -4,7 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { otpSchema } from "../validation/otpValidation";
 import { validateForm } from "../validation/validateForm";
 import api from "../lib/apiClient";
-
+import { useUserStore } from "../store/userStore";
+import customToast from "../lib/toast";
 const EmailVerificationPage = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [errors, setErrors] = useState({});
@@ -13,6 +14,7 @@ const EmailVerificationPage = () => {
   const inputRefs = useRef([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const { setUser } = useUserStore();
   const userEmail = location.state?.email;
 
   // Redirect to signup if no email is provided
@@ -114,13 +116,21 @@ const EmailVerificationPage = () => {
           isProtected: false,
         }
       );
-
-      console.log("OTP verification successful:", response);
+      setUser(response?.data?.user);
+      localStorage.setItem("access_token", response?.data?.session?.access_token);
+      localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
+      customToast.success("Email verified successfully");
 
       // Redirect to referral code page
       navigate("/referral-code");
     } catch (error) {
       console.error("OTP verification failed:", error);
+
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Invalid verification code. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
