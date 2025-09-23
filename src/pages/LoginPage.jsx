@@ -48,10 +48,12 @@ const LoginPage = () => {
           isProtected: false,
         }
       );
-      setUser(response?.data?.user);
-      localStorage.setItem("access_token", response?.data?.session?.access_token);
-      localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
       customToast.success("Login Successful");
+      setTimeout(() => {
+        setUser(response?.data?.user);
+        localStorage.setItem("access_token", response?.data?.session?.access_token);
+        localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
+      }, 2000);
     } catch (error) {
       console.error("Login failed:", error);
       if (error?.message) {
@@ -59,7 +61,6 @@ const LoginPage = () => {
       } else {
         customToast.error("Invalid email or password. Please try again.");
       }
-    } finally {
       setLoading(false);
     }
   };

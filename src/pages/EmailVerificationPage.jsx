@@ -116,10 +116,12 @@ const EmailVerificationPage = () => {
           isProtected: false,
         }
       );
-      setUser(response?.data?.user);
-      localStorage.setItem("access_token", response?.data?.session?.access_token);
-      localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
       customToast.success("Email verified successfully");
+      setTimeout(() => {
+        setUser(response?.data?.user);
+        localStorage.setItem("access_token", response?.data?.session?.access_token);
+        localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
+      }, 2000);
 
       // Redirect to referral code page
       navigate("/referral-code");

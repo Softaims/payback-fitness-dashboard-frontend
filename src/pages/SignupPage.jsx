@@ -37,7 +37,7 @@ const SignupPage = () => {
 
     setLoading(true);
     try {
-      const response = await api.post(
+      await api.post(
         "/api/auth/signup",
         {
           email: formData.email,
@@ -49,12 +49,10 @@ const SignupPage = () => {
         }
       );
 
-      console.log("Signup successful:", response);
-
-      // Show success toast
       customToast.success("Account created successfully! Please verify your email.");
-
-      navigate("/email-verification", { state: { email: formData.email } });
+      setTimeout(() => {
+        navigate("/email-verification", { state: { email: formData.email } });
+      }, 2000);
     } catch (error) {
       console.error("Signup failed:", error);
 
