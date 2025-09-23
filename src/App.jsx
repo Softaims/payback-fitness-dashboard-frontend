@@ -8,6 +8,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import SubscriptionPage from "./pages/OnboardingSubscriptionPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import HomePage from "./pages/HomePage";
+import UserDashboard from "./pages/UserDashboard";
 import PublicRoute from "./components/global/PublicRoute";
 import ProtectedRoute from "./components/global/ProtectedRoute";
 import { CustomToaster } from "./lib/toast";
@@ -24,7 +25,8 @@ function App() {
           <Route path="/forgot-password" element={<PublicRoute children={<ForgotPasswordPage />} />} />
 
           {/* Protected Routes */}
-          <Route path="/" element={<ProtectedRoute children={<HomePage />} />} />
+          <Route path="/" element={<ProtectedRoute children={<UserDashboard />} />} />
+          <Route path="/dashboard" element={<ProtectedRoute children={<UserDashboard />} />} />
           <Route path="/referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
           <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
           <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
