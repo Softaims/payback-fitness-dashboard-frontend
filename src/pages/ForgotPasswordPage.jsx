@@ -4,22 +4,21 @@ import ForgotPasswordStep1 from "../components/forgot-password-component/ForgotP
 import ForgotPasswordStep2 from "../components/forgot-password-component/ForgotPasswordStep2";
 import ForgotPasswordStep3 from "../components/forgot-password-component/ForgotPasswordStep3";
 import ForgotPasswordStep4 from "../components/forgot-password-component/ForgotPasswordStep4";
-
+import { useNavigate } from "react-router-dom";
 const ForgotPasswordPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [userEmail, setUserEmail] = useState("");
-
+  const navigate = useNavigate();
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
   };
 
   const handleGoBackToLogin = () => {
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   const handleComplete = () => {
-    // Navigate back to login page
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   const renderStep = () => {

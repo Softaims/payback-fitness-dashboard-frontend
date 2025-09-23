@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Mail, AlertCircle } from "lucide-react";
 import { forgotPasswordSchema } from "../../validation/forgotPasswordValidation";
 import { validateForm } from "../../validation/validateForm";
+import api from "../../lib/apiClient";
+import customToast from "../../lib/toast";
 
 const ForgotPasswordStep1 = ({ onNext, userEmail, setUserEmail }) => {
   const [formData, setFormData] = useState({
@@ -29,18 +31,26 @@ const ForgotPasswordStep1 = ({ onNext, userEmail, setUserEmail }) => {
 
     setLoading(true);
     try {
-      // Handle forgot password logic here
-      console.log("Forgot password attempt:", formData);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("OTP sent successfully!");
+      await api.post(
+        "/api/auth/forgot-password",
+        {
+          email: formData.email,
+        },
+        {
+          isProtected: false,
+        }
+      );
 
-      // Save email and move to next step
+      customToast.success("OTP sent successfully! Please check your email.");
       setUserEmail(formData.email);
       onNext();
     } catch (error) {
       console.error("Failed to send OTP:", error);
-      setErrors({ email: "Failed to send OTP. Please try again." });
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Failed to send OTP. Please try again.");
+      }
     } finally {
       setLoading(false);
     }

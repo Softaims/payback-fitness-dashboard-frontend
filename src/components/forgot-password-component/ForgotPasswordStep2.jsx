@@ -1,20 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { AlertCircle } from "lucide-react";
 import { validateForm } from "../../validation/validateForm";
-import { z } from "zod";
-
-// OTP validation schema
-const otpSchema = z.object({
-  otp: z
-    .string({
-      required_error: "Verification code is required",
-    })
-    .length(5, "Verification code must be exactly 5 digits")
-    .regex(/^\d{5}$/, "Verification code must contain only numbers"),
-});
+import { otpSchema } from "../../validation/otpValidation";
+import api from "../../lib/apiClient";
+import customToast from "../../lib/toast";
 
 const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
-  const [otp, setOtp] = useState(["", "", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [resendCooldown, setResendCooldown] = useState(0);
@@ -57,7 +49,7 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
     }
 
     // Auto-focus next input if value is entered
-    if (value && index < 4) {
+    if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
   };
@@ -72,16 +64,16 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
     if (e.key === "v" && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       navigator.clipboard.readText().then((text) => {
-        const pastedDigits = text.replace(/\D/g, "").slice(0, 5);
-        const newOtp = ["", "", "", "", ""];
+        const pastedDigits = text.replace(/\D/g, "").slice(0, 6);
+        const newOtp = ["", "", "", "", "", ""];
         pastedDigits.split("").forEach((digit, i) => {
-          if (i < 5) newOtp[i] = digit;
+          if (i < 6) newOtp[i] = digit;
         });
         setOtp(newOtp);
 
         // Focus the next empty field or last field
         const nextEmptyIndex = newOtp.findIndex((digit) => digit === "");
-        const focusIndex = nextEmptyIndex === -1 ? 4 : nextEmptyIndex;
+        const focusIndex = nextEmptyIndex === -1 ? 5 : nextEmptyIndex;
         inputRefs.current[focusIndex]?.focus();
       });
     }
@@ -101,17 +93,25 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
 
     setLoading(true);
     try {
-      // Handle forgot password verification logic here
-      console.log("Forgot password OTP verification attempt:", otpString);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Forgot password verification successful!");
-
-      // Move to next step (reset password)
+      await api.post(
+        "/api/auth/verify-forgot-password-otp",
+        {
+          email: userEmail,
+          otp: otpString,
+        },
+        {
+          isProtected: false,
+        }
+      );
+      customToast.success("OTP verified successfully! You can now reset your password.");
       onNext();
     } catch (error) {
       console.error("Verification failed:", error);
-      setErrors({ otp: "Invalid verification code. Please try again." });
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Invalid verification code. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -121,7 +121,7 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
     if (resendCooldown > 0) return;
 
     setResendCooldown(30); // 30 seconds cooldown
-    setOtp(["", "", "", "", ""]);
+    setOtp(["", "", "", "", "", ""]);
     setErrors({});
 
     // Focus first input

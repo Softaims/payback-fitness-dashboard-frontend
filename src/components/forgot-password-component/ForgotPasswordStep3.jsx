@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 import { resetPasswordSchema } from "../../validation/resetPasswordValidation";
 import { validateForm } from "../../validation/validateForm";
+import api from "../../lib/apiClient";
+import customToast from "../../lib/toast";
 
 const ForgotPasswordStep3 = ({ onNext }) => {
   const [formData, setFormData] = useState({
@@ -32,16 +34,24 @@ const ForgotPasswordStep3 = ({ onNext }) => {
 
     setLoading(true);
     try {
-      // Handle reset password logic here
-      console.log("Reset password attempt:", formData);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Password reset successful!");
-      // Move to next step (password changed success)
+      await api.post(
+        "/api/auth/set-new-password",
+        {
+          newPassword: formData.newPassword,
+        },
+        {
+          isProtected: false,
+        }
+      );
+      customToast.success("Password reset successfully! You can now login with your new password.");
       onNext();
     } catch (error) {
       console.error("Failed to reset password:", error);
-      setErrors({ general: "Failed to reset password. Please try again." });
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Failed to reset password. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
