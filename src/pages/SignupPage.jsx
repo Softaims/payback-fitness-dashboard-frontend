@@ -50,7 +50,7 @@ const SignupPage = () => {
 
       console.log("Signup successful:", response);
 
-      navigate("/email-verification");
+      navigate("/email-verification", { state: { email: formData.email } });
     } catch (error) {
       console.error("Signup failed:", error);
       console.log("error", error);

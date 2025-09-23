@@ -5,6 +5,6 @@ export const otpSchema = z.object({
     .string({
       required_error: "Verification code is required",
     })
-    .length(5, "Verification code must be exactly 5 digits")
-    .regex(/^\d{5}$/, "Verification code must contain only numbers"),
+    .length(6, "Verification code must be exactly 6 digits")
+    .regex(/^\d{6}$/, "Verification code must contain only numbers"),
 });

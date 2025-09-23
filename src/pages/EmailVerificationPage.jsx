@@ -1,24 +1,33 @@
 import { useState, useRef, useEffect } from "react";
 import { AlertCircle, ChevronLeft } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { otpSchema } from "../validation/otpValidation";
 import { validateForm } from "../validation/validateForm";
+import api from "../lib/apiClient";
 
 const EmailVerificationPage = () => {
-  const [otp, setOtp] = useState(["", "", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [resendCooldown, setResendCooldown] = useState(0);
   const inputRefs = useRef([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const userEmail = location.state?.email;
 
-  // Mock email
-  const userEmail = "ahmadali123@gmail.com";
+  // Redirect to signup if no email is provided
+  useEffect(() => {
+    if (!userEmail) {
+      navigate("/signup");
+    }
+  }, [userEmail, navigate]);
 
   // Auto-focus first input on mount
   useEffect(() => {
-    if (inputRefs.current[0]) {
+    if (inputRefs.current[0] && userEmail) {
       inputRefs.current[0].focus();
     }
-  }, []);
+  }, [userEmail]);
 
   // Cooldown timer for resend
   useEffect(() => {
@@ -50,7 +59,7 @@ const EmailVerificationPage = () => {
     }
 
     // Auto-focus next input if value is entered
-    if (value && index < 4) {
+    if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
   };
@@ -65,16 +74,16 @@ const EmailVerificationPage = () => {
     if (e.key === "v" && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       navigator.clipboard.readText().then((text) => {
-        const pastedDigits = text.replace(/\D/g, "").slice(0, 5);
-        const newOtp = ["", "", "", "", ""];
+        const pastedDigits = text.replace(/\D/g, "").slice(0, 6);
+        const newOtp = ["", "", "", "", "", ""];
         pastedDigits.split("").forEach((digit, i) => {
-          if (i < 5) newOtp[i] = digit;
+          if (i < 6) newOtp[i] = digit;
         });
         setOtp(newOtp);
 
         // Focus the next empty field or last field
         const nextEmptyIndex = newOtp.findIndex((digit) => digit === "");
-        const focusIndex = nextEmptyIndex === -1 ? 4 : nextEmptyIndex;
+        const focusIndex = nextEmptyIndex === -1 ? 5 : nextEmptyIndex;
         inputRefs.current[focusIndex]?.focus();
       });
     }
@@ -94,27 +103,34 @@ const EmailVerificationPage = () => {
 
     setLoading(true);
     try {
-      // Handle verification logic here
-      console.log("OTP verification attempt:", otpString);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Email verified successfully!");
+      // Call the OTP verification API
+      const response = await api.post(
+        "/api/auth/verify-otp",
+        {
+          email: userEmail,
+          token: otpString,
+        },
+        {
+          isProtected: false,
+        }
+      );
+
+      console.log("OTP verification successful:", response);
 
       // Redirect to referral code page
-      window.location.href = "/referral-code";
+      navigate("/referral-code");
     } catch (error) {
-      console.error("Verification failed:", error);
-      setErrors({ otp: "Invalid verification code. Please try again." });
+      console.error("OTP verification failed:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleResendOTP = () => {
-    if (resendCooldown > 0) return;
+    if (resendCooldown > 0 || !userEmail) return;
 
     setResendCooldown(30); // 30 seconds cooldown
-    setOtp(["", "", "", "", ""]);
+    setOtp(["", "", "", "", "", ""]);
     setErrors({});
 
     // Focus first input
@@ -130,10 +146,10 @@ const EmailVerificationPage = () => {
     <div className="min-h-screen bg-gradient-to-r from-[#0B0F0D]/90 via-[#0B0F0D] to-[#0B0F0D] relative">
       {/* Go Back Link - Fixed to top left */}
       <div className="absolute top-6 left-6 z-10">
-        <a href="/signup" className="inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
+        <button onClick={() => navigate("/signup")} className="inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
           <ChevronLeft className="w-7 h-7 mr-2" />
           <p className="text-[#ffffff]">Go Back</p>
-        </a>
+        </button>
       </div>
 
       {/* Central Content */}
