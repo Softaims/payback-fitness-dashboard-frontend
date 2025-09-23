@@ -4,6 +4,7 @@ import { signupSchema } from "../validation/signupValidation";
 import { validateForm } from "../validation/validateForm";
 import api from "../lib/apiClient";
 import { useNavigate } from "react-router-dom";
+import customToast from "../lib/toast";
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -50,10 +51,19 @@ const SignupPage = () => {
 
       console.log("Signup successful:", response);
 
+      // Show success toast
+      customToast.success("Account created successfully! Please verify your email.");
+
       navigate("/email-verification", { state: { email: formData.email } });
     } catch (error) {
       console.error("Signup failed:", error);
-      console.log("error", error);
+
+      // Show error toast
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Failed to create account.");
+      }
     } finally {
       setLoading(false);
     }
