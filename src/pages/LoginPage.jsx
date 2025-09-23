@@ -1,16 +1,47 @@
-import React, { useState } from "react";
-import { Mail, Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
+import { Mail, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { loginSchema } from "../validation/loginValidation";
+import { validateForm } from "../validation/validateForm";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setErrors({ ...errors, [e.target.name]: undefined });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempt:", { email, password, rememberMe });
+    setErrors({});
+    const fieldErrors = validateForm(loginSchema, formData);
+    if (Object.keys(fieldErrors).length > 0) {
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Handle login logic here (without API for now)
+      console.log("Login attempt:", formData);
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log("Login successful!");
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,16 +89,24 @@ const LoginPage = () => {
               <div className="relative">
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   placeholder="example@gmail.com"
-                  className="w-full px-4 py-3 bg-[#FFFFFF]/7 border-[#FFFFFF]/7 rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
-                  required
+                  className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 ${
+                    errors.email ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
+                  }`}
                 />
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                  <Mail className="w-4 h-4 text-[#ffffff]/50" />
+                  {errors.email ? <AlertCircle className="w-4 h-4 text-red-500" /> : <Mail className="w-4 h-4 text-[#ffffff]/50" />}
                 </div>
               </div>
+              {errors.email && (
+                <div className="mt-2 flex items-center text-red-500 text-xs">
+                  <AlertCircle className="w-3 h-3 mr-1" />
+                  {errors.email}
+                </div>
+              )}
             </div>
 
             {/* Password Field */}
@@ -76,16 +115,26 @@ const LoginPage = () => {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
                   placeholder="********"
-                  className="w-full px-4 py-3 bg-[#FFFFFF]/7 border-[#FFFFFF]/7 rounded-lg text-[#ffffff]/50 placeholder:text-xs placeholder-[#FFFFFF]/50 focus:outline-none focus:ring-2 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
-                  required
+                  className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-lg text-[#ffffff]/50 placeholder:text-xs placeholder-[#FFFFFF]/50 focus:outline-none focus:ring-2 ${
+                    errors.password
+                      ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                      : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
+                  }`}
                 />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2">
                   {showPassword ? <EyeOff className="cursor-pointer w-4 h-4 text-[#4BEEA2]" /> : <Eye className="cursor-pointer w-4 h-4 text-[#4BEEA2]" />}
                 </button>
               </div>
+              {errors.password && (
+                <div className="mt-2 flex items-center text-red-500 text-xs">
+                  <AlertCircle className="w-3 h-3 mr-1" />
+                  {errors.password}
+                </div>
+              )}
             </div>
 
             {/* Remember Me and Forgot Password */}
@@ -124,9 +173,12 @@ const LoginPage = () => {
             {/* Login Button */}
             <button
               type="submit"
-              className="cursor-pointer w-full bg-[#4BEEA2] font-bold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+              disabled={loading}
+              className={`w-full font-bold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 ${
+                loading ? "bg-gray-500 cursor-not-allowed" : "bg-[#4BEEA2] cursor-pointer hover:bg-[#3dd48a]"
+              }`}
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
 
             {/* Sign Up Link */}
