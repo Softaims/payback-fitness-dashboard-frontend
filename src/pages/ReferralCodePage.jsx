@@ -1,72 +1,29 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, AlertCircle } from "lucide-react";
 import { referralCodeSchema } from "../validation/referralCodeValidation";
 import { validateForm } from "../validation/validateForm";
 import { useNavigate } from "react-router-dom";
-
+import api from "../lib/apiClient";
+import customToast from "../lib/toast";
+import { useUserStore } from "../store/userStore";
 const ReferralCodePage = () => {
-  const [referralCode, setReferralCode] = useState(["", "", "", "", ""]);
+  const [referralCode, setReferralCode] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const inputRefs = useRef([]);
   const navigate = useNavigate();
+  const { user } = useUserStore();
 
-  // Auto-focus first input on mount
   useEffect(() => {
-    if (inputRefs.current[0]) {
-      inputRefs.current[0].focus();
+    if (user?.referralCode) {
+      navigate("/onboarding-subscription");
     }
-  }, []);
+  }, [navigate, user]);
 
-  const handleInputChange = (index, value) => {
-    // Only allow single character
-    if (value.length > 1) return;
-
-    // Only allow numeric input - ignore non-numeric characters
-    if (value && !/^\d$/.test(value)) {
-      return;
-    }
-
-    const newReferralCode = [...referralCode];
-    newReferralCode[index] = value;
-    setReferralCode(newReferralCode);
-
+  const handleInputChange = (e) => {
+    setReferralCode(e.target.value);
     // Clear error when user starts typing
-    if (errors[`referralCode_${index}`] || errors.referralCode) {
-      const newErrors = { ...errors };
-      delete newErrors[`referralCode_${index}`];
-      delete newErrors.referralCode;
-      setErrors(newErrors);
-    }
-
-    // Auto-focus next input if value is entered
-    if (value && index < 4) {
-      inputRefs.current[index + 1]?.focus();
-    }
-  };
-
-  const handleKeyDown = (index, e) => {
-    // Handle backspace
-    if (e.key === "Backspace" && !referralCode[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus();
-    }
-
-    // Handle paste
-    if (e.key === "v" && (e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      navigator.clipboard.readText().then((text) => {
-        const pastedDigits = text.replace(/\D/g, "").slice(0, 5);
-        const newReferralCode = ["", "", "", "", ""];
-        pastedDigits.split("").forEach((digit, i) => {
-          if (i < 5) newReferralCode[i] = digit;
-        });
-        setReferralCode(newReferralCode);
-
-        // Focus the next empty field or last field
-        const nextEmptyIndex = newReferralCode.findIndex((digit) => digit === "");
-        const focusIndex = nextEmptyIndex === -1 ? 4 : nextEmptyIndex;
-        inputRefs.current[focusIndex]?.focus();
-      });
+    if (errors.referralCode) {
+      setErrors({ ...errors, referralCode: undefined });
     }
   };
 
@@ -74,8 +31,7 @@ const ReferralCodePage = () => {
     e.preventDefault();
     setErrors({});
 
-    const referralCodeString = referralCode.join("");
-    const fieldErrors = validateForm(referralCodeSchema, { referralCode: referralCodeString });
+    const fieldErrors = validateForm(referralCodeSchema, { referralCode });
 
     if (Object.keys(fieldErrors).length > 0) {
       setErrors(fieldErrors);
@@ -84,15 +40,27 @@ const ReferralCodePage = () => {
 
     setLoading(true);
     try {
-      // Handle referral code verification logic here
-      console.log("Referral code verification attempt:", referralCodeString);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Referral code verified successfully!");
-      navigate("/onboarding-subscription");
+      await api.post(
+        "/api/referral/claim",
+        {
+          referralCode: referralCode,
+        },
+        {
+          isProtected: false,
+        }
+      );
+
+      customToast.success("Referral code claimed successfully!");
+      setTimeout(() => {
+        navigate("/onboarding-subscription");
+      }, 2000);
     } catch (error) {
       console.error("Referral code verification failed:", error);
-      setErrors({ referralCode: "Invalid referral code. Please try again." });
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Invalid referral code. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -130,41 +98,37 @@ const ReferralCodePage = () => {
             <p className="text-[#ffffff]/50 text-sm mb-8">Please enter the referral code if you have any.</p>
 
             {/* Referral Code Input Form */}
-            <form onSubmit={handleSubmit}>
-              {/* Referral Code Input Fields */}
-              <div className="flex justify-center gap-3 mb-6">
-                {referralCode.map((digit, index) => (
-                  <div key={index} className="relative">
-                    <input
-                      ref={(el) => (inputRefs.current[index] = el)}
-                      type="text"
-                      inputMode="numeric"
-                      maxLength="1"
-                      value={digit}
-                      onChange={(e) => handleInputChange(index, e.target.value)}
-                      onKeyDown={(e) => handleKeyDown(index, e)}
-                      className={`w-12 h-12 text-center text-white text-lg font-bold bg-[#FFFFFF]/7 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all ${
-                        errors[`referralCode_${index}`] || errors.referralCode
-                          ? "border-red-500 focus:ring-red-500"
-                          : digit
-                          ? "border-[#4BEEA2] focus:ring-[#4BEEA2]"
-                          : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
-                      }`}
-                    />
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Referral Code Input Field */}
+              <div>
+                <label className="block text-white text-sm font-medium mb-2">Referral Code</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="referralCode"
+                    value={referralCode}
+                    onChange={handleInputChange}
+                    placeholder="Enter referral code"
+                    className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 ${
+                      errors.referralCode
+                        ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                        : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
+                    }`}
+                  />
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    {errors.referralCode ? <AlertCircle className="w-4 h-4 text-red-500" /> : null}
                   </div>
-                ))}
+                </div>
+                {errors.referralCode && (
+                  <div className="mt-2 flex items-center text-red-500 text-xs">
+                    <AlertCircle className="w-3 h-3 mr-1" />
+                    {errors.referralCode}
+                  </div>
+                )}
               </div>
 
-              {/* General Error Message */}
-              {errors.referralCode && (
-                <div className="mb-6 flex items-center justify-center text-red-500 text-xs">
-                  <AlertCircle className="w-3 h-3 mr-1" />
-                  {errors.referralCode}
-                </div>
-              )}
-
               {/* Skip Link */}
-              <div className="mb-8">
+              <div className="text-center">
                 <button type="button" onClick={handleSkip} className="cursor-pointer text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors">
                   Skip
                 </button>
@@ -173,9 +137,9 @@ const ReferralCodePage = () => {
               {/* Continue Button */}
               <button
                 type="submit"
-                disabled={loading || referralCode.some((digit) => digit === "")}
-                className={`w-full font-bold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] ${
-                  loading || referralCode.some((digit) => digit === "") ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#3dd48a]"
+                disabled={loading || !referralCode.trim()}
+                className={`w-full font-bold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] hover:bg-[#3dd48a] ${
+                  loading || !referralCode.trim() ? "cursor-not-allowed" : "cursor-pointer"
                 }`}
               >
                 {loading ? "Verifying..." : "Continue"}

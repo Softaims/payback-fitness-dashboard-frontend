@@ -5,6 +5,6 @@ export const referralCodeSchema = z.object({
     .string({
       required_error: "Referral code is required",
     })
-    .length(5, "Referral code must be exactly 5 digits")
-    .regex(/^\d{5}$/, "Referral code must contain only numbers"),
+    .min(1, "Referral code cannot be empty")
+    .trim(),
 });
