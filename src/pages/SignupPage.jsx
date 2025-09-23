@@ -2,6 +2,7 @@ import { useState } from "react";
 import { User, Mail, Eye, EyeOff, AlertCircle, Check } from "lucide-react";
 import { signupSchema } from "../validation/signupValidation";
 import { validateForm } from "../validation/validateForm";
+import api from "../lib/apiClient";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -35,16 +36,25 @@ const SignupPage = () => {
 
     setLoading(true);
     try {
-      // Handle signup logic here (without API for now)
-      console.log("Signup attempt:", { ...formData, acceptTerms });
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Signup successful!");
+      const response = await api.post(
+        "/api/auth/signup",
+        {
+          email: formData.email,
+          password: formData.password,
+          name: formData.name,
+        },
+        {
+          isProtected: false,
+        }
+      );
+
+      console.log("Signup successful:", response);
 
       // Redirect to email verification
       window.location.href = "/email-verification";
     } catch (error) {
       console.error("Signup failed:", error);
+      console.log("error", error);
     } finally {
       setLoading(false);
     }
@@ -86,6 +96,16 @@ const SignupPage = () => {
             <h2 className="text-white text-3xl font-bold mb-2">Sign Up</h2>
             <p className="text-[#FFFFFF]/50 text-sm">Enter your account details and get started</p>
           </div>
+
+          {/* General Error Display */}
+          {errors.general && (
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+              <div className="flex items-center text-red-500 text-sm">
+                <AlertCircle className="w-4 h-4 mr-2" />
+                {errors.general}
+              </div>
+            </div>
+          )}
 
           {/* Signup Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
