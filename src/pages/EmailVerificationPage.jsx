@@ -126,7 +126,7 @@ const EmailVerificationPage = () => {
     }
   };
 
-  const handleResendOTP = () => {
+  const handleResendOTP = async () => {
     if (resendCooldown > 0 || !userEmail) return;
 
     setResendCooldown(30); // 30 seconds cooldown
@@ -138,8 +138,31 @@ const EmailVerificationPage = () => {
       inputRefs.current[0].focus();
     }
 
-    // Handle resend logic here
-    console.log("Resending OTP to:", userEmail);
+    try {
+      const response = await api.post(
+        "/api/auth/resend-otp",
+        {
+          email: userEmail,
+          type: "signup",
+        },
+        {
+          isProtected: false,
+        }
+      );
+
+      console.log("OTP resent successfully:", response);
+    } catch (error) {
+      console.error("Failed to resend OTP:", error);
+
+      // Handle API errors
+      if (error?.message) {
+        setErrors({ general: error.message });
+      } else if (error?.error) {
+        setErrors({ general: error.error });
+      } else {
+        setErrors({ general: "Failed to resend OTP. Please try again." });
+      }
+    }
   };
 
   return (
@@ -189,6 +212,16 @@ const EmailVerificationPage = () => {
 
             {/* Email Address */}
             <p className="text-white text-sm font-medium mb-8">{userEmail}</p>
+
+            {/* General Error Display */}
+            {errors.general && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+                <div className="flex items-center text-red-500 text-sm">
+                  <AlertCircle className="w-4 h-4 mr-2" />
+                  {errors.general}
+                </div>
+              </div>
+            )}
 
             {/* OTP Input Form */}
             <form onSubmit={handleSubmit}>
