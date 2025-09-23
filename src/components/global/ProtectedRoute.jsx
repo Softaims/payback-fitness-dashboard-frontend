@@ -1,29 +1,30 @@
-import { useEffect } from "react";
-import { useUserStore } from "../store/userStore";
-import api from "../utils/apiClient";
-import PageLoader from "../components/shared/PageLoader";
+import { useEffect, useState } from "react";
+import { useUserStore } from "../../store/userStore";
+import api from "../../lib/apiClient";
+import PageLoader from "./PageLoader";
 const ProtectedRoute = ({ children }) => {
-  const { user, setUser, userLoading, setUserLoading } = useUserStore();
+  const { user, setUser } = useUserStore();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
-      if (user || userLoading) return;
+      if (user || !loading) return;
+
       try {
-        setUserLoading(true);
-        const userResponse = await api.get("/auth/me");
-        setUser(userResponse?.data?.user);
+        const userResponse = await api.get("/api/user/profile");
+        setUser(userResponse?.data);
       } catch {
         window.location.href = "/login";
       } finally {
-        setUserLoading(false);
+        setLoading(false);
       }
     };
     checkAuth();
-  }, [user, userLoading, setUserLoading, setUser]);
+  }, [user, setUser, loading, setLoading]);
 
-  if (userLoading) return <PageLoader />;
   if (user) return children;
-  return null;
+  else if (loading) return <PageLoader />;
+  else return null;
 };
 
 export default ProtectedRoute;

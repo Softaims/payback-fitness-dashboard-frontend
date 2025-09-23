@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useUserStore } from "../../store/userStore";
 import { useNavigate } from "react-router-dom";
 import PageLoader from "./PageLoader";
-import api from "../utils/apiClient";
+import api from "../../lib/apiClient";
 
 const PublicRoute = ({ children }) => {
   const { user, setUser } = useUserStore();

@@ -5,6 +5,9 @@ import EmailVerificationPage from "./pages/EmailVerificationPage";
 import ReferralCodePage from "./pages/ReferralCodePage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import HomePage from "./pages/HomePage";
+import PublicRoute from "./components/global/PublicRoute";
+import ProtectedRoute from "./components/global/ProtectedRoute";
 import { CustomToaster } from "./lib/toast";
 
 function App() {
@@ -12,12 +15,16 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/email-verification" element={<EmailVerificationPage />} />
-          <Route path="/referral-code" element={<ReferralCodePage />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          {/* Public Routes */}
+          <Route path="/login" element={<PublicRoute children={<LoginPage />} />} />
+          <Route path="/signup" element={<PublicRoute children={<SignupPage />} />} />
+          <Route path="/email-verification" element={<PublicRoute children={<EmailVerificationPage />} />} />
+          <Route path="/forgot-password" element={<PublicRoute children={<ForgotPasswordPage />} />} />
+
+          {/* Protected Routes */}
+          <Route path="/" element={<ProtectedRoute children={<HomePage />} />} />
+          <Route path="/referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
+          <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
         </Routes>
         <CustomToaster />
       </Router>
