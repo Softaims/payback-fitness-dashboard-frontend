@@ -5,6 +5,7 @@ import EmailVerificationPage from "./pages/EmailVerificationPage";
 import ReferralCodePage from "./pages/ReferralCodePage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import SubscriptionPage from "./pages/OnboardingSubscriptionPage";
 import HomePage from "./pages/HomePage";
 import PublicRoute from "./components/global/PublicRoute";
 import ProtectedRoute from "./components/global/ProtectedRoute";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<ProtectedRoute children={<HomePage />} />} />
           <Route path="/referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
           <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
+          <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
         </Routes>
         <CustomToaster />
       </Router>
