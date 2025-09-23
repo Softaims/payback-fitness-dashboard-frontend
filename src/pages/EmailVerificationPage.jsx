@@ -99,6 +99,9 @@ const EmailVerificationPage = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log("Email verified successfully!");
+
+      // Redirect to referral code page
+      window.location.href = "/referral-code";
     } catch (error) {
       console.error("Verification failed:", error);
       setErrors({ otp: "Invalid verification code. Please try again." });
