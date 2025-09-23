@@ -5,6 +5,7 @@ import { validateForm } from "../validation/validateForm";
 import api from "../lib/apiClient";
 import { useNavigate } from "react-router-dom";
 import customToast from "../lib/toast";
+import { useUserStore } from "../store/userStore";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const { setUser } = useUserStore();
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -36,7 +38,7 @@ const LoginPage = () => {
 
     setLoading(true);
     try {
-      await api.post(
+      const response = await api.post(
         "/api/auth/signin",
         {
           email: formData.email,
@@ -46,7 +48,7 @@ const LoginPage = () => {
           isProtected: false,
         }
       );
-
+      setUser(response?.data?.user);
       customToast.success("Login Successful");
     } catch (error) {
       console.error("Login failed:", error);
