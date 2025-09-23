@@ -6,6 +6,7 @@ import ReferralCodePage from "./pages/ReferralCodePage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import SubscriptionPage from "./pages/OnboardingSubscriptionPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import HomePage from "./pages/HomePage";
 import PublicRoute from "./components/global/PublicRoute";
 import ProtectedRoute from "./components/global/ProtectedRoute";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
           <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
           <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
+          <Route path="/payment/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />
         </Routes>
         <CustomToaster />
       </Router>

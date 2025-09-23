@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import customToast from "../../lib/toast";
-
+import api from "../../lib/apiClient";
 const OnboardingSubscriptionPlanSelection = () => {
   const [selectedPlan, setSelectedPlan] = useState("monthly");
   const [loading, setLoading] = useState(false);
@@ -32,13 +32,24 @@ const OnboardingSubscriptionPlanSelection = () => {
   const handleContinue = async () => {
     setLoading(true);
     try {
-      // Simulate API call for subscription
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      customToast.success("Subscription activated successfully!");
-      navigate("/");
+      const response = await api.post(
+        "/api/subscription/checkout",
+        {
+          successUrl: `${window.location.origin}/payment/success`,
+          cancelUrl: `${window.location.origin}/onboarding-subscription`,
+        },
+        {
+          isProtected: false,
+        }
+      );
+      window.location.href = response?.data?.checkoutUrl;
     } catch (error) {
       console.error("Subscription failed:", error);
-      customToast.error("Failed to activate subscription. Please try again.");
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Failed to activate subscription. Please try again.");
+      }
     } finally {
       setLoading(false);
     }

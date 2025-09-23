@@ -2,12 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, AlertCircle } from "lucide-react";
 import { referralCodeSchema } from "../validation/referralCodeValidation";
 import { validateForm } from "../validation/validateForm";
+import { useNavigate } from "react-router-dom";
 
 const ReferralCodePage = () => {
   const [referralCode, setReferralCode] = useState(["", "", "", "", ""]);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const inputRefs = useRef([]);
+  const navigate = useNavigate();
 
   // Auto-focus first input on mount
   useEffect(() => {
@@ -87,7 +89,7 @@ const ReferralCodePage = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log("Referral code verified successfully!");
-      // Navigate to next page (dashboard or onboarding)
+      navigate("/onboarding-subscription");
     } catch (error) {
       console.error("Referral code verification failed:", error);
       setErrors({ referralCode: "Invalid referral code. Please try again." });
@@ -98,7 +100,8 @@ const ReferralCodePage = () => {
 
   const handleSkip = () => {
     console.log("Skipping referral code");
-    // Navigate to next page without referral code
+    // Navigate to subscription page without referral code
+    navigate("/onboarding-subscription");
   };
 
   return (
