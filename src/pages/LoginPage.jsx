@@ -165,7 +165,7 @@ const LoginPage = () => {
                 <span className="ml-2 text-[#ffffff]/50 text-xs">Remember Me</span>
               </label>
 
-              <a href="#" className="text-[#4BEEA2] text-sm hover:text-green-400 transition-colors">
+              <a href="/forgot-password" className="text-[#4BEEA2] text-sm hover:text-green-400 transition-colors">
                 Forgot Password?
               </a>
             </div>

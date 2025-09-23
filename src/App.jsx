@@ -3,6 +3,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import EmailVerificationPage from "./pages/EmailVerificationPage";
 import ReferralCodePage from "./pages/ReferralCodePage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/email-verification" element={<EmailVerificationPage />} />
           <Route path="/referral-code" element={<ReferralCodePage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         </Routes>
       </Router>
     </>
