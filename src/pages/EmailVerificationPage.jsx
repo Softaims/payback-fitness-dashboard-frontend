@@ -125,7 +125,7 @@ const EmailVerificationPage = () => {
     // Handle resend logic here
     console.log("Resending OTP to:", userEmail);
   };
-  console.log("error", errors);
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#0B0F0D]/90 via-[#0B0F0D] to-[#0B0F0D] relative">
       {/* Go Back Link - Fixed to top left */}

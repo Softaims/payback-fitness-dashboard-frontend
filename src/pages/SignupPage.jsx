@@ -3,7 +3,7 @@ import { User, Mail, Eye, EyeOff, AlertCircle, Check } from "lucide-react";
 import { signupSchema } from "../validation/signupValidation";
 import { validateForm } from "../validation/validateForm";
 import api from "../lib/apiClient";
-
+import { useNavigate } from "react-router-dom";
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,7 +16,7 @@ const SignupPage = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -50,8 +50,7 @@ const SignupPage = () => {
 
       console.log("Signup successful:", response);
 
-      // Redirect to email verification
-      window.location.href = "/email-verification";
+      navigate("/email-verification");
     } catch (error) {
       console.error("Signup failed:", error);
       console.log("error", error);
