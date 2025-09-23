@@ -184,7 +184,7 @@ const LoginPage = () => {
             {/* Sign Up Link */}
             <div className="text-center">
               <span className="text-white text-sm">Don't have an account? </span>
-              <a href="#" className="text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors">
+              <a href="/signup" className="text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors">
                 Sign Up
               </a>
             </div>
