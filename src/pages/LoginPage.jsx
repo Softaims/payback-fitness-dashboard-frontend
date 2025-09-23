@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Mail, Eye, EyeOff, AlertCircle } from "lucide-react";
 import { loginSchema } from "../validation/loginValidation";
 import { validateForm } from "../validation/validateForm";
+import api from "../lib/apiClient";
+import { useNavigate } from "react-router-dom";
+import customToast from "../lib/toast";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +15,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setFormData({
@@ -32,13 +36,25 @@ const LoginPage = () => {
 
     setLoading(true);
     try {
-      // Handle login logic here (without API for now)
-      console.log("Login attempt:", formData);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Login successful!");
+      await api.post(
+        "/api/auth/signin",
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          isProtected: false,
+        }
+      );
+
+      customToast.success("Login Successful");
     } catch (error) {
       console.error("Login failed:", error);
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Invalid email or password. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
