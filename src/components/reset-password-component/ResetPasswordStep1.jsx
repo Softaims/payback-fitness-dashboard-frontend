@@ -5,7 +5,7 @@ import { validateForm } from "../../validation/validateForm";
 import api from "../../lib/apiClient";
 import customToast from "../../lib/toast";
 
-const ForgotPasswordStep3 = ({ onNext }) => {
+const ResetPasswordStep1 = ({ onNext }) => {
   const [formData, setFormData] = useState({
     newPassword: "",
     confirmPassword: "",
@@ -149,4 +149,4 @@ const ForgotPasswordStep3 = ({ onNext }) => {
   );
 };
 
-export default ForgotPasswordStep3;
+export default ResetPasswordStep1;

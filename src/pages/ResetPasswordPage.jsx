@@ -1,30 +1,31 @@
 import { useState } from "react";
 import { ChevronLeft } from "lucide-react";
-import ForgotPasswordStep1 from "../components/forgot-password-component/ForgotPasswordStep1";
-import ForgotPasswordStep2 from "../components/forgot-password-component/ForgotPasswordStep2";
+import ResetPasswordStep1 from "../components/reset-password-component/ResetPasswordStep1";
+import ResetPasswordStep2 from "../components/reset-password-component/ResetPasswordStep2";
 import { useNavigate } from "react-router-dom";
-const ForgotPasswordPage = () => {
+
+const ResetPasswordPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
+
   const handleNext = () => {
-    if (currentStep === 2) {
-      navigate("/reset-password");
-    } else {
-      setCurrentStep(currentStep + 1);
-    }
+    setCurrentStep(currentStep + 1);
   };
 
   const handleGoBackToLogin = () => {
     navigate("/login");
   };
 
+  const handleComplete = () => {
+    navigate("/login");
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <ForgotPasswordStep1 onNext={handleNext} userEmail={userEmail} setUserEmail={setUserEmail} />;
+        return <ResetPasswordStep1 onNext={handleNext} />;
       case 2:
-        return <ForgotPasswordStep2 userEmail={userEmail} onNext={handleNext} />;
+        return <ResetPasswordStep2 onComplete={handleComplete} />;
       default:
         return null;
     }
@@ -48,4 +49,4 @@ const ForgotPasswordPage = () => {
   );
 };
 
-export default ForgotPasswordPage;
+export default ResetPasswordPage;

@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 
-const ForgotPasswordStep4 = ({ onComplete }) => {
+const ResetPasswordStep2 = ({ onComplete }) => {
   const handleLoginNow = () => {
     onComplete();
   };
@@ -38,4 +38,4 @@ const ForgotPasswordStep4 = ({ onComplete }) => {
   );
 };
 
-export default ForgotPasswordStep4;
+export default ResetPasswordStep2;
