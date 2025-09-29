@@ -27,7 +27,10 @@ const DashboardHeader = ({ onMenuClick }) => {
 
   const handleLogout = () => {};
 
-  const handleProfileSettings = () => {};
+  const handleProfileSettings = () => {
+    navigate("/profile-settings");
+    setIsDropdownOpen(false);
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);

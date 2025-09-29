@@ -14,6 +14,12 @@ export const navigationLinks = [
     exact: false,
   },
   {
+    label: "Profile",
+    path: "/profile-settings",
+    icon: User,
+    exact: false,
+  },
+  {
     label: "FAQ's",
     path: "#",
     icon: HelpCircle,

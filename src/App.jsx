@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import UserDashboard from "./pages/UserDashboard";
 import ManageSubscriptionsPage from "./pages/ManageSubscriptionsPage";
 import PFCoinsPage from "./pages/PFCoinsPage";
+import ProfileSettingsPage from "./pages/ProfileSettingsPage";
 import PublicRoute from "./components/global/PublicRoute";
 import ProtectedRoute from "./components/global/ProtectedRoute";
 import { CustomToaster } from "./lib/toast";
@@ -35,6 +36,7 @@ function App() {
           <Route path="/payment/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />
           <Route path="/manage-subscriptions" element={<ProtectedRoute children={<ManageSubscriptionsPage />} />} />
           <Route path="/pf-coins" element={<ProtectedRoute children={<PFCoinsPage />} />} />
+          <Route path="/profile-settings" element={<ProtectedRoute children={<ProfileSettingsPage />} />} />
         </Routes>
         <CustomToaster />
       </Router>
