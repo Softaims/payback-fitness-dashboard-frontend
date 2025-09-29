@@ -23,11 +23,10 @@ export async function getValidAccessToken() {
   if (!accessToken || isTokenExpired(accessToken)) {
     if (refreshToken) {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/refresh`, { refreshToken });
-
-        accessToken = response.data.access_token;
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/refresh-token`, { refreshToken });
+        accessToken = response.data.data.session.access_token;
         localStorage.setItem("access_token", accessToken);
-        localStorage.setItem("refresh_token", response.data.refresh_token);
+        localStorage.setItem("refresh_token", response.data.data.session.refresh_token);
       } catch {
         // If refresh fails, clear tokens
         localStorage.removeItem("access_token");
@@ -35,7 +34,6 @@ export async function getValidAccessToken() {
       }
     }
   }
-
   return accessToken;
 }
 
