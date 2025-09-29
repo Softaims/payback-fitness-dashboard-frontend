@@ -1,6 +1,6 @@
 import { DollarSign, FileText } from "lucide-react";
 
-const PFCoinsStats = ({ availableCoins = 0, totalPurchased = 0, loading = false }) => {
+const PFCoinsStats = ({ availableCoins = 0, totalPurchased = 0, loading = false, onPurchaseClick }) => {
   if (loading) {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
@@ -55,7 +55,9 @@ const PFCoinsStats = ({ availableCoins = 0, totalPurchased = 0, loading = false 
           <div className="z-10 max-w-md">
             <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
             <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
-            <button className="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">Buy PF Coins</button>
+            <button onClick={onPurchaseClick} className="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+              Buy PF Coins
+            </button>
           </div>
         </div>
         <div>
