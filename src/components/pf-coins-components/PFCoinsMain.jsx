@@ -5,21 +5,14 @@ import PurchaseHistoryTable from "./PurchaseHistoryTable";
 import PurchasePFCoinsModal from "./PurchasePFCoinsModal";
 
 const PFCoinsMain = () => {
-  const { fetchPurchaseHistory, purchaseHistory, purchaseHistoryLoading } = usePFCoinsStore();
+  const { fetchPurchaseHistory, purchaseHistory } = usePFCoinsStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchPurchaseHistory(1, 10);
-  }, [fetchPurchaseHistory]);
-
-  const calculateStats = () => {
-    const rows = purchaseHistory?.rows || [];
-    const totalPurchased = rows.filter((item) => item.status === "completed").reduce((sum, item) => sum + parseInt(item.amount), 0);
-    const availableCoins = totalPurchased;
-    return { availableCoins, totalPurchased };
-  };
-
-  const { availableCoins, totalPurchased } = calculateStats();
+    if (!purchaseHistory) {
+      fetchPurchaseHistory(1, 10);
+    }
+  }, [fetchPurchaseHistory, purchaseHistory]);
 
   return (
     <div className="min-h-screen bg-[#0B0F0D] p-6">
@@ -28,12 +21,7 @@ const PFCoinsMain = () => {
       </div>
 
       {/* Stats Section */}
-      <PFCoinsStats
-        availableCoins={availableCoins}
-        totalPurchased={totalPurchased}
-        loading={purchaseHistoryLoading}
-        onPurchaseClick={() => setIsModalOpen(true)}
-      />
+      <PFCoinsStats onPurchaseClick={() => setIsModalOpen(true)} />
 
       {/* Purchase History Section */}
       <PurchaseHistoryTable />

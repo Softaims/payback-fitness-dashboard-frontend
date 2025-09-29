@@ -1,7 +1,10 @@
 import { DollarSign, FileText } from "lucide-react";
-
-const PFCoinsStats = ({ availableCoins = 0, totalPurchased = 0, loading = false, onPurchaseClick }) => {
-  if (loading) {
+import { useUserStore } from "../../store/userStore";
+import { usePFCoinsStore } from "../../store/pfCoinsStore";
+const PFCoinsStats = ({ onPurchaseClick }) => {
+  const { user } = useUserStore();
+  const { purchaseHistoryLoading, purchaseHistory } = usePFCoinsStore();
+  if (purchaseHistoryLoading) {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
         {/* Want More PF Coins Banner */}
@@ -73,7 +76,7 @@ const PFCoinsStats = ({ availableCoins = 0, totalPurchased = 0, loading = false,
           </div>
           <div>
             <div>
-              <span className="text-3xl font-bold text-[#4BEEA2]">{availableCoins}</span>
+              <span className="text-3xl font-bold text-[#4BEEA2]">{user?.pfCoinBalance}</span>
               <span className="text-sm ml-1 text-white">PF</span>
             </div>
             <p className="text-[#ffffff]/50 text-sm">Available PF Coins</p>
@@ -89,7 +92,7 @@ const PFCoinsStats = ({ availableCoins = 0, totalPurchased = 0, loading = false,
           </div>
           <div>
             <div>
-              <span className="text-3xl font-bold text-[#4BEEA2]">{totalPurchased}</span>
+              <span className="text-3xl font-bold text-[#4BEEA2]">{purchaseHistory?.totalPurchasedCoins}</span>
               <span className="text-sm text-white ml-1">PF</span>
             </div>
             <p className="text-[#ffffff]/50 text-sm">Total Purchased PF Coins</p>
