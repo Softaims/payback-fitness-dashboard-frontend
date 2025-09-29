@@ -46,16 +46,20 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
   };
 
   const handleContinue = async () => {
+    if (!selectedPlan) {
+      customToast.error("Please select a plan");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await api.post(
         "/api/subscription/checkout",
         {
-          successUrl: `${window.location.origin}/payment/success`,
-          cancelUrl: `${window.location.origin}/`,
+          planId: selectedPlan,
         },
         {
-          isProtected: false,
+          isProtected: true,
         }
       );
       window.location.href = response?.data?.checkoutUrl;

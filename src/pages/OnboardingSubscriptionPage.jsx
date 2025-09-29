@@ -3,16 +3,22 @@ import OnboardingSubscriptionFeatures from "../components/onboarding-subscriptio
 import OnboardingSubscriptionPlanSelection from "../components/onboarding-subscription/OnboardingSubscriptionPlanSelection";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/userStore";
+import { useSubscriptionPlansStore } from "../store/subscriptionPlansStore";
 import { useEffect } from "react";
 const OnboardingSubscriptionPage = () => {
   const navigate = useNavigate();
   const user = useUserStore();
+  const { fetchSubscriptionPlans } = useSubscriptionPlansStore();
 
   useEffect(() => {
     if (user?.hasSubscription) {
       navigate("/");
     }
   });
+
+  useEffect(() => {
+    fetchSubscriptionPlans();
+  }, [fetchSubscriptionPlans]);
   const handleGoBack = () => {
     navigate("/referral-code");
   };

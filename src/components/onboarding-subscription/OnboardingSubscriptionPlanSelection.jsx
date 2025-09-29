@@ -1,45 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import customToast from "../../lib/toast";
 import api from "../../lib/apiClient";
+import { useSubscriptionPlansStore } from "../../store/subscriptionPlansStore";
 const OnboardingSubscriptionPlanSelection = () => {
-  const [selectedPlan, setSelectedPlan] = useState("monthly");
+  const [selectedPlan, setSelectedPlan] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { plans, plansLoading, fetchSubscriptionPlans } = useSubscriptionPlansStore();
 
-  const plans = [
-    {
-      id: "monthly",
-      name: "Monthly",
-      price: "$5.00",
-      billing: "Billed Monthly",
-      selected: selectedPlan === "monthly",
-    },
-    {
-      id: "yearly",
-      name: "Yearly",
-      price: "$50.00",
-      billing: "Billed Yearly",
-      selected: selectedPlan === "yearly",
-    },
-  ];
+  useEffect(() => {
+    if (!plans) {
+      fetchSubscriptionPlans();
+    }
+  }, [fetchSubscriptionPlans, plans]);
+
+  useEffect(() => {
+    if (plans?.length > 0 && !selectedPlan) {
+      setSelectedPlan(plans[0].id);
+    }
+  }, [plans, selectedPlan]);
 
   const handlePlanSelect = (planId) => {
     setSelectedPlan(planId);
   };
 
   const handleContinue = async () => {
+    if (!selectedPlan) {
+      customToast.error("Please select a plan");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await api.post(
         "/api/subscription/checkout",
         {
-          successUrl: `${window.location.origin}/payment/success`,
-          cancelUrl: `${window.location.origin}/onboarding-subscription`,
+          planId: selectedPlan,
         },
         {
-          isProtected: false,
+          isProtected: true,
         }
       );
       window.location.href = response?.data?.checkoutUrl;
@@ -69,27 +70,44 @@ const OnboardingSubscriptionPlanSelection = () => {
 
         {/* Plan Selection */}
         <div className="space-y-4 mb-20">
-          {plans.map((plan) => (
-            <div
-              key={plan.id}
-              onClick={() => handlePlanSelect(plan.id)}
-              className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                plan.selected ? "border-[#4BEEA2] bg-[#4BEEA2]/10" : "border-[#FFFFFF]/7 bg-[#FFFFFF]/5 hover:border-[#FFFFFF]/20"
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-white text-lg font-medium">{plan.name}</h3>
-                  <p className="text-[#ffffff]/50 text-sm">
-                    {plan.price} /{plan.billing}
-                  </p>
-                </div>
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${plan.selected ? "border-[#4BEEA2]" : "border-[#ffffff]/50"}`}>
-                  {plan.selected && <div className="w-2 h-2 rounded-full bg-[#4BEEA2]"></div>}
-                </div>
+          {plansLoading ? (
+            <div className="space-y-4">
+              <div className="p-4 rounded-lg border-2 border-[#FFFFFF]/7 bg-[#FFFFFF]/5 animate-pulse">
+                <div className="h-6 w-20 bg-[#ffffff]/10 rounded mb-2"></div>
+                <div className="h-4 w-24 bg-[#ffffff]/10 rounded"></div>
+              </div>
+              <div className="p-4 rounded-lg border-2 border-[#FFFFFF]/7 bg-[#FFFFFF]/5 animate-pulse">
+                <div className="h-6 w-16 bg-[#ffffff]/10 rounded mb-2"></div>
+                <div className="h-4 w-20 bg-[#ffffff]/10 rounded"></div>
               </div>
             </div>
-          ))}
+          ) : (
+            plans?.map((plan) => (
+              <div
+                key={plan.id}
+                onClick={() => handlePlanSelect(plan.id)}
+                className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                  selectedPlan === plan.id ? "border-[#4BEEA2] bg-[#4BEEA2]/10" : "border-[#FFFFFF]/7 bg-[#FFFFFF]/5 hover:border-[#FFFFFF]/20"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-white text-lg font-medium">{plan.name}</h3>
+                    <p className="text-[#ffffff]/50 text-sm">
+                      ${plan.amount} /Billed {plan.name}
+                    </p>
+                  </div>
+                  <div
+                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                      selectedPlan === plan.id ? "border-[#4BEEA2]" : "border-[#ffffff]/50"
+                    }`}
+                  >
+                    {selectedPlan === plan.id && <div className="w-2 h-2 rounded-full bg-[#4BEEA2]"></div>}
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         {/* Security Message */}

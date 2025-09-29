@@ -8,10 +8,10 @@ const ManageSubscriptionSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchCurrentSubscription();
-  }, [fetchCurrentSubscription]);
-
-  console.log("subscription", subscription);
+    if (!subscription) {
+      fetchCurrentSubscription();
+    }
+  }, [fetchCurrentSubscription, subscription]);
 
   const handleSubscribeNow = () => {
     setIsModalOpen(true);
@@ -67,11 +67,11 @@ const ManageSubscriptionSection = () => {
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center gap-3">
                 <h3 className="text-xl font-semibold text-white">Current Plan</h3>
-                <span className="bg-[#4BEEA2] text-black px-3 py-1 rounded-full text-sm font-medium">{subscription.planType || "Monthly"}</span>
+                <span className="bg-[#4BEEA2] text-black px-3 py-1 rounded-full text-sm font-medium">{subscription.planName || "Monthly"}</span>
               </div>
               <div className="text-right">
-                <div className="text-4xl font-bold text-[#4BEEA2]">${subscription.price || "5.00"}</div>
-                <div className="text-[#ffffff]/50 text-sm">/Billed {subscription.billingCycle || "Monthly"}</div>
+                <div className="text-4xl font-bold text-[#4BEEA2]">${subscription.planAmount || "5.00"}</div>
+                <div className="text-[#ffffff]/50 text-sm">/Billed {subscription.planName || "Monthly"}</div>
               </div>
             </div>
 
@@ -81,7 +81,16 @@ const ManageSubscriptionSection = () => {
             </p>
 
             <p className="text-[#ffffff]/50 mb-6">
-              Next Subscription Renewal Date: <span className="text-white font-medium">{subscription.nextRenewalDate || "Apr 10, 2025"}</span>
+              Next Subscription Renewal Date:{" "}
+              <span className="text-white font-medium">
+                {subscription.currentPeriodEnd
+                  ? new Date(subscription.currentPeriodEnd).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                  : ""}
+              </span>
             </p>
 
             {/* Horizontal Divider */}
@@ -90,9 +99,9 @@ const ManageSubscriptionSection = () => {
             {/* Bottom Section - Action */}
             <div className="flex items-center justify-between">
               <p className="text-[#ffffff]/50">Renew, cancel or change your subscription Plan</p>
-              <button className="bg-[#4BEEA2] hover:bg-[#3DD18A] text-white font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
+              <button className="bg-[#4BEEA2] hover:bg-[#3DD18A] text-black font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
                 <Crown className="w-4 h-4" />
-                Manage Subscriptions
+                Manage Subscription
               </button>
             </div>
           </div>
