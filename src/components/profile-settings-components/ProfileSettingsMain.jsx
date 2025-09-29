@@ -166,6 +166,7 @@ const ProfileSettingsMain = () => {
                   <div className="relative">
                     <input
                       type={showOldPassword ? "text" : "password"}
+                      disabled
                       name="oldPassword"
                       value={passwordData.oldPassword}
                       onChange={handlePasswordChange}
@@ -208,13 +209,19 @@ const ProfileSettingsMain = () => {
                       placeholder="********"
                       className="w-full px-4 py-3 bg-[#FFFFFF]/7 border border-[#FFFFFF]/7 rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 focus:ring-[#4BEEA2] focus:border-[#4BEEA2] transition-colors"
                     />
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    >
                       {passwordData.confirmPassword && passwordData.newPassword === passwordData.confirmPassword ? (
                         <Check className="text-[#4BEEA2]" size={16} />
+                      ) : showConfirmPassword ? (
+                        <EyeOff className="text-[#4BEEA2]" size={16} />
                       ) : (
                         <Eye className="text-[#4BEEA2]" size={16} />
                       )}
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
