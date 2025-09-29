@@ -10,7 +10,7 @@ const SidebarItem = ({ icon: Icon, text, path, isActive, onClick }) => {
   const iconClasses = "text-xl";
   const labelClasses = "flex-1";
 
-  const itemClasses = isActive ? "bg-green-500 text-white" : "text-[#ffffff]/50 hover:text-[#ffffff]/60";
+  const itemClasses = isActive ? "bg-[#4BEEA2] text-black" : "text-[#ffffff]/50 hover:text-[#ffffff]/60";
   return (
     <li>
       <Link to={path} className={`${baseClasses} ${itemClasses}`} onClick={onClick}>
