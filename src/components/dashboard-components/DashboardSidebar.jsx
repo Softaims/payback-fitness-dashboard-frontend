@@ -50,7 +50,7 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
   return (
     <>
       <aside
-        className={`fixed md:static border-r-1 border-[#ffffff]/7 w-64 h-screen bg-[#0B0F0D] flex flex-col z-30 transition-transform duration-300 ease-in-out overflow-y-auto
+        className={`fixed md:static border-r-1 border-[#ffffff]/7 w-64 h-screen bg-[#ffffff]/7 flex flex-col z-30 transition-transform duration-300 ease-in-out overflow-y-auto
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         {/* Menu Section */}

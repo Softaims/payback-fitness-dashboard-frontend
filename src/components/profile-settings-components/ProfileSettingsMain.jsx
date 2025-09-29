@@ -143,7 +143,7 @@ const ProfileSettingsMain = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0F0D] p-6">
+    <div className="min-h-screen p-6">
       <div className="space-y-8">
         {/* Delete Account Section */}
         <div className="bg-[#ffffff]/7 rounded-xl p-6">

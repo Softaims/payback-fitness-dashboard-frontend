@@ -15,7 +15,7 @@ const PFCoinsMain = () => {
   }, [fetchPurchaseHistory, purchaseHistory]);
 
   return (
-    <div className="min-h-screen bg-[#0B0F0D] p-6">
+    <div className="min-h-screen p-6">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white">PF Coins</h1>
       </div>

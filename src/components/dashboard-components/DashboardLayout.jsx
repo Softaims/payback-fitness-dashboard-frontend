@@ -21,7 +21,7 @@ const DashboardLayout = ({ children }) => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-800">
+    <div className="flex flex-col h-screen">
       {/* Header at the top */}
       <DashboardHeader onMenuClick={toggleSidebar} />
 
@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }) => {
           <DashboardSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
         </div>
 
-        <main className="flex-1 overflow-x-auto overflow-y-auto bg-gray-100">{children}</main>
+        <main className="flex-1 overflow-x-auto overflow-y-auto">{children}</main>
       </div>
     </div>
   );
