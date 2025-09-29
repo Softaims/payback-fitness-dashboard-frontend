@@ -4,11 +4,15 @@ import { useUserStore } from "../../store/userStore";
 import { useNavigate } from "react-router-dom";
 import customToast from "../../lib/toast";
 import { getUserInitials, getUserDisplayName } from "../../utils/getUserinitials";
+import { clearTokens } from "../../lib/tokenUtils";
+import ConfirmationModal from "../global/ConfirmationModal";
 
 const DashboardHeader = ({ onMenuClick }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
   const dropdownRef = useRef(null);
-  const { user } = useUserStore();
+  const { user, clearUser } = useUserStore();
   const navigate = useNavigate();
 
   // Close dropdown when clicking outside
@@ -25,7 +29,24 @@ const DashboardHeader = ({ onMenuClick }) => {
     };
   }, []);
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    setIsLogoutModalOpen(true);
+    setIsDropdownOpen(false);
+  };
+
+  const handleLogoutConfirm = async () => {
+    setLogoutLoading(true);
+    try {
+      clearTokens();
+      customToast.success("Successfully logged out!");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Logout failed:", error);
+      customToast.error("Logout failed. Please try again.");
+    } finally {
+      setLogoutLoading(false);
+    }
+  };
 
   const handleProfileSettings = () => {
     navigate("/profile-settings");
@@ -97,6 +118,19 @@ const DashboardHeader = ({ onMenuClick }) => {
           </div>
         )}
       </div>
+
+      {/* Logout Confirmation Modal */}
+      <ConfirmationModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleLogoutConfirm}
+        title="Confirm Logout"
+        message="Are you sure you want to logout? You will need to sign in again to access your account."
+        confirmText="Logout"
+        cancelText="Cancel"
+        confirmButtonColor="bg-red-600 hover:bg-red-700"
+        loading={logoutLoading}
+      />
     </header>
   );
 };

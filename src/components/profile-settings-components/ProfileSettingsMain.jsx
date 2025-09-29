@@ -6,12 +6,15 @@ import api from "../../lib/apiClient";
 import { changePasswordSchema } from "../../validation/changePasswordValidation";
 import { profileSchema } from "../../validation/profileValidation";
 import { validateForm } from "../../validation/validateForm";
+import ConfirmationModal from "../global/ConfirmationModal";
 const ProfileSettingsMain = () => {
   const { user, setUser } = useUserStore();
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [profileLoading, setProfileLoading] = useState(false);
   const [passwordLoading, setPasswordLoading] = useState(false);
+  const [deleteAccountLoading, setDeleteAccountLoading] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [passwordErrors, setPasswordErrors] = useState({});
   const [profileErrors, setProfileErrors] = useState({});
 
@@ -115,8 +118,28 @@ const ProfileSettingsMain = () => {
   };
 
   const handleDeleteAccount = () => {
-    // TODO: Implement account deletion
-    customToast.error("Account deletion is not implemented yet");
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteAccountConfirm = async () => {
+    setDeleteAccountLoading(true);
+    try {
+      await api.delete("/api/user/account", {
+        isProtected: true,
+      });
+
+      customToast.success("Account deleted successfully!");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Account deletion failed:", error);
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Failed to delete account. Please try again.");
+      }
+    } finally {
+      setDeleteAccountLoading(false);
+    }
   };
 
   return (
@@ -290,6 +313,19 @@ const ProfileSettingsMain = () => {
           </div>
         </div>
       </div>
+
+      {/* Delete Account Confirmation Modal */}
+      <ConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDeleteAccountConfirm}
+        title="Delete Account"
+        message="Are you sure you want to delete your account? This action cannot be undone. All your data, PF Coins, and subscriptions will be permanently lost."
+        confirmText="Delete Account"
+        cancelText="Cancel"
+        confirmButtonColor="bg-red-600 hover:bg-red-700"
+        loading={deleteAccountLoading}
+      />
     </div>
   );
 };
