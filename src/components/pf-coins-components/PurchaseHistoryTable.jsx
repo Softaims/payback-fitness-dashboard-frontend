@@ -54,8 +54,6 @@ const PurchaseHistoryTable = () => {
   if (purchaseHistoryLoading) {
     return (
       <div className="bg-[#2A2A2A] rounded-xl p-6">
-        <h2 className="text-xl font-bold text-white mb-6">Coin Purchase History</h2>
-
         {/* Table Skeleton */}
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -125,7 +123,7 @@ const PurchaseHistoryTable = () => {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-[#ffffff]/7">
+            <tr className="text-sm border-b border-[#ffffff]/7">
               <th className="text-left text-[#ffffff]/50 py-3 px-4">Sr #</th>
               <th className="text-left text-[#ffffff]/50 py-3 px-4">Number Of Coins</th>
               <th className="text-left text-[#ffffff]/50 py-3 px-4">Purchasing Date</th>
@@ -135,14 +133,14 @@ const PurchaseHistoryTable = () => {
           </thead>
           <tbody>
             {rows.map((item, index) => (
-              <tr key={index} className="border-b border-[#ffffff]/5">
+              <tr key={index} className="text-sm border-b border-[#ffffff]/5">
                 <td className="py-3 px-4 text-white">{(page - 1) * limit + index + 1}</td>
                 <td className="py-3 px-4 text-white">{item.amount}PF</td>
                 <td className="py-3 px-4 text-white">{item.date}</td>
                 <td className="py-3 px-4 text-white">{item.time}</td>
                 <td className="py-3 px-4">
                   <span
-                    className={`px-2 py-1 rounded-xl text-sm ${
+                    className={`px-3 py-2 rounded-xl text-sm ${
                       item.status === "completed" ? "text-[#2DD084] bg-[#2DD084]/10" : "text-[#F65E53] bg-[#F65E53]/10"
                     }`}
                   >

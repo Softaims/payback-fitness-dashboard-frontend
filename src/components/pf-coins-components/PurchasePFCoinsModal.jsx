@@ -2,8 +2,10 @@ import { useState } from "react";
 import { X, AlertCircle } from "lucide-react";
 import { purchaseCoinsSchema } from "../../validation/purchaseCoinsValidation";
 import { validateForm } from "../../validation/validateForm";
+import api from "../../lib/apiClient";
+import customToast from "../../lib/toast";
 
-const PurchasePFCoinsModal = ({ isOpen, onClose, onPurchase }) => {
+const PurchasePFCoinsModal = ({ isOpen, onClose }) => {
   const [coinAmount, setCoinAmount] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -27,12 +29,25 @@ const PurchasePFCoinsModal = ({ isOpen, onClose, onPurchase }) => {
 
     setLoading(true);
     try {
-      await onPurchase(parseInt(coinAmount));
-      setCoinAmount("");
-      setErrors({});
-      onClose();
+      const response = await api.post(
+        "/api/coin/topup/checkout",
+        {
+          amountUsd: parseInt(coinAmount),
+        },
+        {
+          isProtected: true,
+        }
+      );
+
+      // Redirect to checkout URL
+      window.location.href = response?.data?.checkoutUrl;
     } catch (error) {
       console.error("Purchase failed:", error);
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Failed to initiate purchase. Please try again.");
+      }
     } finally {
       setLoading(false);
     }

@@ -21,13 +21,6 @@ const PFCoinsMain = () => {
 
   const { availableCoins, totalPurchased } = calculateStats();
 
-  const handlePurchase = async (amount) => {
-    // TODO: Implement purchase logic
-    console.log(`Purchasing ${amount} PF Coins`);
-    // After successful purchase, refresh the data
-    await fetchPurchaseHistory(1, 10);
-  };
-
   return (
     <div className="min-h-screen bg-[#0B0F0D] p-6">
       <div className="mb-8">
@@ -46,7 +39,7 @@ const PFCoinsMain = () => {
       <PurchaseHistoryTable />
 
       {/* Purchase Modal */}
-      <PurchasePFCoinsModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onPurchase={handlePurchase} />
+      <PurchasePFCoinsModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };

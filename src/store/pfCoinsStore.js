@@ -19,7 +19,7 @@ export const usePFCoinsStore = create((set) => ({
         },
         isProtected: true,
       });
-      set({ purchaseHistory: response, purchaseHistoryLoading: false });
+      set({ purchaseHistory: response?.data, purchaseHistoryLoading: false });
       return response;
     } catch (error) {
       set({ purchaseHistoryLoading: false });
