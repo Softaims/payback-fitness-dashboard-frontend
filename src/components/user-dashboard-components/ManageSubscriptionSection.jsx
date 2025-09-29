@@ -1,15 +1,25 @@
 import { Crown } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSubscriptionStore } from "../../store/subscriptionStore";
+import SubscriptionModal from "./SubscriptionModal";
 
 const ManageSubscriptionSection = () => {
   const { subscription, subscriptionLoading, fetchCurrentSubscription } = useSubscriptionStore();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchCurrentSubscription();
   }, [fetchCurrentSubscription]);
 
   console.log("subscription", subscription);
+
+  const handleSubscribeNow = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
@@ -90,10 +100,15 @@ const ManageSubscriptionSection = () => {
           <div className="rounded-xl p-8 mb-8 flex flex-col items-center justify-center py-12">
             <img src="/images/NoSubscription.png" alt="No Subscription" className="w-32 h-32 mb-6" />
             <p className="text-white text-lg mb-4">No subscription plan added yet!</p>
-            <button className="text-[#4BEEA2] text-lg underline hover:text-[#3DD18A] transition-colors">Subscribe Now</button>
+            <button onClick={handleSubscribeNow} className="cursor-pointer text-[#4BEEA2] text-lg underline hover:text-[#3DD18A] transition-colors">
+              Subscribe Now
+            </button>
           </div>
         )}
       </div>
+
+      {/* Subscription Modal */}
+      <SubscriptionModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };
