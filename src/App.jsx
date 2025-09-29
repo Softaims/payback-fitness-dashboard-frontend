@@ -9,6 +9,7 @@ import SubscriptionPage from "./pages/OnboardingSubscriptionPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import HomePage from "./pages/HomePage";
 import UserDashboard from "./pages/UserDashboard";
+import ManageSubscriptionsPage from "./pages/ManageSubscriptionsPage";
 import PublicRoute from "./components/global/PublicRoute";
 import ProtectedRoute from "./components/global/ProtectedRoute";
 import { CustomToaster } from "./lib/toast";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
           <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
           <Route path="/payment/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />
+          <Route path="/manage-subscriptions" element={<ProtectedRoute children={<ManageSubscriptionsPage />} />} />
         </Routes>
         <CustomToaster />
       </Router>
