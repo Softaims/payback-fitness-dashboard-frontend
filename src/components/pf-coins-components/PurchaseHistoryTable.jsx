@@ -6,7 +6,6 @@ const PurchaseHistoryTable = () => {
 
   // Extract data from response
   const rows = purchaseHistory?.rows || [];
-  const total = purchaseHistory?.total || 0;
   const page = purchaseHistory?.page || 1;
   const limit = purchaseHistory?.limit || 10;
   const totalPages = purchaseHistory?.totalPages || 0;
@@ -69,19 +68,19 @@ const PurchaseHistoryTable = () => {
             <tbody>
               {Array.from({ length: limit }).map((_, index) => (
                 <tr key={index} className="border-b border-[#ffffff]/5">
-                  <td className="py-3 px-4">
+                  <td className="py-6 px-4">
                     <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-6 px-4">
                     <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-6 px-4">
                     <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-6 px-4">
                     <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-6 px-4">
                     <div className="h-6 w-16 bg-[#ffffff]/10 rounded-xl animate-pulse"></div>
                   </td>
                 </tr>
@@ -134,11 +133,11 @@ const PurchaseHistoryTable = () => {
           <tbody>
             {rows.map((item, index) => (
               <tr key={index} className="text-sm border-b border-[#ffffff]/5">
-                <td className="py-3 px-4 text-white">{(page - 1) * limit + index + 1}</td>
-                <td className="py-3 px-4 text-white">{item.amount}PF</td>
-                <td className="py-3 px-4 text-white">{item.date}</td>
-                <td className="py-3 px-4 text-white">{item.time}</td>
-                <td className="py-3 px-4">
+                <td className="py-6 px-4 text-white">{(page - 1) * limit + index + 1}</td>
+                <td className="py-6 px-4 text-white">{item.amount}PF</td>
+                <td className="py-6 px-4 text-white">{item.date}</td>
+                <td className="py-6 px-4 text-white">{item.time}</td>
+                <td className="py-6 px-4">
                   <span
                     className={`px-3 py-2 rounded-xl text-sm ${
                       item.status === "completed" ? "text-[#2DD084] bg-[#2DD084]/10" : "text-[#F65E53] bg-[#F65E53]/10"

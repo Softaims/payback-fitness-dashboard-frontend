@@ -11,8 +11,8 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
         <div className="overflow-hidden rounded-xl bg-[#4BEEA2] flex flex-row items-end lg:col-span-2">
           <div className="p-4 relative overflow-hidden">
             <div className="z-10 max-w-md">
-              <div className="h-6 bg-white/20 rounded mb-2 animate-pulse"></div>
-              <div className="h-4 bg-white/20 rounded mb-4 animate-pulse"></div>
+              <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
+              <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
               <div className="h-10 bg-black/20 rounded-lg animate-pulse"></div>
             </div>
           </div>
