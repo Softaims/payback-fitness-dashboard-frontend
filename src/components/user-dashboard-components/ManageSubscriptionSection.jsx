@@ -2,10 +2,13 @@ import { Crown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSubscriptionStore } from "../../store/subscriptionStore";
 import SubscriptionModal from "./SubscriptionModal";
+import api from "../../lib/apiClient";
+import customToast from "../../lib/toast";
 
 const ManageSubscriptionSection = () => {
   const { subscription, subscriptionLoading, fetchCurrentSubscription } = useSubscriptionStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
 
   useEffect(() => {
     if (!subscription) {
@@ -19,6 +22,23 @@ const ManageSubscriptionSection = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleManageSubscription = async () => {
+    setPortalLoading(true);
+    try {
+      const response = await api.post("/api/subscription/portal", {}, { isProtected: true });
+      window.location.href = response?.data?.portalUrl;
+    } catch (error) {
+      console.error("Portal access failed:", error);
+      if (error?.message) {
+        customToast.error(error.message);
+      } else {
+        customToast.error("Failed to access subscription portal. Please try again.");
+      }
+    } finally {
+      setPortalLoading(false);
+    }
   };
 
   return (
@@ -99,9 +119,15 @@ const ManageSubscriptionSection = () => {
             {/* Bottom Section - Action */}
             <div className="flex items-center justify-between">
               <p className="text-[#ffffff]/50">Renew, cancel or change your subscription Plan</p>
-              <button className="bg-[#4BEEA2] hover:bg-[#3DD18A] text-black font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
+              <button
+                onClick={handleManageSubscription}
+                disabled={portalLoading}
+                className={`bg-[#4BEEA2] hover:bg-[#3DD18A] text-black font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-colors ${
+                  portalLoading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
+                }`}
+              >
                 <Crown className="w-4 h-4" />
-                Manage Subscription
+                {portalLoading ? "Processing..." : "Manage Subscription"}
               </button>
             </div>
           </div>
