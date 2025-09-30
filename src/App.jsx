@@ -28,7 +28,7 @@ function App() {
           {/* Protected Routes */}
           <Route path="/" element={<ProtectedRoute children={<UserDashboard />} />} />
           <Route path="/dashboard" element={<ProtectedRoute children={<UserDashboard />} />} />
-          <Route path="/referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
+          <Route path="/onboarding-referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
           <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
           <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
           <Route path="/payment/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />

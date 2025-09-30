@@ -118,11 +118,11 @@ const EmailVerificationPage = () => {
       );
       customToast.success("Email verified successfully");
       setTimeout(() => {
-        setUser(response?.data?.user);
+        setUser({ ...response?.data?.user, not_onboarded: true });
         localStorage.setItem("access_token", response?.data?.session?.access_token);
         localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
         // Redirect to referral code page
-        navigate("/referral-code");
+        navigate("/onboarding-referral-code");
       }, 2000);
     } catch (error) {
       console.error("OTP verification failed:", error);

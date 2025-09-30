@@ -2,25 +2,19 @@ import { ChevronLeft } from "lucide-react";
 import OnboardingSubscriptionFeatures from "../components/onboarding-subscription/OnboardingSubscriptionFeatures";
 import OnboardingSubscriptionPlanSelection from "../components/onboarding-subscription/OnboardingSubscriptionPlanSelection";
 import { useNavigate } from "react-router-dom";
-import { useUserStore } from "../store/userStore";
 import { useSubscriptionPlansStore } from "../store/subscriptionPlansStore";
 import { useEffect } from "react";
 const OnboardingSubscriptionPage = () => {
   const navigate = useNavigate();
-  const user = useUserStore();
-  const { fetchSubscriptionPlans } = useSubscriptionPlansStore();
+  const { fetchSubscriptionPlans, plans } = useSubscriptionPlansStore();
 
   useEffect(() => {
-    if (user?.hasSubscription) {
-      navigate("/");
+    if (!plans) {
+      fetchSubscriptionPlans();
     }
-  });
-
-  useEffect(() => {
-    fetchSubscriptionPlans();
-  }, [fetchSubscriptionPlans]);
+  }, [fetchSubscriptionPlans, plans]);
   const handleGoBack = () => {
-    navigate("/referral-code");
+    navigate("/onboarding-referral-code");
   };
 
   return (

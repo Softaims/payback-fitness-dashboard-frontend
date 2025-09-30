@@ -1,23 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ChevronLeft, AlertCircle } from "lucide-react";
 import { referralCodeSchema } from "../validation/referralCodeValidation";
 import { validateForm } from "../validation/validateForm";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/apiClient";
 import customToast from "../lib/toast";
-import { useUserStore } from "../store/userStore";
+
 const ReferralCodePage = () => {
   const [referralCode, setReferralCode] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user } = useUserStore();
-
-  useEffect(() => {
-    if (user?.referralCode) {
-      navigate("/onboarding-subscription");
-    }
-  }, [navigate, user]);
 
   const handleInputChange = (e) => {
     setReferralCode(e.target.value);
