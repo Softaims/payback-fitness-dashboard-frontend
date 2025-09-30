@@ -73,7 +73,7 @@ const ReferralCodePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#0B0F0D]/90 via-[#0B0F0D] to-[#0B0F0D] relative">
+    <div className="min-h-screen relative">
       {/* Go Back Link - Fixed to top left */}
       <div className="absolute top-6 left-6 z-10">
         <a href="/email-verification" className="inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">

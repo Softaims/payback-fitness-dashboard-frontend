@@ -95,7 +95,7 @@ const LoginPage = () => {
       </div>
 
       {/* Right Section - Login Form */}
-      <div className="flex-1 lg:flex-1 bg-gradient-to-r from-[#0B0F0D]/90 via-[#0B0F0D] to-[#0B0F0D] flex items-center justify-center lg:justify-left pl-8 lg:pl-20">
+      <div className="flex-1 lg:flex-1 flex items-center justify-center lg:justify-left pl-8 lg:pl-20">
         <div className="w-full max-w-md">
           {/* Welcome Text */}
           <div className="mb-8 text-left">

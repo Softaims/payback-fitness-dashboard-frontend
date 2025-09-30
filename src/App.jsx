@@ -7,9 +7,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import SubscriptionPage from "./pages/OnboardingSubscriptionPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
-import HomePage from "./pages/HomePage";
 import UserDashboard from "./pages/UserDashboard";
-import ManageSubscriptionsPage from "./pages/ManageSubscriptionsPage";
 import PFCoinsPage from "./pages/PFCoinsPage";
 import ProfileSettingsPage from "./pages/ProfileSettingsPage";
 import PublicRoute from "./components/global/PublicRoute";
@@ -34,7 +32,6 @@ function App() {
           <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
           <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
           <Route path="/payment/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />
-          <Route path="/manage-subscriptions" element={<ProtectedRoute children={<ManageSubscriptionsPage />} />} />
           <Route path="/pf-coins" element={<ProtectedRoute children={<PFCoinsPage />} />} />
           <Route path="/profile-settings" element={<ProtectedRoute children={<ProfileSettingsPage />} />} />
         </Routes>

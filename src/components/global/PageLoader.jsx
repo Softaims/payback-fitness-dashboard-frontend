@@ -2,7 +2,7 @@ import React from "react";
 
 const PageLoader = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#0B0F0D]/90 via-[#0B0F0D] to-[#0B0F0D] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <div className="w-16 h-16 mx-auto relative mb-4">
           <svg className="w-16 h-16 animate-spin" viewBox="0 0 100 100" style={{ animationDuration: "1s" }}>

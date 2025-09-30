@@ -52,7 +52,7 @@ const PurchaseHistoryTable = () => {
 
   if (purchaseHistoryLoading) {
     return (
-      <div className="bg-[#2A2A2A] rounded-xl p-6">
+      <div className="bg-[#ffffff]/7 rounded-xl p-6">
         {/* Table Skeleton */}
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -94,7 +94,7 @@ const PurchaseHistoryTable = () => {
 
   if (!purchaseHistory || rows.length === 0) {
     return (
-      <div className="bg-[#2A2A2A] rounded-xl p-6">
+      <div className="bg-[#ffffff]/7 rounded-xl p-6">
         <h2 className="text-xl font-bold text-white mb-6">Coin Purchase History</h2>
         <div className="text-center py-12">
           <div className="text-[#ffffff]/30 mb-4">
@@ -115,7 +115,7 @@ const PurchaseHistoryTable = () => {
   }
 
   return (
-    <div className="bg-[#2A2A2A] rounded-xl p-6">
+    <div className="bg-[#ffffff]/7 rounded-xl p-6">
       <h2 className="text-xl font-bold text-white mb-6">Coin Purchase History</h2>
 
       {/* Table */}

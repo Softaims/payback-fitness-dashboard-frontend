@@ -79,7 +79,7 @@ const DashboardHeader = ({ onMenuClick }) => {
 
       {/* User Profile Section */}
       <div className="relative" ref={dropdownRef}>
-        <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-700 px-3 py-2 rounded-md transition-colors" onClick={toggleDropdown}>
+        <div className="flex items-center gap-2 cursor-pointer hover:bg-[#ffffff]/10 px-3 py-2 rounded-md transition-colors" onClick={toggleDropdown}>
           <div className="w-8 h-8 bg-[#4BEEA2] rounded-full flex items-center justify-center flex-shrink-0">
             <span className="font-bold text-xs text-black">{getUserInitials(user)}</span>
           </div>
@@ -89,7 +89,7 @@ const DashboardHeader = ({ onMenuClick }) => {
 
         {/* Dropdown Menu */}
         {isDropdownOpen && (
-          <div className="absolute right-0 top-full mt-2 w-64 bg-[#2A2A2A] rounded-lg shadow-lg border border-[#ffffff]/10 z-50">
+          <div className="absolute right-0 top-full mt-2 w-64 bg-[#323735] rounded-lg shadow-lg border border-[#ffffff]/10 z-50">
             <div className="p-4 border-b border-[#ffffff]/10">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-[#4BEEA2] rounded-full flex items-center justify-center flex-shrink-0">
