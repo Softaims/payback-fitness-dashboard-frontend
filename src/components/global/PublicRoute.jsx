@@ -20,7 +20,7 @@ const PublicRoute = ({ children }) => {
       try {
         const response = await api.get("/api/user/profile");
         console.log("response", response);
-        setUser(response?.data?.user || null);
+        setUser(response?.data);
         navigate("/", { replace: true });
       } finally {
         setLoading(false);

@@ -121,10 +121,9 @@ const EmailVerificationPage = () => {
         setUser(response?.data?.user);
         localStorage.setItem("access_token", response?.data?.session?.access_token);
         localStorage.setItem("refresh_token", response?.data?.session?.refresh_token);
+        // Redirect to referral code page
+        navigate("/referral-code");
       }, 2000);
-
-      // Redirect to referral code page
-      navigate("/referral-code");
     } catch (error) {
       console.error("OTP verification failed:", error);
 
