@@ -24,6 +24,7 @@ const PFCoinsMain = () => {
       <PFCoinsStats onPurchaseClick={() => setIsModalOpen(true)} />
 
       {/* Purchase History Section */}
+      <h2 className="text-xl font-bold text-white mb-6">Coin Purchase History</h2>
       <PurchaseHistoryTable />
 
       {/* Purchase Modal */}
