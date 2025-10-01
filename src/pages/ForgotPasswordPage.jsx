@@ -16,7 +16,11 @@ const ForgotPasswordPage = () => {
   };
 
   const handleGoBackToLogin = () => {
-    navigate("/login");
+    if (currentStep === 2) {
+      setCurrentStep(1);
+    } else {
+      navigate("/login");
+    }
   };
 
   const renderStep = () => {

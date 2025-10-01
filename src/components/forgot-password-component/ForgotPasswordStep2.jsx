@@ -146,10 +146,10 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
       <h1 className="text-white text-3xl font-bold mb-4">Forgot Password Verification</h1>
 
       {/* Instructions */}
-      <p className="text-white text-sm mb-2">Enter the OTP sent to your email to reset your password</p>
+      <p className="text-white text-sm mb-2">Enter the verification code sent to your email to reset your password</p>
 
       {/* Email Address */}
-      <p className="text-white text-sm font-medium mb-8">{userEmail}</p>
+      <p className="text-white text-sm font-semibold mb-8">{userEmail}</p>
 
       {/* OTP Input Form */}
       <form onSubmit={handleSubmit}>

@@ -170,37 +170,11 @@ const LoginPage = () => {
             </div>
 
             {/* Remember Me and Forgot Password */}
-            {/* <div className="flex items-center justify-between">
-              <label className="flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="
-      peer w-4 h-4 appearance-none 
-      rounded border-2 border-[#4BEEA2] 
-      bg-[#1a1a1a] 
-      checked:border-[#4BEEA2]
-      relative
-    "
-                />
-                <svg
-                  className="absolute w-3 h-3 text-[#4BEEA2] hidden peer-checked:block pointer-events-none ml-[2px]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-
-                <span className="ml-2 text-[#ffffff]/50 text-xs">Remember Me</span>
-              </label>
-
+            <div className="flex items-center justify-end">
               <a href="/forgot-password" className="text-[#4BEEA2] text-sm hover:text-green-400 transition-colors">
                 Forgot Password?
               </a>
-            </div> */}
+            </div>
 
             {/* Login Button */}
             <button

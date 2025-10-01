@@ -67,7 +67,7 @@ const ForgotPasswordStep1 = ({ onNext, userEmail, setUserEmail }) => {
       <h1 className="text-white text-3xl font-bold mb-4">Forgot Password?</h1>
 
       {/* Instructions */}
-      <p className="text-[#ffffff]/50 text-sm mb-8">Enter the email address on which we can send you verification OTP</p>
+      <p className="text-[#ffffff]/50 text-sm mb-8">No worries, type in your email address and we’ll send you a verification code to reset your password.</p>
 
       {/* Forgot Password Form */}
       <form onSubmit={handleSubmit}>

@@ -25,7 +25,7 @@ const ResetPasswordStep2 = ({ onComplete }) => {
       <h1 className="text-white text-3xl font-bold mb-4">Password Changed!</h1>
 
       {/* Description */}
-      <p className="text-[#ffffff]/50 text-sm mb-8 leading-relaxed">You have successfully update your password now you can access your account</p>
+      <p className="text-[#ffffff]/50 text-sm mb-8 leading-relaxed">You have successfully changed your password and can now log into your account</p>
 
       {/* Login Now Button */}
       <button

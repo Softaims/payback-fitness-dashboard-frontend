@@ -14,6 +14,8 @@ const ResetPasswordPage = () => {
   };
 
   const handleGoBackToLogin = () => {
+    clearTokens();
+    setUser(null);
     navigate("/login");
   };
 
