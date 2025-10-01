@@ -12,7 +12,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
   const features = [
     {
       title: "Join Groups",
-      description: "Access all of the groups that you’ve joined and participate in that joined group",
+      description: "Access all of the groups that you've joined and participate in that joined group",
     },
     {
       title: "Create Your Own Group",
@@ -24,9 +24,10 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
     },
     {
       title: "Access Group Progress",
-      description: "You can access all of your joined team members progress in a group",
+      description: "See how every person in your group is doing",
     },
   ];
+
   console.log("plan", plans);
   useEffect(() => {
     if (isOpen && !plans) {
