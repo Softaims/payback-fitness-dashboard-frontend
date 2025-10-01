@@ -95,7 +95,7 @@ const PurchaseHistoryTable = () => {
   if (!purchaseHistory || rows.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center mt-20">
-        <img src="/images/Lens.png" alt="PayBack Fitness Logo" className="" />
+        <img src="/images/NoPFCoins.svg" alt="PayBack Fitness Logo" className="" />
         <p className="text-white text-lg">No PF Coins purchased yet!</p>
       </div>
     );

@@ -67,14 +67,6 @@ const ReferralCodePage = () => {
 
   return (
     <div className="min-h-screen relative">
-      {/* Go Back Link - Fixed to top left */}
-      <div className="absolute top-6 left-6 z-10">
-        <a href="/email-verification" className="inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
-          <ChevronLeft className="w-7 h-7 mr-2" />
-          <p className="text-[#ffffff]">Go Back</p>
-        </a>
-      </div>
-
       {/* Central Content */}
       <div className="flex items-center justify-center min-h-screen p-4">
         <div className="w-full max-w-md">

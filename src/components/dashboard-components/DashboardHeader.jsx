@@ -104,13 +104,16 @@ const DashboardHeader = ({ onMenuClick }) => {
             <div className="py-2">
               <button
                 onClick={handleProfileSettings}
-                className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-[#ffffff]/5 transition-colors text-xs"
+                className="cursor-pointer w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-[#ffffff]/5 transition-colors text-xs"
               >
                 <User size={18} className="text-white" />
                 <span>Profile Settings</span>
               </button>
 
-              <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 text-[#4BEEA2] hover:bg-[#ffffff]/5 transition-colors text-xs">
+              <button
+                onClick={handleLogout}
+                className="cursor-pointer w-full flex items-center gap-3 px-4 py-3 text-[#4BEEA2] hover:bg-[#ffffff]/5 transition-colors text-xs"
+              >
                 <LogOut size={18} className="text-[#4BEEA2]" />
                 <span>Logout</span>
               </button>

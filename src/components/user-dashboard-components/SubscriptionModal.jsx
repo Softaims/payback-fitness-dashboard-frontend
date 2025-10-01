@@ -159,7 +159,11 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
                         <div>
                           <h3 className="text-white text-lg font-medium">{plan.name}</h3>
                           <p className="text-[#ffffff]/50 text-sm">
-                            ${plan.amount} /Billed {plan.name}
+                            <span className="text-2xl text-[#4BEEA2]">
+                              ${Math.floor(plan.amount)}
+                              <span className="text-2xl">.{(plan.amount % 1).toFixed(2).slice(2)}</span>
+                            </span>{" "}
+                            <span className="text-xs">/Billed {plan.name}</span>
                           </p>
                         </div>
                         <div

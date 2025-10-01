@@ -101,7 +101,7 @@ const PurchasePFCoinsModal = ({ isOpen, onClose }) => {
               type="submit"
               disabled={loading}
               className={`cursor-pointer w-40 font-semibold py-3 px-4 rounded-lg transition-colors ${
-                loading ? "bg-gray-500 cursor-not-allowed" : "bg-[#4BEEA2] text-black hover:bg-[#3DD084]"
+                loading ? "bg-[#4BEEA2] cursor-not-allowed" : "bg-[#4BEEA2] text-black hover:bg-[#3DD084]"
               }`}
             >
               {loading ? "Purchasing..." : "Purchase"}

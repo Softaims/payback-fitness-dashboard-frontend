@@ -45,7 +45,7 @@ const ConfirmationModal = ({
             onClick={handleConfirm}
             disabled={loading}
             className={`cursor-pointer w-40 font-semibold py-3 px-4 rounded-lg transition-colors ${
-              loading ? "bg-gray-500 cursor-not-allowed" : confirmButtonColor
+              loading ? "cursor-not-allowed" : confirmButtonColor
             } text-white`}
           >
             {loading ? "Processing..." : confirmText}

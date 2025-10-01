@@ -1,9 +1,9 @@
-import { Crown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSubscriptionStore } from "../../store/subscriptionStore";
 import SubscriptionModal from "./SubscriptionModal";
 import api from "../../lib/apiClient";
 import customToast from "../../lib/toast";
+import Crown from "../../../public/icons/Crown";
 
 const ManageSubscriptionSection = () => {
   const { subscription, subscriptionLoading, fetchCurrentSubscription } = useSubscriptionStore();
@@ -81,7 +81,7 @@ const ManageSubscriptionSection = () => {
               <div className="h-12 w-40 bg-[#ffffff]/10 rounded-lg"></div>
             </div>
           </div>
-        ) : subscription ? (
+        ) : subscription?.planName ? (
           <div className="rounded-xl p-8 mb-8 bg-[#ffffff]/7">
             {/* Top Section - Plan Details and Price */}
             <div className="flex items-start justify-between mb-6">
@@ -126,7 +126,7 @@ const ManageSubscriptionSection = () => {
                   portalLoading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
                 }`}
               >
-                <Crown className="w-4 h-4" />
+                <Crown className="font-bold w-6 h-6" />
                 {portalLoading ? "Processing..." : "Manage Subscription"}
               </button>
             </div>

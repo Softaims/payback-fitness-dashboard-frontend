@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import customToast from "../../lib/toast";
 import api from "../../lib/apiClient";
 import { useSubscriptionPlansStore } from "../../store/subscriptionPlansStore";
+import { useUserStore } from "../../store/userStore";
 const OnboardingSubscriptionPlanSelection = () => {
   const [selectedPlan, setSelectedPlan] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { plans, plansLoading, fetchSubscriptionPlans } = useSubscriptionPlansStore();
-
+  const { user, setUser } = useUserStore();
   useEffect(() => {
     if (!plans) {
       fetchSubscriptionPlans();
@@ -57,6 +58,7 @@ const OnboardingSubscriptionPlanSelection = () => {
   };
 
   const handleSkip = () => {
+    setUser({ ...user, not_onboarded: false });
     navigate("/");
   };
 
@@ -94,7 +96,11 @@ const OnboardingSubscriptionPlanSelection = () => {
                   <div>
                     <h3 className="text-white text-lg font-medium">{plan.name}</h3>
                     <p className="text-[#ffffff]/50 text-sm">
-                      ${plan.amount} /Billed {plan.name}
+                      <span className="text-2xl text-[#4BEEA2]">
+                        ${Math.floor(plan.amount)}
+                        <span className="text-2xl">.{(plan.amount % 1).toFixed(2).slice(2)}</span>
+                      </span>{" "}
+                      <span className="text-xs">/Billed {plan.name}</span>
                     </p>
                   </div>
                   <div
@@ -131,7 +137,7 @@ const OnboardingSubscriptionPlanSelection = () => {
 
         {/* Skip Link */}
         <div className="text-center mt-4">
-          <button onClick={handleSkip} className="text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors">
+          <button onClick={handleSkip} className="cursor-pointer text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors">
             Will Subscribe Later
           </button>
         </div>

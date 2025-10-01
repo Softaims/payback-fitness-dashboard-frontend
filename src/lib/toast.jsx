@@ -5,7 +5,7 @@ const toastStyles = {
   success: {
     style: {
       background: "linear-gradient(135deg, #4BEEA2 0%, #3dd48a 100%)",
-      color: "#fff",
+      color: "black",
       fontWeight: "600",
       fontSize: "14px",
       padding: "16px 20px",
@@ -16,7 +16,7 @@ const toastStyles = {
       maxWidth: "400px",
     },
     iconTheme: {
-      primary: "#fff",
+      primary: "black",
       secondary: "#4BEEA2",
     },
     duration: 4000,

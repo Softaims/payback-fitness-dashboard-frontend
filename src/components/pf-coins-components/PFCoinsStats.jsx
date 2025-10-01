@@ -1,6 +1,8 @@
 import { DollarSign, FileText } from "lucide-react";
 import { useUserStore } from "../../store/userStore";
 import { usePFCoinsStore } from "../../store/pfCoinsStore";
+import Dollar from "../../../public/icons/Dollar";
+import List from "../../../public/icons/List";
 const PFCoinsStats = ({ onPurchaseClick }) => {
   const { user } = useUserStore();
   const { purchaseHistoryLoading, purchaseHistory } = usePFCoinsStore();
@@ -8,7 +10,7 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
         {/* Want More PF Coins Banner */}
-        <div className="overflow-hidden rounded-xl bg-[#4BEEA2] flex flex-row items-end lg:col-span-2">
+        <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end lg:col-span-2">
           <div className="p-4 relative overflow-hidden">
             <div className="z-10 max-w-md">
               <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
@@ -17,16 +19,15 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
             </div>
           </div>
           <div>
-            <img src="/images/PFCoins.png" alt="PayBack Fitness Logo" />
+            <img src="/images/PFCoins.svg" alt="PayBack Fitness Logo" />
           </div>
         </div>
 
         {/* Available Coins Skeleton */}
         <div className="bg-[#ffffff]/7 rounded-xl p-6">
           <div className="flex flex-col justify-between h-40">
-            <div className="p-1 border-1 border-[#ffffff]/50 rounded-full w-fit">
-              <DollarSign className="w-6 h-6 text-[#ffffff]/50" />
-            </div>
+            <Dollar className="text-[#ffffff]/50 w-8 h-8" />
+
             <div>
               <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
               <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
@@ -37,9 +38,8 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
         {/* Total Purchased Skeleton */}
         <div className="bg-[#ffffff]/7 rounded-xl p-6">
           <div className="flex flex-col justify-between h-40">
-            <div className="p-1 border-1 border-[#ffffff]/50 rounded-full w-fit">
-              <FileText className="w-6 h-6 text-[#ffffff]/50" />
-            </div>
+            <List className="text-[#ffffff]/50 w-8 h-8" />
+
             <div>
               <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
               <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
@@ -53,27 +53,26 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
       {/* Want More PF Coins Banner */}
-      <div className="overflow-hidden rounded-xl bg-[#4BEEA2] flex flex-row items-end lg:col-span-2">
+      <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end lg:col-span-2">
         <div className="p-4 relative overflow-hidden">
           <div className="z-10 max-w-md">
             <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
             <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
-            <button onClick={onPurchaseClick} className="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+            <button onClick={onPurchaseClick} className="cursor-pointer bg-black text-white px-6 py-3 rounded-lg font-semibold">
               Buy PF Coins
             </button>
           </div>
         </div>
         <div>
-          <img src="/images/PFCoins.png" alt="PayBack Fitness Logo" />
+          <img src="/images/PFCoins.svg" className="" alt="PayBack Fitness Logo" />
         </div>
       </div>
 
       {/* Available PF Coins */}
       <div className="bg-[#ffffff]/7 rounded-xl p-6">
-        <div className="flex flex-col justify-between h-40">
-          <div className="p-1 border-1 border-[#ffffff]/50 rounded-full w-fit">
-            <DollarSign className="w-6 h-6 text-[#ffffff]/50" />
-          </div>
+        <div className="flex flex-col justify-between h-30">
+          <Dollar className="text-[#ffffff]/50 w-8 h-8" />
+
           <div>
             <div>
               <span className="text-3xl font-bold text-[#4BEEA2]">{user?.pfCoinBalance}</span>
@@ -86,10 +85,9 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
 
       {/* Total Purchased PF Coins */}
       <div className="bg-[#ffffff]/7 rounded-xl p-6">
-        <div className="flex flex-col justify-between h-40">
-          <div className="p-1 border-1 border-[#ffffff]/50 rounded-full w-fit">
-            <FileText className="w-6 h-6 text-[#ffffff]/50" />
-          </div>
+        <div className="flex flex-col justify-between h-30">
+          <List className="text-[#ffffff]/50 w-8 h-8" />
+
           <div>
             <div>
               <span className="text-3xl font-bold text-[#4BEEA2]">{purchaseHistory?.totalPurchasedCoins}</span>

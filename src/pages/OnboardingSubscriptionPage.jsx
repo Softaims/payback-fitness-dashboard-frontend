@@ -21,7 +21,7 @@ const OnboardingSubscriptionPage = () => {
     <div className="min-h-screen relative">
       {/* Go Back Link - Fixed to top left */}
       <div className="absolute top-6 left-6 z-10">
-        <button onClick={handleGoBack} className="inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
+        <button onClick={handleGoBack} className=" cursor-pointer inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
           <ChevronLeft className="w-7 h-7 mr-2" />
           <p className="text-[#ffffff]">Go Back</p>
         </button>

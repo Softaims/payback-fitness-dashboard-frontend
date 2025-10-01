@@ -13,7 +13,7 @@ export const useSubscriptionStore = create((set) => ({
     try {
       set({ subscriptionLoading: true });
       const response = await apiClient.get("/api/subscription/current", { isProtected: true });
-      set({ subscription: response.data, subscriptionLoading: false });
+      set({ subscription: response.data || {}, subscriptionLoading: false });
       return response;
     } catch (error) {
       set({ subscriptionLoading: false });

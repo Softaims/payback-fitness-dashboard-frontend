@@ -152,7 +152,7 @@ const ProfileSettingsMain = () => {
             Deleting your account will permanently remove your profile and all data. Any remaining PF Coins will be forfeited and cannot be recovered. If you
             have an active subscription or are part of a group, your account will only be deleted after those are completed.
           </p>
-          <button onClick={handleDeleteAccount} className="flex items-center gap-2  text-[#F65E53] rounded-lg transition-colors">
+          <button onClick={handleDeleteAccount} className="cursor-pointer flex items-center gap-2  text-[#F65E53] rounded-lg transition-colors">
             <Trash2 size={18} className="text-[#F65E53]" />
             Delete Account
           </button>
@@ -212,11 +212,11 @@ const ProfileSettingsMain = () => {
               </div>
 
               {/* Update Profile Button */}
-              <div className="md:w-1/4">
+              <div className="md:w-1/5">
                 <button
                   type="submit"
                   disabled={profileLoading}
-                  className={`w-full bg-[#4BEEA2] text-black py-3 px-4 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full bg-[#4BEEA2] text-black font-bold py-3 px-4 rounded-lg transition-colors ${
                     profileLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#3DD084]"
                   }`}
                 >
@@ -298,11 +298,11 @@ const ProfileSettingsMain = () => {
               </div>
 
               {/* Update Password Button */}
-              <div className="md:w-1/4">
+              <div className="md:w-1/5">
                 <button
                   type="submit"
                   disabled={passwordLoading}
-                  className={`w-full bg-[#4BEEA2] text-black py-3 px-4 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full bg-[#4BEEA2] font-bold text-black py-3 px-4 rounded-lg transition-colors ${
                     passwordLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#3DD084]"
                   }`}
                 >
