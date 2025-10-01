@@ -1,4 +1,7 @@
-import { Crown, Coins, HelpCircle, Shield, FileText, Mail, LogOut, User } from "lucide-react";
+import { HelpCircle, Shield, FileText, Mail, LogOut } from "lucide-react";
+import Crown from "../../public/icons/Crown.jsx";
+import Dollar from "../../public/icons/Dollar.jsx";
+import Profile from "../../public/icons/Profile.jsx";
 
 export const navigationLinks = [
   {
@@ -10,13 +13,13 @@ export const navigationLinks = [
   {
     label: "PF Coins",
     path: "/pf-coins",
-    icon: Coins,
+    icon: Dollar,
     exact: false,
   },
   {
     label: "Profile",
     path: "/profile-settings",
-    icon: User,
+    icon: Profile,
     exact: false,
   },
 ];

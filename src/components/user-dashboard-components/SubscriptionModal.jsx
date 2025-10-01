@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { X, Crown, Check, Lock } from "lucide-react";
+import { X, Check, Lock } from "lucide-react";
 import customToast from "../../lib/toast";
 import api from "../../lib/apiClient";
 import { useSubscriptionPlansStore } from "../../store/subscriptionPlansStore";
-
+import Crown from "../../../public/icons/Crown";
 const SubscriptionModal = ({ isOpen, onClose }) => {
   const [selectedPlan, setSelectedPlan] = useState("");
   const [loading, setLoading] = useState(false);
@@ -93,8 +93,8 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
           <div className="flex-1 p-8">
             <div className="w-full max-w-lg mx-auto lg:mx-0">
               {/* Crown Icon */}
-              <div className="mb-6">
-                <Crown className="w-8 h-8 text-[#4BEEA2]" />
+              <div className="mb-3">
+                <Crown className="ml-[-10px] w-14 h-14 text-[#4BEEA2]" />
               </div>
 
               {/* Title */}

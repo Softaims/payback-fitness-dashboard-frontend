@@ -12,8 +12,8 @@ const AppDownloadSection = () => {
             <button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center gap-3 transition-colors font-medium">
               <img src="/images/Playstore.svg" alt="Google Play" className="w-8 h-8" />
               <div className="flex flex-col items-start">
-                <span className="text-xs uppercase">GET IT ON</span>
-                <span className="text-sm font-semibold">Google Play</span>
+                <span className="text-[11px] uppercase">GET IT ON</span>
+                <span className="text-lg font-semibold">Google Play</span>
               </div>
             </button>
 
@@ -21,8 +21,8 @@ const AppDownloadSection = () => {
             <button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center gap-3 transition-colors font-medium">
               <img src="/images/Apple.svg" alt="App Store" className="w-9 h-9" />
               <div className="flex flex-col items-start">
-                <span className="text-xs">Download On the</span>
-                <span className="text-sm font-semibold">App Store</span>
+                <span className="text-[11px]">Download On the</span>
+                <span className="text-lg font-semibold">App Store</span>
               </div>
             </button>
           </div>

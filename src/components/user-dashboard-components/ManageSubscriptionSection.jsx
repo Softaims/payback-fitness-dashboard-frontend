@@ -43,7 +43,7 @@ const ManageSubscriptionSection = () => {
 
   return (
     <div>
-      <div className="mb-8">
+      <div className="mb-4">
         <h2 className="text-2xl font-bold text-white mb-4">Manage Subscriptions</h2>
       </div>
 
