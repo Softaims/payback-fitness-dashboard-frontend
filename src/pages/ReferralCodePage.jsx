@@ -73,7 +73,7 @@ const ReferralCodePage = () => {
           <div className="text-center">
             {/* Referral Code Icon */}
             <div className="mb-6">
-              <img src="/images/referralCode.png" alt="Referral Code" className="w-20 h-20 mx-auto" />
+              <img src="/images/referralCode.svg" alt="Referral Code" className="w-20 h-20 mx-auto" />
             </div>
 
             {/* Title */}

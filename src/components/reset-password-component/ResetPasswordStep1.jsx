@@ -61,7 +61,7 @@ const ResetPasswordStep1 = ({ onNext }) => {
     <div className="text-center">
       {/* Reset Password Icon */}
       <div className="mb-6">
-        <img src="/images/resetPassword.png" alt="Reset Password" className="w-20 h-20 mx-auto" />
+        <img src="/images/resetPassword.svg" alt="Reset Password" className="w-20 h-20 mx-auto" />
       </div>
 
       {/* Title */}

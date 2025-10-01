@@ -139,7 +139,7 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
     <div className="text-center">
       {/* Forgot Password Verification Icon */}
       <div className="mb-6">
-        <img src="/images/forgotPassword.png" alt="Forgot Password Verification" className="w-20 h-20 mx-auto" />
+        <img src="/images/forgotPassword.svg" alt="Forgot Password Verification" className="w-20 h-20 mx-auto" />
       </div>
 
       {/* Title */}

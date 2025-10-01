@@ -60,7 +60,7 @@ const ForgotPasswordStep1 = ({ onNext, userEmail, setUserEmail }) => {
     <div className="text-center">
       {/* Forgot Password Icon */}
       <div className="mb-6">
-        <img src="/images/forgotPassword.png" alt="Forgot Password" className="w-20 h-20 mx-auto" />
+        <img src="/images/forgotPassword.svg" alt="Forgot Password" className="w-20 h-20 mx-auto" />
       </div>
 
       {/* Title */}

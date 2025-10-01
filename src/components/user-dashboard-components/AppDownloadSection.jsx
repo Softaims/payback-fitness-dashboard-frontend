@@ -6,7 +6,7 @@ const AppDownloadSection = () => {
           <h1 className="text-3xl xl:text-4xl font-bold mb-2 leading-tight">
             Get PayBack for Your <br /> Workouts
           </h1>
-          <p className="text-lg mb-6 font-bold opacity-90 leading-relaxed">
+          <p className="text-lg mb-6 font-semibold opacity-90 leading-relaxed">
             Log your progress, join fitness challenges, and earn real rewards. Available now on iOS and Android.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
