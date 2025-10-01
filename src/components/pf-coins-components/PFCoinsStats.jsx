@@ -8,41 +8,88 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
   const { purchaseHistoryLoading, purchaseHistory } = usePFCoinsStore();
   if (purchaseHistoryLoading) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
-        {/* Want More PF Coins Banner */}
-        <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end lg:col-span-2">
-          <div className="p-4 relative overflow-hidden">
-            <div className="z-10 max-w-md">
-              <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
-              <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
-              <div className="h-10 bg-black/20 rounded-lg animate-pulse"></div>
+      <div className="mb-8">
+        {/* Mobile Layout Skeleton (below lg) */}
+        <div className="lg:hidden">
+          {/* Want More PF Coins Banner - Full width */}
+          <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end mb-6">
+            <div className="p-4 relative overflow-hidden">
+              <div className="z-10 max-w-md">
+                <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
+                <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
+                <div className="h-10 bg-black/20 rounded-lg animate-pulse"></div>
+              </div>
+            </div>
+            <div>
+              <img src="/images/PFCoins.svg" alt="PayBack Fitness Logo" />
             </div>
           </div>
-          <div>
-            <img src="/images/PFCoins.svg" alt="PayBack Fitness Logo" />
+
+          {/* PF Coins Stats Skeleton - Side by side (50% each) */}
+          <div className="grid grid-cols-2 gap-4">
+            {/* Available Coins Skeleton */}
+            <div className="bg-[#ffffff]/7 rounded-xl p-6">
+              <div className="flex flex-col justify-between h-30">
+                <Dollar className="text-[#ffffff]/50 w-8 h-8" />
+
+                <div>
+                  <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
+                  <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Total Purchased Skeleton */}
+            <div className="bg-[#ffffff]/7 rounded-xl p-6">
+              <div className="flex flex-col justify-between h-30">
+                <List className="text-[#ffffff]/50 w-8 h-8" />
+
+                <div>
+                  <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
+                  <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Available Coins Skeleton */}
-        <div className="bg-[#ffffff]/7 rounded-xl p-6">
-          <div className="flex flex-col justify-between h-40">
-            <Dollar className="text-[#ffffff]/50 w-8 h-8" />
-
+        {/* Desktop Layout Skeleton (lg and above) - Original layout */}
+        <div className="hidden lg:grid lg:grid-cols-4 lg:gap-6">
+          {/* Want More PF Coins Banner */}
+          <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end lg:col-span-2">
+            <div className="p-4 relative overflow-hidden">
+              <div className="z-10 max-w-md">
+                <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
+                <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
+                <div className="h-10 bg-black/20 rounded-lg animate-pulse"></div>
+              </div>
+            </div>
             <div>
-              <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
-              <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
+              <img src="/images/PFCoins.svg" alt="PayBack Fitness Logo" />
             </div>
           </div>
-        </div>
 
-        {/* Total Purchased Skeleton */}
-        <div className="bg-[#ffffff]/7 rounded-xl p-6">
-          <div className="flex flex-col justify-between h-40">
-            <List className="text-[#ffffff]/50 w-8 h-8" />
+          {/* Available Coins Skeleton */}
+          <div className="bg-[#ffffff]/7 rounded-xl p-6">
+            <div className="flex flex-col justify-between h-30">
+              <Dollar className="text-[#ffffff]/50 w-8 h-8" />
 
-            <div>
-              <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
-              <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
+              <div>
+                <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
+                <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Total Purchased Skeleton */}
+          <div className="bg-[#ffffff]/7 rounded-xl p-6">
+            <div className="flex flex-col justify-between h-30">
+              <List className="text-[#ffffff]/50 w-8 h-8" />
+
+              <div>
+                <div className="h-8 bg-[#ffffff]/10 rounded mb-2 animate-pulse"></div>
+                <div className="h-4 bg-[#ffffff]/10 rounded animate-pulse"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -51,49 +98,104 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
-      {/* Want More PF Coins Banner */}
-      <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end lg:col-span-2">
-        <div className="p-4 relative overflow-hidden">
-          <div className="z-10 max-w-md">
-            <h2 className="text-xl font-bold mb-2">Want more PF Coins?</h2>
-            <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
-            <button onClick={onPurchaseClick} className="cursor-pointer bg-black text-white px-6 py-3 rounded-lg font-semibold">
-              Buy PF Coins
-            </button>
+    <div className="mb-8">
+      {/* Mobile Layout (below lg) */}
+      <div className="lg:hidden">
+        {/* Want More PF Coins Banner - Full width */}
+        <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end mb-6">
+          <div className="p-4 relative overflow-hidden">
+            <div className="z-10 max-w-md">
+              <h2 className="text-md md:text-xl font-bold mb-2">Want more PF Coins?</h2>
+              <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
+              <button onClick={onPurchaseClick} className="cursor-pointer bg-black text-white px-6 py-3 rounded-lg font-semibold">
+                Buy PF Coins
+              </button>
+            </div>
+          </div>
+          <div>
+            <img src="/images/PFCoins.svg" className="w-[300px] h-[200px]" alt="PayBack Fitness Logo" />
           </div>
         </div>
-        <div>
-          <img src="/images/PFCoins.svg" className="" alt="PayBack Fitness Logo" />
+
+        {/* PF Coins Stats - Side by side (50% each) */}
+        <div className="grid grid-cols-2 gap-4">
+          {/* Available PF Coins */}
+          <div className="bg-[#ffffff]/7 rounded-xl p-6">
+            <div className="flex flex-col justify-between h-30">
+              <Dollar className="text-[#ffffff]/50 w-8 h-8" />
+
+              <div>
+                <div>
+                  <span className="text-3xl font-bold text-[#4BEEA2]">{user?.pfCoinBalance}</span>
+                  <span className="text-sm ml-1 text-white">PF</span>
+                </div>
+                <p className="text-[#ffffff]/50 text-sm">Available PF Coins</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Total Purchased PF Coins */}
+          <div className="bg-[#ffffff]/7 rounded-xl p-6">
+            <div className="flex flex-col justify-between h-30">
+              <List className="text-[#ffffff]/50 w-8 h-8" />
+
+              <div>
+                <div>
+                  <span className="text-3xl font-bold text-[#4BEEA2]">{purchaseHistory?.totalPurchasedCoins}</span>
+                  <span className="text-sm text-white ml-1">PF</span>
+                </div>
+                <p className="text-[#ffffff]/50 text-sm">Total Purchased PF Coins</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Available PF Coins */}
-      <div className="bg-[#ffffff]/7 rounded-xl p-6">
-        <div className="flex flex-col justify-between h-30">
-          <Dollar className="text-[#ffffff]/50 w-8 h-8" />
-
-          <div>
-            <div>
-              <span className="text-3xl font-bold text-[#4BEEA2]">{user?.pfCoinBalance}</span>
-              <span className="text-sm ml-1 text-white">PF</span>
+      {/* Desktop Layout (lg and above) - Original layout */}
+      <div className="hidden lg:grid lg:grid-cols-4 lg:gap-6">
+        {/* Want More PF Coins Banner */}
+        <div className="overflow-hidden rounded-xl bg-gradient-to-r from-[#4BEEA2] to-[#1EA264] flex flex-row items-end lg:col-span-2">
+          <div className="p-4 relative overflow-hidden">
+            <div className="z-10 max-w-md">
+              <h2 className="text-md md:text-xl font-bold mb-2">Want more PF Coins?</h2>
+              <p className="text-sm mb-4">Use purchased coins to join groups and create new challenges</p>
+              <button onClick={onPurchaseClick} className="cursor-pointer bg-black text-white px-6 py-3 rounded-lg font-semibold">
+                Buy PF Coins
+              </button>
             </div>
-            <p className="text-[#ffffff]/50 text-sm">Available PF Coins</p>
+          </div>
+          <div>
+            <img src="/images/PFCoins.svg" className="w-[300px] h-[200px]" alt="PayBack Fitness Logo" />
           </div>
         </div>
-      </div>
 
-      {/* Total Purchased PF Coins */}
-      <div className="bg-[#ffffff]/7 rounded-xl p-6">
-        <div className="flex flex-col justify-between h-30">
-          <List className="text-[#ffffff]/50 w-8 h-8" />
+        {/* Available PF Coins */}
+        <div className="bg-[#ffffff]/7 rounded-xl p-6">
+          <div className="flex flex-col justify-between h-30">
+            <Dollar className="text-[#ffffff]/50 w-8 h-8" />
 
-          <div>
             <div>
-              <span className="text-3xl font-bold text-[#4BEEA2]">{purchaseHistory?.totalPurchasedCoins}</span>
-              <span className="text-sm text-white ml-1">PF</span>
+              <div>
+                <span className="text-3xl font-bold text-[#4BEEA2]">{user?.pfCoinBalance}</span>
+                <span className="text-sm ml-1 text-white">PF</span>
+              </div>
+              <p className="text-[#ffffff]/50 text-sm">Available PF Coins</p>
             </div>
-            <p className="text-[#ffffff]/50 text-sm">Total Purchased PF Coins</p>
+          </div>
+        </div>
+
+        {/* Total Purchased PF Coins */}
+        <div className="bg-[#ffffff]/7 rounded-xl p-6">
+          <div className="flex flex-col justify-between h-30">
+            <List className="text-[#ffffff]/50 w-8 h-8" />
+
+            <div>
+              <div>
+                <span className="text-3xl font-bold text-[#4BEEA2]">{purchaseHistory?.totalPurchasedCoins}</span>
+                <span className="text-sm text-white ml-1">PF</span>
+              </div>
+              <p className="text-[#ffffff]/50 text-sm">Total Purchased PF Coins</p>
+            </div>
           </div>
         </div>
       </div>
