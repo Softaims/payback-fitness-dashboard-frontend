@@ -59,9 +59,9 @@ const DashboardHeader = ({ onMenuClick }) => {
 
   return (
     <header className="h-16 bg-[#ffffff]/7 flex items-center justify-between px-6 border-b border-[#ffffff]/7">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1">
         <button onClick={onMenuClick} className="cursor-pointer md:hidden text-gray-300 hover:text-white">
-          <Menu size={24} />
+          <Menu size={24} className="text-[#ffffff]/50" />
         </button>
 
         {/* Logo Section */}
@@ -83,7 +83,7 @@ const DashboardHeader = ({ onMenuClick }) => {
           <div className="w-8 h-8 bg-[#4BEEA2] rounded-full flex items-center justify-center flex-shrink-0">
             <span className="font-bold text-xs text-black">{getUserInitials(user)}</span>
           </div>
-          <span className="text-white text-xs font-medium truncate">{getUserDisplayName(user)}</span>
+          <span className="hidden md:block text-white text-xs font-medium truncate">{getUserDisplayName(user)}</span>
           <ChevronDown size={16} className="text-[#4BEEA2] flex-shrink-0" />
         </div>
 
