@@ -1,5 +1,4 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { navigationLinks, bottomNavigationLinks } from "../../constants/navigation";
 import { useUserStore } from "../../store/userStore";
 import { clearTokens } from "../../lib/tokenUtils";
@@ -26,7 +25,6 @@ const SidebarItem = ({ icon: Icon, text, path, isActive, onClick }) => {
 
 const DashboardSidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { clearUser } = useUserStore();
 
   const isActive = (path, exact = false) => {
@@ -43,9 +41,7 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
 
     // Show logout confirmation
     customToast.success("Successfully logged out!");
-
-    // Navigate to login page
-    navigate("/login");
+    window.location.href = "/login";
   };
 
   return (
