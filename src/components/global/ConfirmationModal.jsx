@@ -44,17 +44,18 @@ const ConfirmationModal = ({
             type="button"
             onClick={handleConfirm}
             disabled={loading}
-            className={`cursor-pointer w-40 font-semibold py-3 px-4 rounded-lg transition-colors ${
-              loading ? "cursor-not-allowed" : confirmButtonColor
+            className={`text-sm cursor-pointer w-40 font-semibold py-3 px-4 rounded-lg transition-colors ${confirmButtonColor} ${
+              loading ? "cursor-not-allowed opacity-70" : ""
             } text-white`}
           >
             {loading ? "Processing..." : confirmText}
           </button>
+
           <button
             type="button"
             onClick={handleClose}
             disabled={loading}
-            className="cursor-pointer w-40 bg-[#ffffff]/10 text-[#ffffff]/70 font-semibold py-3 px-4 rounded-lg hover:bg-[#ffffff]/20 transition-colors disabled:opacity-50"
+            className="text-sm cursor-pointer w-40 bg-[#ffffff]/10 text-[#ffffff]/70 font-semibold py-3 px-4 rounded-lg hover:bg-[#ffffff]/20 transition-colors disabled:opacity-50"
           >
             {cancelText}
           </button>
