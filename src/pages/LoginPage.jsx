@@ -84,19 +84,30 @@ const LoginPage = () => {
           </div>
           <div className="mt-auto mb-8">
             <p className="text-white text-2xl font-bold leading-relaxed text-left">
-              Compete with Your Friends
+              Don’t just work out. Get
               <br />
-              Group, Stay Accountable & Get
+              PayBack! Compete, commit, and
               <br />
-              Rewarded
+              cash out when you crush it.
             </p>
           </div>
         </div>
       </div>
 
       {/* Right Section - Login Form */}
-      <div className="flex-1 lg:flex-1 flex items-center justify-center lg:justify-left pl-8 lg:pl-20">
+      <div className="flex-1 flex items-start lg:items-center justify-center px-4 sm:px-6 lg:px-0 pb-8">
         <div className="w-full max-w-md">
+          {/* Mobile View logo */}
+          <div className="lg:hidden mt-10 flex items-center justify-start mb-8">
+            <img src="/images/PaybackLogo.svg" alt="PayBack Fitness Logo" />
+            <div>
+              <h1 className="text-2xl font-bold tracking-[0.1em]">
+                <span className="text-[#4BEEA2] font-bold">Pay</span>
+                <span className="text-white font-bold">Back</span>
+              </h1>
+              <p className="text-[#FFFFFF]/50 text-sm tracking-[0.8em]">Fitness</p>
+            </div>
+          </div>
           {/* Welcome Text */}
           <div className="mb-8 text-left">
             <h2 className="text-white text-3xl font-bold mb-2">Welcome Back</h2>
@@ -160,7 +171,7 @@ const LoginPage = () => {
             </div>
 
             {/* Remember Me and Forgot Password */}
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <label className="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
@@ -190,7 +201,7 @@ const LoginPage = () => {
               <a href="/forgot-password" className="text-[#4BEEA2] text-sm hover:text-green-400 transition-colors">
                 Forgot Password?
               </a>
-            </div>
+            </div> */}
 
             {/* Login Button */}
             <button
