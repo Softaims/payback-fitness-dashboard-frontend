@@ -80,7 +80,7 @@ const ReferralCodePage = () => {
             <h1 className="text-white text-3xl font-bold mb-4">Referral Code</h1>
 
             {/* Instructions */}
-            <p className="text-[#ffffff]/50 text-sm mb-8">Please enter the referral code if you have any.</p>
+            <p className="text-[#ffffff]/50 text-sm mb-8">Please enter the referral code if you have one.</p>
 
             {/* Referral Code Input Form */}
             <form onSubmit={handleSubmit} className="space-y-6">

@@ -96,8 +96,19 @@ const SignupPage = () => {
       </div>
 
       {/* Right Section - Signup Form */}
-      <div className="flex-1 lg:flex-1  flex items-center justify-center lg:justify-left pl-8 lg:pl-20">
+      <div className="flex-1 flex items-start lg:items-center justify-center px-4 sm:px-6 lg:px-0 pb-8">
         <div className="w-full max-w-md">
+          {/* Mobile View logo */}
+          <div className="lg:hidden mt-10 flex items-center justify-start mb-8">
+            <img src="/images/PaybackLogo.svg" alt="PayBack Fitness Logo" />
+            <div>
+              <h1 className="text-2xl font-bold tracking-[0.1em]">
+                <span className="text-[#4BEEA2] font-bold">Pay</span>
+                <span className="text-white font-bold">Back</span>
+              </h1>
+              <p className="text-[#FFFFFF]/50 text-sm tracking-[0.8em]">Fitness</p>
+            </div>
+          </div>
           {/* Welcome Text */}
           <div className="mb-8 text-left">
             <h2 className="text-white text-3xl font-bold mb-2">Sign Up</h2>

@@ -194,10 +194,10 @@ const EmailVerificationPage = () => {
             <h1 className="text-white text-3xl font-bold mb-4">Email Verification</h1>
 
             {/* Instructions */}
-            <p className="text-white text-sm mb-2">We have sent you a verification code to your given email</p>
+            <p className="text-white text-sm mb-2">We have sent you a verification code to your email address</p>
 
             {/* Email Address */}
-            <p className="text-white text-sm font-medium mb-8">{userEmail}</p>
+            <p className="text-white text-sm font-semibold mb-8">{userEmail}</p>
 
             {/* General Error Display */}
             {errors.general && (
@@ -253,7 +253,7 @@ const EmailVerificationPage = () => {
                     onClick={handleResendOTP}
                     className="cursor-pointer text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors"
                   >
-                    Resend OTP
+                    Resend Code
                   </button>
                 )}
               </div>
