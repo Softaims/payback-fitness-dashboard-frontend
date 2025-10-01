@@ -3,11 +3,12 @@ import { ChevronLeft } from "lucide-react";
 import ResetPasswordStep1 from "../components/reset-password-component/ResetPasswordStep1";
 import ResetPasswordStep2 from "../components/reset-password-component/ResetPasswordStep2";
 import { useNavigate } from "react-router-dom";
-
+import { useUserStore } from "../store/userStore";
+import { clearTokens } from "../lib/tokenUtils";
 const ResetPasswordPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
-
+  const { setUser } = useUserStore();
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
   };
@@ -17,9 +18,10 @@ const ResetPasswordPage = () => {
   };
 
   const handleComplete = () => {
+    clearTokens();
+    setUser(null);
     navigate("/login");
   };
-
   const renderStep = () => {
     switch (currentStep) {
       case 1:
