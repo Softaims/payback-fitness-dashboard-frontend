@@ -74,7 +74,7 @@ const SignupPage = () => {
         <img src="/images/AuthImage.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover" style={{ filter: "brightness(0.8)" }} />
         <div className="relative z-10 p-8 h-full flex flex-col">
           <div className="mt-10 flex items-center mb-8">
-            <img src="/images/PaybackLogo.png" alt="PayBack Fitness Logo" className="h-14 w-14 mr-3" />
+            <img src="/images/PaybackLogo.svg" alt="PayBack Fitness Logo" />
             <div>
               <h1 className="text-2xl font-bold tracking-[0.1em]">
                 <span className="text-[#4BEEA2] font-bold">Pay</span>

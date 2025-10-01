@@ -79,7 +79,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-white/30 flex items-center justify-center z-50 p-4">
-      <div className="bg-[#2A2A2A] rounded-xl max-w-[90%] w-full max-h-[95%] overflow-y-auto">
+      <div className="bg-[#0B0F0D] rounded-xl max-w-[90%] w-full max-h-[95%] overflow-y-auto">
         {/* Close Button */}
         <div className="flex justify-end p-4">
           <button onClick={onClose} className="bg-white cursor-pointer w-8 h-8 rounded-full flex items-center justify-center transition-colors">

@@ -10,7 +10,7 @@ const AppDownloadSection = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             {/* Google Play Button */}
             <button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center gap-3 transition-colors font-medium">
-              <img src="/images/Playstore.png" alt="Google Play" className="w-8 h-8" />
+              <img src="/images/Playstore.svg" alt="Google Play" className="w-8 h-8" />
               <div className="flex flex-col items-start">
                 <span className="text-xs uppercase">GET IT ON</span>
                 <span className="text-sm font-semibold">Google Play</span>
@@ -19,7 +19,7 @@ const AppDownloadSection = () => {
 
             {/* App Store Button */}
             <button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center gap-3 transition-colors font-medium">
-              <img src="/images/Apple.png" alt="App Store" className="w-9 h-9" />
+              <img src="/images/Apple.svg" alt="App Store" className="w-9 h-9" />
               <div className="flex flex-col items-start">
                 <span className="text-xs">Download On the</span>
                 <span className="text-sm font-semibold">App Store</span>
@@ -30,7 +30,7 @@ const AppDownloadSection = () => {
 
         {/* Right Side - Mobile App Preview */}
         <div>
-          <img src="/images/MobileImage.png" alt="Mobile App Preview" className=" rounded-2xl shadow-2xl" />
+          <img src="/images/MobileImage.svg" alt="Mobile App Preview" className=" rounded-2xl shadow-2xl" />
         </div>
       </div>
     </div>

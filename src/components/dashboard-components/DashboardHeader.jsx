@@ -66,7 +66,7 @@ const DashboardHeader = ({ onMenuClick }) => {
 
         {/* Logo Section */}
         <div className="flex items-center gap-3">
-          <img src="/images/PaybackLogo.png" alt="PayBack Fitness Logo" className="h-10 w-10" />
+          <img src="/images/PaybackLogo.svg" alt="PayBack Fitness Logo" />
           <div className="flex flex-col">
             <div className="flex items-center gap-1">
               <span className="text-[#4BEEA2] font-bold text-lg">Pay</span>

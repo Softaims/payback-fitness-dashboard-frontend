@@ -54,7 +54,7 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         {/* Menu Section */}
-        <div className="flex-1 px-4 pt-6 min-h-0 overflow-y-auto">
+        <div className="mt-8 flex-1 px-2 pt-6 min-h-0 overflow-y-auto">
           <h3 className="text-[#ffffff]/50 text-xs font-semibold uppercase tracking-wider mb-4 px-4">Menu</h3>
           <nav className="space-y-1">
             <ul className="space-y-1">
