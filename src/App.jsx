@@ -7,6 +7,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import SubscriptionPage from "./pages/OnboardingSubscriptionPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
+import PaymentFailurePage from "./pages/PaymentFailurePage";
 import UserDashboard from "./pages/UserDashboard";
 import PFCoinsPage from "./pages/PFCoinsPage";
 import ProfileSettingsPage from "./pages/ProfileSettingsPage";
@@ -31,7 +32,8 @@ function App() {
           <Route path="/onboarding-referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
           <Route path="/reset-password" element={<ProtectedRoute children={<ResetPasswordPage />} />} />
           <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
-          <Route path="/payment/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />
+          <Route path="/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />
+          <Route path="/cancel" element={<ProtectedRoute children={<PaymentFailurePage />} />} />
           <Route path="/pf-coins" element={<ProtectedRoute children={<PFCoinsPage />} />} />
           <Route path="/profile-settings" element={<ProtectedRoute children={<ProfileSettingsPage />} />} />
         </Routes>
