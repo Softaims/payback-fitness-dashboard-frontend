@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, Check, Lock } from "lucide-react";
+import { X, Check, Lock, ChevronLeft } from "lucide-react";
 import customToast from "../../lib/toast";
 import api from "../../lib/apiClient";
 import { useSubscriptionPlansStore } from "../../store/subscriptionPlansStore";
@@ -12,7 +12,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
   const features = [
     {
       title: "Join Groups",
-      description: "Access all of the groups that you've joined and participate in that joined group",
+      description: "Access all of the groups that you’ve joined and participate in that joined group",
     },
     {
       title: "Create Your Own Group",
@@ -24,10 +24,9 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
     },
     {
       title: "Access Group Progress",
-      description: "See how every person in your group is doing",
+      description: "You can access all of your joined team members progress in a group",
     },
   ];
-
   console.log("plan", plans);
   useEffect(() => {
     if (isOpen && !plans) {
@@ -78,11 +77,18 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-white/30 flex items-center justify-center z-50 p-4">
-      <div className="bg-[#0B0F0D] rounded-xl max-w-[90%] w-full max-h-[95%] overflow-y-auto">
-        {/* Close Button */}
-        <div className="flex justify-end p-4">
-          <button onClick={onClose} className="bg-white cursor-pointer w-8 h-8 rounded-full flex items-center justify-center transition-colors">
+    <div className="fixed inset-0 bg-white/30 flex items-center justify-center z-50 p-0 md:p-4">
+      <div className="bg-[#0B0F0D] rounded-none md:rounded-xl max-w-none md:max-w-[90%] w-full max-h-none md:max-h-[95%] overflow-y-auto h-full md:h-auto">
+        {/* Header with Back Button (Mobile) and Close Button (Desktop) */}
+        <div className="flex justify-between items-center p-4">
+          {/* Mobile Back Button */}
+          <button onClick={onClose} className="md:hidden inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
+            <ChevronLeft className="w-7 h-7 mr-2" />
+            <p className="text-[#ffffff]">Go Back</p>
+          </button>
+
+          {/* Desktop Close Button */}
+          <button onClick={onClose} className="hidden md:flex bg-white cursor-pointer w-8 h-8 rounded-full items-center justify-center transition-colors">
             <X className="w-4 h-4" />
           </button>
         </div>

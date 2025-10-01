@@ -63,7 +63,7 @@ const OnboardingSubscriptionPlanSelection = () => {
   };
 
   return (
-    <div className="flex-1 lg:flex-1 mt-20 flex items-center justify-center lg:justify-start pl-8 lg:pl-20">
+    <div className="mt-20 flex items-center justify-center md:justify-start p-4">
       <div className="w-full max-w-md">
         {/* Title */}
         <div className="mb-8 text-left">
