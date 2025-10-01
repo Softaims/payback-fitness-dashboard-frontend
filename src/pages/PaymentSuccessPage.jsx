@@ -26,17 +26,19 @@ const PaymentSuccessPage = () => {
         </div>
 
         {/* Title */}
-        <h1 className="text-white text-3xl font-bold mb-4">Subscribed Successfully!</h1>
+        <h1 className="text-white text-3xl font-bold mb-4">Subscription Activated!</h1>
 
         {/* Description */}
-        <p className="text-[#ffffff]/50 text-sm mb-8 leading-relaxed">Hey you have successfully subscribed our monthly subscription plan</p>
+        <p className="text-[#ffffff]/50 text-sm mb-8 leading-relaxed">
+          Welcome to PayBack Fitness - your journey starts now. Let's build habits, crush your goals, and earn rewards every week!
+        </p>
 
         {/* Go to Home Page Button */}
         <button
           onClick={handleGoToHome}
           className="w-full font-bold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] cursor-pointer hover:bg-[#3dd48a]"
         >
-          Go To Home Page
+          Go To My Dashboard
         </button>
       </div>
     </div>
