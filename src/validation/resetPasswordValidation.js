@@ -10,7 +10,7 @@ const passwordSchema = z
   .regex(/[a-z]/, "Password must contain at least one lowercase letter")
   .regex(/[0-9]/, "Password must contain at least one number")
   .regex(/[^A-Za-z0-9]/, "Password must contain at least one special character")
-  .max(100, "Password must not exceed 100 characters");
+  .max(30, "Password must not exceed 30 characters");
 
 export const resetPasswordSchema = z
   .object({

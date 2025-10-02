@@ -94,7 +94,7 @@ const ReferralCodePage = () => {
                     value={referralCode}
                     onChange={handleInputChange}
                     placeholder="Enter referral code"
-                    className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 ${
+                    className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-[30px] text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 ${
                       errors.referralCode
                         ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                         : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
@@ -123,7 +123,7 @@ const ReferralCodePage = () => {
               <button
                 type="submit"
                 disabled={loading || !referralCode.trim()}
-                className={`w-full font-bold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] hover:bg-[#3dd48a] ${
+                className={`w-full font-bold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] hover:bg-[#3dd48a] ${
                   loading || !referralCode.trim() ? "cursor-not-allowed" : "cursor-pointer"
                 }`}
               >

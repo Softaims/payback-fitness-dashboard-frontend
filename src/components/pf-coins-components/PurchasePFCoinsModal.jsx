@@ -79,7 +79,7 @@ const PurchasePFCoinsModal = ({ isOpen, onClose }) => {
                 value={coinAmount}
                 onChange={handleInputChange}
                 placeholder="Enter Number of Coins"
-                className={`w-full bg-[#ffffff]/7 rounded-lg px-4 py-3 text-white placeholder-[#ffffff]/50 placeholder:text-sm focus:outline-none transition-colors
+                className={`w-full bg-[#ffffff]/7 rounded-[30px] px-4 py-3 text-white placeholder-[#ffffff]/50 placeholder:text-sm focus:outline-none transition-colors
   [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
     errors.coinAmount ? "border border-red-500 focus:border-red-500" : "border border-[#ffffff]/10 focus:border-[#4BEEA2]"
   }`}
@@ -100,7 +100,7 @@ const PurchasePFCoinsModal = ({ isOpen, onClose }) => {
             <button
               type="submit"
               disabled={loading}
-              className={`cursor-pointer w-40 font-semibold py-3 px-4 rounded-lg transition-colors ${
+              className={`cursor-pointer w-40 font-semibold py-3 px-4 rounded-[30px] transition-colors ${
                 loading ? "bg-[#4BEEA2] cursor-not-allowed" : "bg-[#4BEEA2] text-black hover:bg-[#3DD084]"
               }`}
             >
@@ -110,7 +110,7 @@ const PurchasePFCoinsModal = ({ isOpen, onClose }) => {
               type="button"
               onClick={handleClose}
               disabled={loading}
-              className="cursor-pointer w-40 bg-[#ffffff]/10 text-[#ffffff]/70 font-semibold py-3 px-4 rounded-lg hover:bg-[#ffffff]/20 transition-colors disabled:opacity-50"
+              className="cursor-pointer w-40 bg-[#ffffff]/10 text-[#ffffff]/70 font-semibold py-3 px-4 rounded-[30px] hover:bg-[#ffffff]/20 transition-colors disabled:opacity-50"
             >
               Cancel
             </button>

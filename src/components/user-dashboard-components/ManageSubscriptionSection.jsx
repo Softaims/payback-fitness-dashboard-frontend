@@ -128,7 +128,7 @@ const ManageSubscriptionSection = () => {
               <button
                 onClick={handleManageSubscription}
                 disabled={portalLoading}
-                className={`bg-[#4BEEA2] hover:bg-[#3DD18A] text-black font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2 transition-colors md:w-auto ${
+                className={`bg-[#4BEEA2] hover:bg-[#3DD18A] text-black text-xs md:text-sm font-semibold px-3 md:px-6 py-2 md:py-3 rounded-[30px] flex items-center justify-center gap-2 transition-colors md:w-auto ${
                   portalLoading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
                 }`}
               >

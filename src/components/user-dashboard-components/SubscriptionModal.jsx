@@ -141,7 +141,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Plan Selection */}
-              <div className="space-y-4 mb-20">
+              <div className="space-y-4 mb-25">
                 {plansLoading ? (
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border-2 border-[#FFFFFF]/7 bg-[#FFFFFF]/5 animate-pulse">
@@ -198,7 +198,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
               <button
                 onClick={handleContinue}
                 disabled={loading}
-                className={`w-full font-bold py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] ${
+                className={`w-full font-bold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] ${
                   loading ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#3dd48a]"
                 }`}
               >

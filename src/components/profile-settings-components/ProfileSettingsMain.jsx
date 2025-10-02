@@ -178,13 +178,13 @@ const ProfileSettingsMain = () => {
                       value={profileData.name}
                       onChange={handleProfileChange}
                       placeholder="username"
-                      className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 transition-colors ${
+                      className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-[30px] text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 transition-colors ${
                         profileErrors.name
                           ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                           : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
                       }`}
                     />
-                    <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#ffffff]/50" size={16} />
+                    <User className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#ffffff]/50" size={16} />
                   </div>
                   {profileErrors.name && (
                     <div className="mt-2 flex items-center text-red-500 text-xs">
@@ -204,9 +204,9 @@ const ProfileSettingsMain = () => {
                       value={profileData.email}
                       onChange={handleProfileChange}
                       placeholder="example@gmail.com"
-                      className="w-full px-4 py-3 bg-[#FFFFFF]/7 border border-[#FFFFFF]/7 rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 focus:ring-[#4BEEA2] focus:border-[#4BEEA2] transition-colors"
+                      className="w-full px-4 py-3 bg-[#FFFFFF]/7 border border-[#FFFFFF]/7 rounded-[30px] text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 focus:ring-[#4BEEA2] focus:border-[#4BEEA2] transition-colors"
                     />
-                    <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#ffffff]/50" size={16} />
+                    <Mail className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#ffffff]/50" size={16} />
                   </div>
                 </div>
               </div>
@@ -216,7 +216,7 @@ const ProfileSettingsMain = () => {
                 <button
                   type="submit"
                   disabled={profileLoading}
-                  className={`cursor-pointer w-full bg-[#4BEEA2] text-black font-bold py-3 px-4 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full bg-[#4BEEA2] text-black font-bold py-3 px-4 rounded-[30px] transition-colors ${
                     profileLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#3DD084]"
                   }`}
                 >
@@ -241,13 +241,13 @@ const ProfileSettingsMain = () => {
                       value={passwordData.newPassword}
                       onChange={handlePasswordChange}
                       placeholder="********"
-                      className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 transition-colors ${
+                      className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-[30px] text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 transition-colors ${
                         passwordErrors.newPassword
                           ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                           : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
                       }`}
                     />
-                    <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className="absolute right-4 top-1/2 transform -translate-y-1/2">
                       {showNewPassword ? <EyeOff className="text-[#4BEEA2]" size={16} /> : <Eye className="text-[#4BEEA2]" size={16} />}
                     </button>
                   </div>
@@ -268,7 +268,7 @@ const ProfileSettingsMain = () => {
                       value={passwordData.confirmPassword}
                       onChange={handlePasswordChange}
                       placeholder="********"
-                      className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-lg text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 transition-colors ${
+                      className={`w-full px-4 py-3 bg-[#FFFFFF]/7 border rounded-[30px] text-xs text-[#ffffff]/50 placeholder:text-xs placeholder:text-[#FFFFFF]/50 focus:outline-none focus:ring-2 transition-colors ${
                         passwordErrors.confirmPassword
                           ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                           : "border-[#FFFFFF]/7 focus:ring-[#4BEEA2] focus:border-[#4BEEA2]"
@@ -277,7 +277,7 @@ const ProfileSettingsMain = () => {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2"
                     >
                       {passwordData.confirmPassword && passwordData.newPassword === passwordData.confirmPassword ? (
                         <Check className="text-[#4BEEA2]" size={16} />
@@ -302,7 +302,7 @@ const ProfileSettingsMain = () => {
                 <button
                   type="submit"
                   disabled={passwordLoading}
-                  className={`cursor-pointer w-full bg-[#4BEEA2] font-bold text-black py-3 px-4 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full bg-[#4BEEA2] font-bold text-black py-3 px-4 rounded-[30px] transition-colors ${
                     passwordLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#3DD084]"
                   }`}
                 >

@@ -28,7 +28,7 @@ const OnboardingSubscriptionPage = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="min-h-screen flex-col md:flex md:flex-row">
+      <div className="min-h-screen flex flex-col md:justify-around md:flex-row">
         {/* Left Section - Features */}
         <OnboardingSubscriptionFeatures />
 
