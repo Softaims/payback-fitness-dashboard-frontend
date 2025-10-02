@@ -81,7 +81,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 bg-white/30 flex items-center justify-center z-50 p-0 md:p-4">
       <div className="bg-[#0B0F0D] rounded-none md:rounded-xl max-w-none md:max-w-[90%] w-full max-h-none md:max-h-[95%] overflow-y-auto h-full md:h-auto">
         {/* Header with Back Button (Mobile) and Close Button (Desktop) */}
-        <div className="flex justify-between items-center p-4">
+        <div className="relative flex justify-between items-center p-4">
           {/* Mobile Back Button */}
           <button onClick={onClose} className="md:hidden inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
             <ChevronLeft className="w-7 h-7 mr-2" />
@@ -89,16 +89,19 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
           </button>
 
           {/* Desktop Close Button */}
-          <button onClick={onClose} className="hidden md:flex bg-white cursor-pointer w-8 h-8 rounded-full items-center justify-center transition-colors">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 hidden md:flex bg-white cursor-pointer w-8 h-8 rounded-full items-center justify-center transition-colors"
+          >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Modal Content */}
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col md:flex-row md:justify-center">
           {/* Left Section - Features */}
-          <div className="flex-1 p-8">
-            <div className="w-full max-w-lg mx-auto lg:mx-0">
+          <div className="p-8">
+            <div className=" mx-auto lg:mx-0">
               {/* Crown Icon */}
               <div className="mb-3">
                 <Crown className="ml-[-10px] w-14 h-14 text-[#4BEEA2]" />
@@ -133,7 +136,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
           </div>
 
           {/* Right Section - Plan Selection */}
-          <div className="flex-1 p-8">
+          <div className="p-8">
             <div className="w-full max-w-md mx-auto lg:mx-0">
               {/* Title */}
               <div className="mb-8 text-left">
@@ -141,7 +144,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Plan Selection */}
-              <div className="space-y-4 mb-25">
+              <div className="space-y-4 mb-20">
                 {plansLoading ? (
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border-2 border-[#FFFFFF]/7 bg-[#FFFFFF]/5 animate-pulse">
