@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { navigationLinks, bottomNavigationLinks } from "../../constants/navigation";
 import { useUserStore } from "../../store/userStore";
 import { clearTokens } from "../../lib/tokenUtils";

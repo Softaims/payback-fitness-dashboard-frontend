@@ -12,7 +12,7 @@ const DashboardHeader = ({ onMenuClick }) => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const dropdownRef = useRef(null);
-  const { user, clearUser } = useUserStore();
+  const { user } = useUserStore();
   const navigate = useNavigate();
 
   // Close dropdown when clicking outside
