@@ -84,25 +84,31 @@ const ManageSubscriptionSection = () => {
         ) : subscription?.planName ? (
           <div className="rounded-xl p-8 mb-8 bg-[#ffffff]/7">
             {/* Top Section - Plan Details and Price */}
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <h3 className="text-xl font-semibold text-white">Current Plan</h3>
-                <span className="bg-[#4BEEA2] text-black px-3 py-1 rounded-full text-sm font-medium">{subscription.planName || "Monthly"}</span>
+            <div className="flex flex-col items-start justify-start md:flex-row md:items-start md:justify-between mb-6">
+              <div className="flex items-center gap-3 mb-4 md:mb-0">
+                <h3 className="text-lg md:text-xl font-semibold text-white">Current Plan</h3>
+                <span className="bg-[#4BEEA2]/10 text-[#4BEEA2] px-3 py-1 rounded-full text-xs md:text-sm font-semibold">
+                  {subscription.planName || "Monthly"}
+                </span>
               </div>
-              <div className="text-right">
+              <p className="block md:hidden text-xs text-[#ffffff]/50 mb-4 leading-relaxed">
+                {subscription.description ||
+                  "Enjoy unlimited access with your monthly plan. Your subscription will automatically renew each month unless you cancel."}
+              </p>
+              <div className="flex flex-row items-end">
                 <div className="text-4xl font-bold text-[#4BEEA2]">${subscription.planAmount || "5.00"}</div>
-                <div className="text-[#ffffff]/50 text-sm">/Billed {subscription.planName || "Monthly"}</div>
+                <div className="text-[#ffffff]/50 text-xs md:text-sm mb-1 ml-1">/Billed {subscription.planName || "Monthly"}</div>
               </div>
             </div>
 
-            <p className="text-[#ffffff]/50 mb-4 leading-relaxed">
+            <p className="hidden md:block text-[#ffffff]/50 mb-4 leading-relaxed">
               {subscription.description ||
                 "Enjoy unlimited access with your monthly plan. Your subscription will automatically renew each month unless you cancel."}
             </p>
 
-            <p className="text-[#ffffff]/50 mb-6">
-              Next Subscription Renewal Date:{" "}
-              <span className="text-white font-medium">
+            <div className="mb-6">
+              <p className="text-xs md:text-sm text-[#ffffff]/50 mb-2">Next Subscription Renewal Date:</p>
+              <p className="text-xs md:text-sm text-white font-medium">
                 {subscription.currentPeriodEnd
                   ? new Date(subscription.currentPeriodEnd).toLocaleDateString("en-US", {
                       year: "numeric",
@@ -110,24 +116,24 @@ const ManageSubscriptionSection = () => {
                       day: "numeric",
                     })
                   : ""}
-              </span>
-            </p>
+              </p>
+            </div>
 
             {/* Horizontal Divider */}
             <div className="border-t border-[#ffffff]/20 mb-6"></div>
 
             {/* Bottom Section - Action */}
-            <div className="flex items-center justify-between">
-              <p className="text-[#ffffff]/50">Renew, cancel or change your subscription Plan</p>
+            <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between gap-4">
+              <p className="text-xs md:text-sm text-white md:text-[#ffffff]/50">Renew, cancel or change your subscription Plan</p>
               <button
                 onClick={handleManageSubscription}
                 disabled={portalLoading}
-                className={`bg-[#4BEEA2] hover:bg-[#3DD18A] text-black font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-colors ${
+                className={`bg-[#4BEEA2] hover:bg-[#3DD18A] text-black font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2 transition-colors md:w-auto ${
                   portalLoading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
                 }`}
               >
                 <Crown className="font-bold w-6 h-6" />
-                {portalLoading ? "Processing..." : "Manage Subscription"}
+                {portalLoading ? "Processing..." : "Manage Subscriptions"}
               </button>
             </div>
           </div>
