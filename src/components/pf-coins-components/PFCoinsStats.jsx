@@ -21,7 +21,7 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
               </div>
             </div>
             <div>
-              <img src="/images/PFCoins.svg" alt="PayBack Fitness Logo" />
+              <img src="/images/PFCoins.svg" className="w-[300px] h-[200px]" alt="PayBack Fitness Logo" />
             </div>
           </div>
 
@@ -65,7 +65,7 @@ const PFCoinsStats = ({ onPurchaseClick }) => {
               </div>
             </div>
             <div>
-              <img src="/images/PFCoins.svg" alt="PayBack Fitness Logo" />
+              <img src="/images/PFCoins.svg" className="w-[300px] h-[200px]" alt="PayBack Fitness Logo" />
             </div>
           </div>
 

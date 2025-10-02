@@ -134,7 +134,7 @@ const ManageSubscriptionSection = () => {
         ) : (
           <div className="rounded-xl p-8 mb-8 flex flex-col items-center justify-center py-12">
             <img src="/images/NoSubscription.svg" alt="No Subscription" className="mb-6" />
-            <p className="text-white text-lg mb-4">No subscription plan added yet!</p>
+            <p className="text-white text-md md:text-lg mb-4">No subscription plan added yet!</p>
             <button onClick={handleSubscribeNow} className="cursor-pointer text-[#4BEEA2] text-lg underline hover:text-[#3DD18A] transition-colors">
               Subscribe Now
             </button>
