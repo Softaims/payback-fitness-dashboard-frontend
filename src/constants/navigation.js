@@ -22,6 +22,12 @@ export const navigationLinks = [
     icon: Profile,
     exact: false,
   },
+  {
+    label: "Return to App",
+    path: "/paybackfitness://signin",
+    icon: Profile,
+    exact: false,
+  },
 ];
 
 export const bottomNavigationLinks = [

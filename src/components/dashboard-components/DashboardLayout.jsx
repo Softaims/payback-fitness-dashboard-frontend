@@ -23,15 +23,15 @@ const DashboardLayout = ({ children }) => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen">
       <DashboardHeader onMenuClick={toggleOverlayMenu} />
 
-      <div className="flex flex-1 overflow-hidden pt-16">
+      <div className="flex flex-1 overflow-hidden pt-16 z-50 min-h-screen">
         <div ref={sidebarRef}>
           <DashboardSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
         </div>
 
-        <main className="flex-1 md:ml-64 overflow-x-auto overflow-y-auto">{children}</main>
+        <main className="flex-1 md:ml-64 overflow-x-auto overflow-y-auto min-h-screen">{children}</main>
       </div>
 
       {/* Overlay Menu */}
