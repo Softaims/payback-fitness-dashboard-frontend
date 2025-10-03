@@ -1,7 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { X } from "lucide-react";
 import { navigationLinks } from "../../constants/navigation";
-import customToast from "../../lib/toast";
 
 const OverlayMenu = ({ isOpen, onClose }) => {
   const location = useLocation();
@@ -14,29 +13,11 @@ const OverlayMenu = ({ isOpen, onClose }) => {
   };
 
   const handleDeepLink = () => {
-    let appInstalled = false;
-    // Listen for the page hidden event (when app opens)
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        appInstalled = true;
-        document.removeEventListener("visibilitychange", handleVisibilityChange);
-      }
-    };
-
-    // Add the visibility change listener
-    document.addEventListener("visibilitychange", handleVisibilityChange);
     // Try to open the app
     window.location.href = "paybackfitness://signin";
-    onClose();
 
     setTimeout(() => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-
-      if (!appInstalled) {
-        // Simple toast message for app not found
-        customToast.error("Mobile app not found. Make sure the PayBack Fitness app is installed.");
-      }
-      // Remove success message since visibility change already indicates success
+      onClose();
     }, 1000);
   };
 
