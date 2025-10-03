@@ -13,6 +13,33 @@ const OverlayMenu = ({ isOpen, onClose }) => {
     return location.pathname.startsWith(path);
   };
 
+  const handleDeepLink = () => {
+    let appInstalled = false;
+    // Listen for the page hidden event (when app opens)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        appInstalled = true;
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
+      }
+    };
+
+    // Add the visibility change listener
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    // Try to open the app
+    window.location.href = "paybackfitness://signin";
+    onClose();
+
+    setTimeout(() => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+
+      if (!appInstalled) {
+        // Simple toast message for app not found
+        customToast.error("Mobile app not found. Make sure the PayBack Fitness app is installed.");
+      }
+      // Remove success message since visibility change already indicates success
+    }, 1000);
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -51,11 +78,7 @@ const OverlayMenu = ({ isOpen, onClose }) => {
 
               const handleClick = (e) => {
                 e.preventDefault();
-                window.location.href = "paybackfitness://signin";
-                onClose();
-                setTimeout(() => {
-                  customToast.error("Mobile app not found. Make sure you have the PayBack Fitness app installed.");
-                }, 1000);
+                handleDeepLink();
               };
 
               return (
