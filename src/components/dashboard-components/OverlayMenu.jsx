@@ -16,7 +16,7 @@ const OverlayMenu = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-200 bg-black/85 backdrop-blur-sm">
+    <div className="h-[100vh] min-h-screen fixed inset-0 z-200 bg-black/85 backdrop-blur-sm">
       <div className="h-full w-full relative">
         {/* Header with Logo and Close Button */}
         <div className="flex items-center justify-between p-6">
