@@ -1,4 +1,4 @@
-import { HelpCircle, Shield, FileText, Mail, LogOut } from "lucide-react";
+import { HelpCircle, Shield, FileText, Mail, LogOut, Smartphone } from "lucide-react";
 import Crown from "../../public/icons/Crown.jsx";
 import Dollar from "../../public/icons/Dollar.jsx";
 import Profile from "../../public/icons/Profile.jsx";
@@ -24,9 +24,11 @@ export const navigationLinks = [
   },
   {
     label: "Return to App",
-    path: "/paybackfitness://signin",
-    icon: Profile,
+    path: "/return-to-app",
+    icon: Smartphone,
     exact: false,
+    isDeepLink: true,
+    deepLinkUrl: "paybackfitness://signin",
   },
 ];
 

@@ -55,9 +55,18 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
           <h3 className="text-[#ffffff]/50 text-xs font-semibold uppercase tracking-wider mb-4 px-4">Menu</h3>
           <nav className="space-y-1">
             <ul className="space-y-1">
-              {navigationLinks.map((link) => (
-                <SidebarItem key={link.path} icon={link.icon} text={link.label} path={link.path} isActive={isActive(link.path, link.exact)} onClick={onClose} />
-              ))}
+              {navigationLinks
+                .filter((link) => !link.isDeepLink)
+                .map((link) => (
+                  <SidebarItem
+                    key={link.path}
+                    icon={link.icon}
+                    text={link.label}
+                    path={link.path}
+                    isActive={isActive(link.path, link.exact)}
+                    onClick={onClose}
+                  />
+                ))}
             </ul>
           </nav>
         </div>

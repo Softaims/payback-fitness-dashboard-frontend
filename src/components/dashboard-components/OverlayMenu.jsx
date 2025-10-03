@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { X } from "lucide-react";
 import { navigationLinks } from "../../constants/navigation";
+import customToast from "../../lib/toast";
 
 const OverlayMenu = ({ isOpen, onClose }) => {
   const location = useLocation();
@@ -48,11 +49,20 @@ const OverlayMenu = ({ isOpen, onClose }) => {
               const iconClasses = active ? "text-[#4BEEA2]" : "text-[#ffffff]/50";
               const textClasses = active ? "text-white font-semibold" : "text-[#ffffff]/50 font-normal";
 
+              const handleClick = (e) => {
+                e.preventDefault();
+                window.location.href = "paybackfitness://signin";
+                onClose();
+                setTimeout(() => {
+                  customToast.error("Mobile app not found. Make sure you have the PayBack Fitness app installed.");
+                }, 1000);
+              };
+
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={onClose}
+                  onClick={link.isDeepLink ? handleClick : onClose}
                   className="w-full flex items-center gap-2 px-4 py-2 rounded-md transition-colors duration-200 hover:bg-[#ffffff]/5"
                 >
                   <span className={iconClasses}>
