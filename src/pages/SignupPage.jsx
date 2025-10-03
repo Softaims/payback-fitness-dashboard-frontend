@@ -292,8 +292,8 @@ const SignupPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full font-bold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 ${
-                loading ? "bg-[#4BEEA2] cursor-not-allowed" : "cursor-pointer  bg-[#4BEEA2] hover:bg-[#3dd48a]"
+              className={`w-full font-semibold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 ${
+                loading ? "bg-[#6d6262ff] cursor-not-allowed" : "cursor-pointer  bg-[#4BEEA2] hover:bg-[#3dd48a]"
               }`}
             >
               {loading ? "Creating Account..." : "Sign Up"}

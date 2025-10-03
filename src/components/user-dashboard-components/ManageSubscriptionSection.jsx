@@ -128,8 +128,8 @@ const ManageSubscriptionSection = () => {
               <button
                 onClick={handleManageSubscription}
                 disabled={portalLoading}
-                className={`bg-[#4BEEA2] hover:bg-[#3DD18A] text-black text-xs md:text-sm font-semibold px-3 md:px-6 py-2 md:py-3 rounded-[30px] flex items-center justify-center gap-2 transition-colors md:w-auto ${
-                  portalLoading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
+                className={`hover:bg-[#3DD18A] text-black text-xs md:text-sm font-semibold px-3 md:px-6 py-2 md:py-3 rounded-[30px] flex items-center justify-center gap-2 transition-colors md:w-auto ${
+                  portalLoading ? "bg-[#6d6262ff] cursor-not-allowed opacity-70" : "bg-[#4BEEA2] cursor-pointer"
                 }`}
               >
                 <Crown className="font-bold w-6 h-6" />
@@ -140,7 +140,7 @@ const ManageSubscriptionSection = () => {
         ) : (
           <div className="rounded-xl p-8 mb-8 flex flex-col items-center justify-center py-12">
             <img src="/images/NoSubscription.svg" alt="No Subscription" className="mb-6" />
-            <p className="text-white text-md md:text-lg mb-4">No subscription plan added yet!</p>
+            <p className="text-white text-sm md:text-lg mb-4">No subscription plan added yet!</p>
             <button onClick={handleSubscribeNow} className="cursor-pointer text-[#4BEEA2] text-lg underline hover:text-[#3DD18A] transition-colors">
               Subscribe Now
             </button>

@@ -216,8 +216,8 @@ const ProfileSettingsMain = () => {
                 <button
                   type="submit"
                   disabled={profileLoading}
-                  className={`cursor-pointer w-full bg-[#4BEEA2] text-black font-bold py-3 px-4 rounded-[30px] transition-colors ${
-                    profileLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#3DD084]"
+                  className={`cursor-pointer w-full  text-black font-semibold py-3 px-4 rounded-[30px] transition-colors ${
+                    profileLoading ? "bg-[#6d6262ff] opacity-50 cursor-not-allowed" : "bg-[#4BEEA2] hover:bg-[#3DD084]"
                   }`}
                 >
                   {profileLoading ? "Updating..." : "Update Profile"}
@@ -302,8 +302,8 @@ const ProfileSettingsMain = () => {
                 <button
                   type="submit"
                   disabled={passwordLoading}
-                  className={`cursor-pointer w-full bg-[#4BEEA2] font-bold text-black py-3 px-4 rounded-[30px] transition-colors ${
-                    passwordLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#3DD084]"
+                  className={`cursor-pointer w-full font-semibold text-black py-3 px-4 rounded-[30px] transition-colors ${
+                    passwordLoading ? "bg-[#6d6262ff] opacity-50 cursor-not-allowed" : "bg-[#4BEEA2]  hover:bg-[#3DD084]"
                   }`}
                 >
                   {passwordLoading ? "Updating..." : "Update Password"}

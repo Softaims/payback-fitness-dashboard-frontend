@@ -128,8 +128,8 @@ const OnboardingSubscriptionPlanSelection = () => {
         <button
           onClick={handleContinue}
           disabled={loading}
-          className={`w-full font-bold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] ${
-            loading ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#3dd48a]"
+          className={`w-full font-semibold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 ${
+            loading ? "bg-[#6d6262ff] cursor-not-allowed" : "bg-[#4BEEA2] cursor-pointer hover:bg-[#3dd48a]"
           }`}
         >
           {loading ? "Processing..." : "Continue"}
