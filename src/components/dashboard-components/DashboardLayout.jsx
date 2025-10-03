@@ -24,16 +24,14 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="flex flex-col h-screen">
-      {/* Header at the top */}
       <DashboardHeader onMenuClick={toggleOverlayMenu} />
 
-      {/* Main content area with sidebar */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden pt-16">
         <div ref={sidebarRef}>
           <DashboardSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
         </div>
 
-        <main className="flex-1 overflow-x-auto overflow-y-auto">{children}</main>
+        <main className="flex-1 md:ml-64 overflow-x-auto overflow-y-auto">{children}</main>
       </div>
 
       {/* Overlay Menu */}

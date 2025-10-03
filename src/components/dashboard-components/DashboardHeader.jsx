@@ -58,7 +58,7 @@ const DashboardHeader = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="h-16 bg-[#ffffff]/7 flex items-center justify-between px-6 border-b border-[#ffffff]/7">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-[#ffffff]/7 flex items-center justify-between px-6 border-b border-[#ffffff]/7 z-40">
       <div className="flex items-center gap-1">
         <button onClick={onMenuClick} className="cursor-pointer md:hidden text-gray-300 hover:text-white">
           <Menu size={24} className="text-[#ffffff]/50" />

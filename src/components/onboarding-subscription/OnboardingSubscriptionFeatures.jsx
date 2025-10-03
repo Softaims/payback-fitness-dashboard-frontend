@@ -21,10 +21,10 @@ const OnboardingSubscriptionFeatures = () => {
   ];
 
   return (
-    <div className="flex p-8 items-center justify-center">
-      <div className="w-full max-w-lg flex flex-col mt-10 md:mt-0">
+    <div className="flex p-4 md:p-8 items-center justify-center">
+      <div className="w-full max-w-lg flex flex-col mt-15 md:mt-0">
         {/* Crown Icon */}
-        <div className="mb-6">
+        <div className="mb-2 md:mb-6">
           <Crown className="w-8 h-8 text-[#4BEEA2]" />
         </div>
 

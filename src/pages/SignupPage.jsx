@@ -85,11 +85,11 @@ const SignupPage = () => {
           </div>
           <div className="mt-auto mb-8">
             <p className="text-white text-2xl font-bold leading-relaxed text-left">
-              Compete with Your Friends
+              Don’t just work out. Get
               <br />
-              Group, Stay Accountable & Get
+              PayBack! Compete, commit, and
               <br />
-              Rewarded
+              cash out when you crush it.
             </p>
           </div>
         </div>

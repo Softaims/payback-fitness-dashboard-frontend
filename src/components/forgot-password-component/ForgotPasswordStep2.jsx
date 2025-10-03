@@ -165,7 +165,7 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
                 value={digit}
                 onChange={(e) => handleInputChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className={`w-12 h-12 text-center text-white text-lg font-bold bg-[#FFFFFF]/7 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all ${
+                className={`w-12 h-12 text-center text-white text-lg font-bold bg-[#FFFFFF]/7 border-2 rounded-[30px] focus:outline-none focus:ring-2 transition-all ${
                   errors[`otp_${index}`] || errors.otp
                     ? "border-red-500 focus:ring-red-500"
                     : digit
