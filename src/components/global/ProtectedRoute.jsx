@@ -20,6 +20,7 @@ const ProtectedRoute = ({ children }) => {
         const userResponse = await api.get("/api/user/profile");
         setUser(userResponse?.data);
       } catch {
+        console.log("error occured protected route redirecting to login");
         window.location.href = "/login";
       } finally {
         setUserLoading(false);
