@@ -30,8 +30,8 @@ const AppDownloadSection = () => {
         </div>
 
         {/* Right Side - Mobile App Preview */}
-        <div>
-          <img src="/images/MobileImage.svg" alt="Mobile App Preview" className="xl:mr-10 rounded-2xl shadow-2xl" />
+        <div className="">
+          <img src="/images/MobileImage.png" alt="Mobile App Preview" className=" w-[400px] h-[220px] xl:mr-10 rounded-2xl shadow-2xl" />
         </div>
       </div>
     </div>

@@ -11,6 +11,8 @@ import PaymentFailurePage from "./pages/PaymentFailurePage";
 import UserDashboard from "./pages/UserDashboard";
 import PFCoinsPage from "./pages/PFCoinsPage";
 import ProfileSettingsPage from "./pages/ProfileSettingsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PublicRoute from "./components/global/PublicRoute";
 import ProtectedRoute from "./components/global/ProtectedRoute";
 import { CustomToaster } from "./lib/toast";
@@ -25,6 +27,8 @@ function App() {
           <Route path="/signup" element={<PublicRoute children={<SignupPage />} />} />
           <Route path="/email-verification" element={<PublicRoute children={<EmailVerificationPage />} />} />
           <Route path="/forgot-password" element={<PublicRoute children={<ForgotPasswordPage />} />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
 
           {/* Protected Routes */}
           <Route path="/" element={<ProtectedRoute children={<UserDashboard />} />} />

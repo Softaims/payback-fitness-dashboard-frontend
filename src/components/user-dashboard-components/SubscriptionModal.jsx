@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, Check, Lock, ChevronLeft } from "lucide-react";
 import customToast from "../../lib/toast";
 import api from "../../lib/apiClient";
@@ -77,30 +78,29 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 bg-white/30 flex items-center justify-center z-50 p-0 md:p-4">
-      <div className="bg-[#0B0F0D] rounded-none md:rounded-xl max-w-none md:max-w-[90%] w-full max-h-none md:max-h-[95%] overflow-y-auto h-full md:h-auto">
-        {/* Header with Back Button (Mobile) and Close Button (Desktop) */}
-        <div className="relative flex justify-between items-center p-4">
-          {/* Mobile Back Button */}
-          <button onClick={onClose} className="md:hidden inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
-            <ChevronLeft className="w-7 h-7 mr-2" />
-            <p className="text-[#ffffff]">Go Back</p>
-          </button>
-
-          {/* Desktop Close Button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 hidden md:flex bg-white cursor-pointer w-8 h-8 rounded-full items-center justify-center transition-colors"
-          >
-            <X className="w-4 h-4" />
+  return createPortal(
+    <div className="h-[100vh] min-h-screen fixed inset-0 z-[9999] bg-black/85 backdrop-blur-sm md:bg-white/30 md:flex md:items-center md:justify-center md:p-4">
+      <div className="h-full w-full bg-[#0B0F0D] overflow-y-auto md:rounded-xl md:max-w-[90%] md:max-h-[95%] md:h-auto relative">
+        {/* Mobile Header with Back Button */}
+        <div className="flex md:hidden items-center justify-between p-6 bg-[#0B0F0D] sticky top-0 z-50">
+          <button onClick={onClose} className="inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
+            <ChevronLeft className="w-6 h-6 mr-2" />
+            <span className="text-[#ffffff] font-medium">Go Back</span>
           </button>
         </div>
 
+        {/* Desktop Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 hidden md:flex bg-white cursor-pointer w-8 h-8 rounded-full items-center justify-center transition-colors z-50"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
         {/* Modal Content */}
-        <div className="flex flex-col md:flex-row md:justify-center">
+        <div className="flex flex-col md:flex-row md:justify-center md:pt-16">
           {/* Left Section - Features */}
-          <div className="p-8">
+          <div className="p-6 md:p-8">
             <div className=" mx-auto lg:mx-0">
               {/* Crown Icon */}
               <div className="mb-3">
@@ -136,7 +136,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
           </div>
 
           {/* Right Section - Plan Selection */}
-          <div className="p-8">
+          <div className="p-6 md:p-8 pb-8">
             <div className="w-full max-w-md mx-auto lg:mx-0">
               {/* Title */}
               <div className="mb-8 text-left">
@@ -144,7 +144,7 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Plan Selection */}
-              <div className="space-y-4 mb-20">
+              <div className="space-y-4 mb-8 md:mb-20">
                 {plansLoading ? (
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border-2 border-[#FFFFFF]/7 bg-[#FFFFFF]/5 animate-pulse">
@@ -211,7 +211,8 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

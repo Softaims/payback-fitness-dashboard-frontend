@@ -270,11 +270,11 @@ const SignupPage = () => {
                 </div>
                 <span className="ml-3 text-[#ffffff]/50 text-xs leading-relaxed">
                   I've read and agrees on the{" "}
-                  <a href="#" className="text-[#4BEEA2] hover:text-green-400 transition-colors">
+                  <a href="/terms-and-conditions" className="text-[#4BEEA2] hover:text-green-400 transition-colors">
                     Terms & Conditions
                   </a>{" "}
                   and{" "}
-                  <a href="#" className="text-[#4BEEA2] hover:text-green-400 transition-colors">
+                  <a href="/privacy-policy" className="text-[#4BEEA2] hover:text-green-400 transition-colors">
                     Privacy Policy
                   </a>
                   .
