@@ -29,7 +29,6 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
     },
   ];
 
-  console.log("plan", plans);
   useEffect(() => {
     if (isOpen && !plans) {
       fetchSubscriptionPlans();

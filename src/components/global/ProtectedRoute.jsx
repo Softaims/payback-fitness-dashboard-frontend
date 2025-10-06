@@ -8,11 +8,12 @@ const ProtectedRoute = ({ children }) => {
   const { user, setUser, userLoading, setUserLoading } = useUserStore();
   const [loading, setLoading] = useState(true);
   const [allowAccess, setAllowAccess] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
     const checkAuth = async () => {
-      if (user || userLoading) return;
+      if (user || userLoading || authChecked) return;
 
       try {
         setUserLoading(true);
@@ -24,10 +25,11 @@ const ProtectedRoute = ({ children }) => {
         window.location.href = "/login";
       } finally {
         setUserLoading(false);
+        setAuthChecked(true);
       }
     };
     checkAuth();
-  }, [user, setUser, userLoading, setUserLoading]);
+  }, [user, setUser, userLoading, setUserLoading, authChecked]);
 
   useEffect(() => {
     if (!user) return;

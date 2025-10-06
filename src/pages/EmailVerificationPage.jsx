@@ -262,8 +262,8 @@ const EmailVerificationPage = () => {
               <button
                 type="submit"
                 disabled={loading || otp.some((digit) => digit === "")}
-                className={`w-full font-bold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] ${
-                  loading || otp.some((digit) => digit === "") ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#3dd48a]"
+                className={`w-full font-bold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 ${
+                  loading || otp.some((digit) => digit === "") ? "bg-[#6d6262ff] cursor-not-allowed" : "bg-[#4BEEA2] cursor-pointer hover:bg-[#3dd48a]"
                 }`}
               >
                 {loading ? "Verifying..." : "Verify"}

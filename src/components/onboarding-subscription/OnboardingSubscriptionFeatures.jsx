@@ -38,7 +38,7 @@ const OnboardingSubscriptionFeatures = () => {
 
         {/* Features List */}
         <div>
-          <h2 className="text-white text-xl font-bold mb-6">Features Include:</h2>
+          <h2 className="text-white text-lg font-semibold md:text-xl md:font-bold mb-6">Features Include:</h2>
           <div className="space-y-6">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start">

@@ -63,11 +63,11 @@ const OnboardingSubscriptionPlanSelection = () => {
   };
 
   return (
-    <div className="mt-20 flex items-center justify-center md:justify-start p-4">
+    <div className="md:mt-20 flex items-center justify-center md:justify-start p-4">
       <div className="w-full max-w-md">
         {/* Title */}
         <div className="mb-8 text-left">
-          <h2 className="text-white text-3xl font-bold mb-2">Choose Plan</h2>
+          <h2 className="text-white text-lg font-semibold md:text-3xl md:font-bold mb-2">Choose Plan</h2>
         </div>
 
         {/* Plan Selection */}
