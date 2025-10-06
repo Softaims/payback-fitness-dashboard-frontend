@@ -16,6 +16,7 @@ const ProtectedRoute = ({ children }) => {
 
       try {
         setUserLoading(true);
+        console.log("protected route api called");
         const userResponse = await api.get("/api/user/profile");
         setUser(userResponse?.data);
       } catch {
