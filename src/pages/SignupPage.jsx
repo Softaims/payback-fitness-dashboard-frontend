@@ -5,24 +5,18 @@ import { validateForm } from "../validation/validateForm";
 import api from "../lib/apiClient";
 import { useNavigate } from "react-router-dom";
 import customToast from "../lib/toast";
+import { useSignupFormStore } from "../store/signupFormStore";
+
 const SignupPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [acceptTerms, setAcceptTerms] = useState(false);
+  const { formData, acceptTerms, updateField, setAcceptTerms, resetForm } = useSignupFormStore();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    updateField(e.target.name, e.target.value);
     setErrors({ ...errors, [e.target.name]: undefined });
   };
 
@@ -50,8 +44,11 @@ const SignupPage = () => {
       );
 
       customToast.success("Account created successfully! Please verify your email.");
+      // Clear form data on successful signup
+      const userEmail = formData.email;
+      resetForm();
       setTimeout(() => {
-        navigate("/email-verification", { state: { email: formData.email } });
+        navigate("/email-verification", { state: { email: userEmail } });
       }, 2000);
     } catch (error) {
       console.error("Signup failed:", error);
@@ -270,13 +267,21 @@ const SignupPage = () => {
                 </div>
                 <span className="ml-3 text-[#ffffff]/50 text-xs leading-relaxed">
                   I've read and agrees on the{" "}
-                  <a href="/terms-and-conditions" className="text-[#4BEEA2] hover:text-green-400 transition-colors">
+                  <button
+                    type="button"
+                    onClick={() => navigate("/terms-and-conditions")}
+                    className="text-[#4BEEA2] hover:text-green-400 transition-colors underline cursor-pointer"
+                  >
                     Terms & Conditions
-                  </a>{" "}
+                  </button>{" "}
                   and{" "}
-                  <a href="/privacy-policy" className="text-[#4BEEA2] hover:text-green-400 transition-colors">
+                  <button
+                    type="button"
+                    onClick={() => navigate("/privacy-policy")}
+                    className="text-[#4BEEA2] hover:text-green-400 transition-colors underline cursor-pointer"
+                  >
                     Privacy Policy
-                  </a>
+                  </button>
                   .
                 </span>
               </label>
@@ -302,9 +307,13 @@ const SignupPage = () => {
             {/* Login Link */}
             <div className="text-center">
               <span className="text-[#ffffff]/50 text-sm">Already have an account? </span>
-              <a href="/login" className="text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors">
+              <button
+                type="button"
+                onClick={() => navigate("/login")}
+                className="text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors cursor-pointer"
+              >
                 Login
-              </a>
+              </button>
             </div>
           </form>
         </div>

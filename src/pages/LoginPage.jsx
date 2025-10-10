@@ -171,9 +171,13 @@ const LoginPage = () => {
 
             {/* Remember Me and Forgot Password */}
             <div className="flex items-center justify-end">
-              <a href="/forgot-password" className="text-[#4BEEA2] text-sm hover:text-green-400 transition-colors">
+              <button
+                type="button"
+                onClick={() => navigate("/forgot-password")}
+                className="text-[#4BEEA2] text-sm hover:text-green-400 transition-colors cursor-pointer"
+              >
                 Forgot Password?
-              </a>
+              </button>
             </div>
 
             {/* Login Button */}
@@ -190,9 +194,13 @@ const LoginPage = () => {
             {/* Sign Up Link */}
             <div className="text-center">
               <span className="text-white text-sm">Don't have an account? </span>
-              <a href="/signup" className="text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors">
+              <button
+                type="button"
+                onClick={() => navigate("/signup")}
+                className="text-[#4BEEA2] hover:text-green-400 text-sm font-medium transition-colors cursor-pointer"
+              >
                 Sign Up
-              </a>
+              </button>
             </div>
           </form>
         </div>

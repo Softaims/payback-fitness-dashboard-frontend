@@ -8,7 +8,7 @@ const TermsAndConditionsPage = () => {
     <div className="min-h-screen text-white relative">
       {/* Go Back Link - Fixed to top left */}
       <div className="absolute top-6 left-6 md:top-10 md:left-10 z-10">
-        <button onClick={() => navigate("/")} className="cursor-pointer inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
+        <button onClick={() => navigate(-1)} className="cursor-pointer inline-flex items-center text-[#4BEEA2] hover:text-green-400 transition-colors">
           <ChevronLeft className="w-7 h-7 mr-2" />
           <p className="text-[#ffffff]">Go Back</p>
         </button>
