@@ -16,6 +16,9 @@ const ManageSubscriptionSection = () => {
     }
   }, [fetchCurrentSubscription, subscription]);
 
+  // Determine billing period based on plan name
+  const isYearlyPlan = subscription?.planName?.toLowerCase().includes("yearly");
+
   const handleSubscribeNow = () => {
     setIsModalOpen(true);
   };
@@ -93,7 +96,9 @@ const ManageSubscriptionSection = () => {
               </div>
               <p className="block md:hidden text-xs text-[#ffffff]/50 mb-4 leading-relaxed">
                 {subscription.description ||
-                  "Enjoy unlimited access with your monthly plan. Your subscription will automatically renew each month unless you cancel."}
+                  `Enjoy unlimited access with your ${isYearlyPlan ? "yearly" : "monthly"} plan. Your subscription will automatically renew each ${
+                    isYearlyPlan ? "year" : "month"
+                  } unless you cancel.`}
               </p>
               <div className="flex flex-row items-end">
                 <div className="text-4xl font-bold text-[#4BEEA2]">${subscription.planAmount || "5.00"}</div>
@@ -103,9 +108,10 @@ const ManageSubscriptionSection = () => {
 
             <p className="hidden md:block text-[#ffffff]/50 mb-4 leading-relaxed">
               {subscription.description ||
-                "Enjoy unlimited access with your monthly plan. Your subscription will automatically renew each month unless you cancel."}
+                `Enjoy unlimited access with your ${isYearlyPlan ? "yearly" : "monthly"} plan. Your subscription will automatically renew each ${
+                  isYearlyPlan ? "year" : "month"
+                } unless you cancel.`}
             </p>
-
             <div className="mb-6">
               <p className="text-xs md:text-sm text-[#ffffff]/50 mb-2">Next Subscription Renewal Date:</p>
               <p className="text-xs md:text-sm text-white font-medium">
