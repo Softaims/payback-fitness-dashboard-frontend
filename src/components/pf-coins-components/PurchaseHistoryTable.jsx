@@ -10,6 +10,22 @@ const PurchaseHistoryTable = () => {
   const limit = purchaseHistory?.limit || 10;
   const totalPages = purchaseHistory?.totalPages || 0;
 
+  const formatToLocalDateTime = (dateStr, timeStr) => {
+    if (!dateStr || !timeStr) return { date: "-", time: "-" };
+
+    // Force parse as UTC (assumes backend values are UTC)
+    const parsed = new Date(`${dateStr} ${timeStr} UTC`);
+    if (isNaN(parsed)) {
+      // fallback: try more robust parsing below
+      return { date: dateStr, time: timeStr };
+    }
+
+    return {
+      date: parsed.toLocaleDateString([], { year: "numeric", month: "long", day: "numeric" }),
+      time: parsed.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    };
+  };
+
   // Generate page numbers for pagination
   const generatePageNumbers = () => {
     const pages = [];
@@ -116,23 +132,26 @@ const PurchaseHistoryTable = () => {
             </tr>
           </thead>
           <tbody>
-            {rows.map((item, index) => (
-              <tr key={index} className="text-sm border-b border-[#ffffff]/5">
-                <td className="py-6 px-4 text-white">{(page - 1) * limit + index + 1}</td>
-                <td className="py-6 px-4 text-white">{item.amount}PF</td>
-                <td className="py-6 px-4 text-white">{item.date}</td>
-                <td className="py-6 px-4 text-white">{item.time}</td>
-                <td className="py-6 px-4">
-                  <span
-                    className={`px-3 py-2 rounded-xl text-sm ${
-                      item.status === "completed" ? "text-[#2DD084] bg-[#2DD084]/10" : "text-[#F65E53] bg-[#F65E53]/10"
-                    }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
+            {rows.map((item, index) => {
+              const local = formatToLocalDateTime(item.date, item.time);
+              return (
+                <tr key={index} className="text-sm border-b border-[#ffffff]/5">
+                  <td className="py-6 px-4 text-white">{(page - 1) * limit + index + 1}</td>
+                  <td className="py-6 px-4 text-white">{item.amount}PF</td>
+                  <td className="py-6 px-4 text-white">{local.date}</td>
+                  <td className="py-6 px-4 text-white">{local.time}</td>
+                  <td className="py-6 px-4">
+                    <span
+                      className={`px-3 py-2 rounded-xl text-sm ${
+                        item.status === "completed" ? "text-[#2DD084] bg-[#2DD084]/10" : "text-[#F65E53] bg-[#F65E53]/10"
+                      }`}
+                    >
+                      {item.status}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
