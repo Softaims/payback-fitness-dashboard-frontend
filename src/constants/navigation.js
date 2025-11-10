@@ -10,12 +10,12 @@ export const navigationLinks = [
     icon: Crown,
     exact: true,
   },
-  {
-    label: "PF Coins",
-    path: "/pf-coins",
-    icon: Dollar,
-    exact: false,
-  },
+  // {
+  //   label: "PF Coins",
+  //   path: "/pf-coins",
+  //   icon: Dollar,
+  //   exact: false,
+  // },
   {
     label: "Profile",
     path: "/profile-settings",
