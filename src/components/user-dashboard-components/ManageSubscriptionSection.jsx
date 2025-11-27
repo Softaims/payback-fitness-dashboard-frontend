@@ -129,18 +129,25 @@ const ManageSubscriptionSection = () => {
             <div className="border-t border-[#ffffff]/20 mb-6"></div>
 
             {/* Bottom Section - Action */}
-            <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between gap-4">
-              <p className="text-xs md:text-sm text-white md:text-[#ffffff]/50">Renew, cancel or change your subscription Plan</p>
-              <button
-                onClick={handleManageSubscription}
-                disabled={portalLoading}
-                className={`text-black text-xs md:text-sm font-semibold px-3 md:px-6 py-2 md:py-3 rounded-[30px] flex items-center justify-center gap-2 transition-colors md:w-auto ${
-                  portalLoading ? "bg-[#6d6262ff] cursor-not-allowed opacity-70" : "bg-[#4BEEA2] cursor-pointer"
-                }`}
-              >
-                <Crown className="font-bold w-6 h-6" />
-                {portalLoading ? "Processing..." : "Manage Subscriptions"}
-              </button>
+            <div className="flex flex-col items-start md:flex-row md:items-start md:justify-between gap-4">
+              <p className="text-xs md:text-sm text-white md:text-[#ffffff]/50 whitespace-nowrap">Renew, cancel or change your subscription plan</p>
+              {subscription?.platform === "STRIPE" ? (
+                <button
+                  onClick={handleManageSubscription}
+                  disabled={portalLoading}
+                  className={`text-black text-xs md:text-sm font-semibold px-3 md:px-6 py-2 md:py-3 rounded-[30px] flex items-center justify-center gap-2 transition-colors md:w-auto ${
+                    portalLoading ? "bg-[#6d6262ff] cursor-not-allowed opacity-70" : "bg-[#4BEEA2] cursor-pointer"
+                  }`}
+                >
+                  <Crown className="font-bold w-6 h-6" />
+                  {portalLoading ? "Processing..." : "Manage Subscriptions"}
+                </button>
+              ) : subscription?.platform ? (
+                <p className="text-xs md:text-sm text-[#ffffff]/80">
+                  Your subscription is managed through your device&apos;s app store (Apple or Google Play). Please update or cancel it directly in your app
+                  store account settings.
+                </p>
+              ) : null}
             </div>
           </div>
         ) : (
