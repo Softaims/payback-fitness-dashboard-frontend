@@ -16,8 +16,10 @@ const ManageSubscriptionSection = () => {
     }
   }, [fetchCurrentSubscription, subscription]);
 
-  // Determine billing period based on plan name
+  // Determine billing metadata
   const isYearlyPlan = subscription?.planName?.toLowerCase().includes("yearly");
+  const isStripeSubscription = subscription?.platform === "STRIPE";
+  const isAppOrPlayStoreManaged = subscription?.planName && subscription?.platform && !isStripeSubscription;
 
   const handleSubscribeNow = () => {
     setIsModalOpen(true);
@@ -84,7 +86,7 @@ const ManageSubscriptionSection = () => {
               <div className="h-12 w-40 bg-[#ffffff]/10 rounded-lg"></div>
             </div>
           </div>
-        ) : subscription?.planName ? (
+        ) : subscription?.planName && isStripeSubscription ? (
           <div className="rounded-xl p-8 mb-8 bg-[#ffffff]/7">
             {/* Top Section - Plan Details and Price */}
             <div className="flex flex-col items-start justify-start md:flex-row md:items-start md:justify-between mb-6">
@@ -131,24 +133,25 @@ const ManageSubscriptionSection = () => {
             {/* Bottom Section - Action */}
             <div className="flex flex-col items-start md:flex-row md:items-start md:justify-between gap-4">
               <p className="text-xs md:text-sm text-white md:text-[#ffffff]/50 whitespace-nowrap">Renew, cancel or change your subscription plan</p>
-              {subscription?.platform === "STRIPE" ? (
-                <button
-                  onClick={handleManageSubscription}
-                  disabled={portalLoading}
-                  className={`text-black text-xs md:text-sm font-semibold px-3 md:px-6 py-2 md:py-3 rounded-[30px] flex items-center justify-center gap-2 transition-colors md:w-auto ${
-                    portalLoading ? "bg-[#6d6262ff] cursor-not-allowed opacity-70" : "bg-[#4BEEA2] cursor-pointer"
-                  }`}
-                >
-                  <Crown className="font-bold w-6 h-6" />
-                  {portalLoading ? "Processing..." : "Manage Subscriptions"}
-                </button>
-              ) : subscription?.platform ? (
-                <p className="text-xs md:text-sm text-[#ffffff]/80">
-                  Your subscription is managed through your device&apos;s app store (Apple or Google Play). Please update or cancel it directly in your app
-                  store account settings.
-                </p>
-              ) : null}
+              <button
+                onClick={handleManageSubscription}
+                disabled={portalLoading}
+                className={`text-black text-xs md:text-sm font-semibold px-3 md:px-6 py-2 md:py-3 rounded-[30px] flex items-center justify-center gap-2 transition-colors md:w-auto ${
+                  portalLoading ? "bg-[#6d6262ff] cursor-not-allowed opacity-70" : "bg-[#4BEEA2] cursor-pointer"
+                }`}
+              >
+                <Crown className="font-bold w-6 h-6" />
+                {portalLoading ? "Processing..." : "Manage Subscriptions"}
+              </button>
             </div>
+          </div>
+        ) : isAppOrPlayStoreManaged ? (
+          <div className="rounded-xl p-8 mb-8 bg-[#ffffff]/7">
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-4">Manage your subscription in the app store</h3>
+            <p className="text-sm md:text-base text-[#ffffff]/80 leading-relaxed">
+              This subscription is billed through your device&apos;s app store (Apple or Google Play). To make changes, please visit your app store subscription
+              settings.
+            </p>
           </div>
         ) : (
           <div className="rounded-xl p-8 mb-8 flex flex-col items-center justify-center py-12">
