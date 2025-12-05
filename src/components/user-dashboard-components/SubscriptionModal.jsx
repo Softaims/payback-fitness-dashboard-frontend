@@ -12,20 +12,16 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
 
   const features = [
     {
-      title: "Join Groups",
-      description: "Access all of the groups that you've joined and participate in that joined group",
+      title: "Unlock Access to a joined group",
     },
     {
-      title: "Create Your Own Group",
-      description: "Now you can create your own group and then invite your all friends to that group",
+      title: "Establish your exclusive group",
     },
     {
-      title: "Activity Notifications",
-      description: "Now you can get notified on every step in your fitness journey with your friends",
+      title: "Real-time user activity notifications",
     },
     {
-      title: "Access Group Progress",
-      description: "See how every person in your group is doing",
+      title: "Seamless tracking of team member's progress",
     },
   ];
 
