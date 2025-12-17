@@ -30,7 +30,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
 
-          {/* Protected Routes */}
+          {/* Protected Routess */}
           <Route path="/" element={<ProtectedRoute children={<UserDashboard />} />} />
           <Route path="/dashboard" element={<ProtectedRoute children={<UserDashboard />} />} />
           <Route path="/onboarding-referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
