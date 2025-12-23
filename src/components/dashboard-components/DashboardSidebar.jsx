@@ -9,13 +9,13 @@ const SidebarItem = ({ icon: Icon, text, path, url, isExternal, target, isActive
   const labelClasses = `flex-1 ${isActive ? "font-semibold" : "font-normal"}`;
   const itemClasses = isActive ? "text-white" : "text-[#ffffff]/50 hover:text-[#ffffff]/60";
   const iconClasses = isActive ? "text-[#4BEEA2]" : "text-[#ffffff]/50";
-
+  console.log("external", url);
   if (isExternal) {
     return (
       <li>
-        <a href={url} target={target || "_blank"} rel="noopener noreferrer" className={`${baseClasses} ${itemClasses}`} onClick={onClick}>
+        <a href={url} target={target || "_blank"} rel="noopener noreferrer" className={`cursor-pointer  ${baseClasses} ${itemClasses}`} onClick={onClick}>
           <span className={iconClasses}>
-            <Icon />
+            <Icon className="ml-[3px] w-5 h-5 text-[#ffffff]/50" /> {/* size optional */}
           </span>
           <span className={labelClasses}>{text}</span>
         </a>
@@ -71,6 +71,9 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
                 .filter((link) => !link.isDeepLink)
                 .map((link) => (
                   <SidebarItem
+                    isExternal={link.isExternal}
+                    url={link.url}
+                    target={link.target}
                     key={link.path}
                     icon={link.icon}
                     text={link.label}
@@ -94,6 +97,7 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
                   text={link.label}
                   path={link.path}
                   isActive={isActive(link.path, true)}
+                  isExternal={link.isExternal}
                   onClick={(e) => {
                     e.preventDefault();
                     handleLogout();
@@ -101,7 +105,15 @@ const DashboardSidebar = ({ isOpen, onClose }) => {
                   }}
                 />
               ) : (
-                <SidebarItem key={link.path} icon={link.icon} text={link.label} path={link.path} isActive={isActive(link.path, true)} onClick={onClose} />
+                <SidebarItem
+                  isExternal={link.isExternal}
+                  key={link.path}
+                  icon={link.icon}
+                  text={link.label}
+                  path={link.path}
+                  isActive={isActive(link.path, true)}
+                  onClick={onClose}
+                />
               )
             )}
           </ul>

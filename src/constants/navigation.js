@@ -2,7 +2,7 @@ import { HelpCircle, Shield, FileText, Mail, LogOut, Smartphone } from "lucide-r
 import Crown from "../../public/icons/Crown.jsx";
 import Dollar from "../../public/icons/Dollar.jsx";
 import Profile from "../../public/icons/Profile.jsx";
-import { Globe } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 export const navigationLinks = [
   {
     label: "Manage Subscriptions",
@@ -24,7 +24,7 @@ export const navigationLinks = [
   },
   {
     label: "View Website",
-    icon: Globe,
+    icon: ExternalLink,
     exact: false,
     isExternal: true,
     url: "https://paybackfitness.com",

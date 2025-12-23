@@ -89,7 +89,7 @@ const OverlayMenu = ({ isOpen, onClose }) => {
                     <span className="text-[#ffffff]/50">
                       <IconComponent />
                     </span>
-                    <span className="flex-1 text-sm text-[#ffffff]/50">{link.label}</span>
+                    <span className=" text-sm text-[#ffffff]/50">{link.label}</span>
                   </button>
                 );
               }
