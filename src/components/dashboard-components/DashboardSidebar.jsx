@@ -4,12 +4,24 @@ import { useUserStore } from "../../store/userStore";
 import { clearTokens } from "../../lib/tokenUtils";
 import customToast from "../../lib/toast";
 
-const SidebarItem = ({ icon: Icon, text, path, isActive, onClick }) => {
+const SidebarItem = ({ icon: Icon, text, path, url, isExternal, target, isActive, onClick }) => {
   const baseClasses = "text-xs flex items-center gap-1 px-4 py-2 rounded-md transition-colors duration-200";
   const labelClasses = `flex-1 ${isActive ? "font-semibold" : "font-normal"}`;
-
   const itemClasses = isActive ? "text-white" : "text-[#ffffff]/50 hover:text-[#ffffff]/60";
   const iconClasses = isActive ? "text-[#4BEEA2]" : "text-[#ffffff]/50";
+
+  if (isExternal) {
+    return (
+      <li>
+        <a href={url} target={target || "_blank"} rel="noopener noreferrer" className={`${baseClasses} ${itemClasses}`} onClick={onClick}>
+          <span className={iconClasses}>
+            <Icon />
+          </span>
+          <span className={labelClasses}>{text}</span>
+        </a>
+      </li>
+    );
+  }
 
   return (
     <li>

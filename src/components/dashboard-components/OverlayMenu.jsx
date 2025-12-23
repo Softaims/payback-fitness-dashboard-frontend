@@ -53,20 +53,53 @@ const OverlayMenu = ({ isOpen, onClose }) => {
           <div className="space-y-1">
             {navigationLinks.map((link) => {
               const IconComponent = link.icon;
-              const active = isActive(link.path, link.exact);
+              const active = !link.isExternal && isActive(link.path, link.exact);
               const iconClasses = active ? "text-[#4BEEA2]" : "text-[#ffffff]/50";
               const textClasses = active ? "text-white font-semibold" : "text-[#ffffff]/50 font-normal";
 
-              const handleClick = (e) => {
-                e.preventDefault();
-                handleDeepLink();
-              };
+              if (link.isExternal) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.url}
+                    target={link.target || "_blank"}
+                    rel="noopener noreferrer"
+                    onClick={onClose}
+                    className="w-full flex items-center gap-2 px-4 py-2 rounded-md transition-colors duration-200 hover:bg-[#ffffff]/5"
+                  >
+                    <span className={iconClasses}>
+                      <IconComponent />
+                    </span>
+                    <span className={`flex-1 text-sm ${textClasses}`}>{link.label}</span>
+                  </a>
+                );
+              }
 
+              // 🔹 Deep Link (mobile app)
+              if (link.isDeepLink) {
+                return (
+                  <button
+                    key={link.label}
+                    onClick={() => {
+                      window.location.href = link.deepLinkUrl;
+                      setTimeout(onClose, 500);
+                    }}
+                    className="w-full flex items-center gap-2 px-4 py-2 rounded-md transition-colors duration-200 hover:bg-[#ffffff]/5"
+                  >
+                    <span className="text-[#ffffff]/50">
+                      <IconComponent />
+                    </span>
+                    <span className="flex-1 text-sm text-[#ffffff]/50">{link.label}</span>
+                  </button>
+                );
+              }
+
+              // 🔹 Internal Panel Route
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={link.isDeepLink ? handleClick : onClose}
+                  onClick={onClose}
                   className="w-full flex items-center gap-2 px-4 py-2 rounded-md transition-colors duration-200 hover:bg-[#ffffff]/5"
                 >
                   <span className={iconClasses}>
