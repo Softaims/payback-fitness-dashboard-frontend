@@ -26,9 +26,71 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
     }
   }, [resendCooldown]);
 
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData("text");
+    // Only allow numeric input - extract digits only
+    const pastedDigits = pastedText.replace(/\D/g, "").slice(0, 6);
+    
+    if (pastedDigits.length > 0) {
+      const newOtp = ["", "", "", "", "", ""];
+      pastedDigits.split("").forEach((digit, i) => {
+        // Validate each digit is numeric (additional safety check)
+        if (i < 6 && /^\d$/.test(digit)) {
+          newOtp[i] = digit;
+        }
+      });
+      setOtp(newOtp);
+
+      // Clear error when user pastes (same validation logic as handleInputChange)
+      const newErrors = { ...errors };
+      delete newErrors.otp;
+      for (let i = 0; i < 6; i++) {
+        delete newErrors[`otp_${i}`];
+      }
+      setErrors(newErrors);
+
+      // Focus the next empty field or last field
+      const nextEmptyIndex = newOtp.findIndex((digit) => digit === "");
+      const focusIndex = nextEmptyIndex === -1 ? 5 : nextEmptyIndex;
+      setTimeout(() => {
+        inputRefs.current[focusIndex]?.focus();
+      }, 0);
+    }
+  };
+
   const handleInputChange = (index, value) => {
-    // Only allow single character
-    if (value.length > 1) return;
+    // Handle paste event (when pasted content comes through onChange on mobile)
+    if (value.length > 1) {
+      // Only allow numeric input - extract digits only (same validation as original)
+      const pastedDigits = value.replace(/\D/g, "").slice(0, 6);
+      if (pastedDigits.length > 0) {
+        const newOtp = ["", "", "", "", "", ""];
+        pastedDigits.split("").forEach((digit, i) => {
+          // Validate each digit is numeric (same validation logic as original)
+          if (i < 6 && /^\d$/.test(digit)) {
+            newOtp[i] = digit;
+          }
+        });
+        setOtp(newOtp);
+
+        // Clear error when user pastes (same validation logic as handleInputChange)
+        const newErrors = { ...errors };
+        delete newErrors.otp;
+        for (let i = 0; i < 6; i++) {
+          delete newErrors[`otp_${i}`];
+        }
+        setErrors(newErrors);
+
+        // Focus the next empty field or last field
+        const nextEmptyIndex = newOtp.findIndex((digit) => digit === "");
+        const focusIndex = nextEmptyIndex === -1 ? 5 : nextEmptyIndex;
+        setTimeout(() => {
+          inputRefs.current[focusIndex]?.focus();
+        }, 0);
+      }
+      return;
+    }
 
     // Only allow numeric input - ignore non-numeric characters
     if (value && !/^\d$/.test(value)) {
@@ -165,6 +227,7 @@ const ForgotPasswordStep2 = ({ userEmail, onNext }) => {
                 value={digit}
                 onChange={(e) => handleInputChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
+                onPaste={handlePaste}
                 className={`w-12 h-12 text-center text-white text-lg font-bold bg-[#FFFFFF]/7 border-2 rounded-[30px] focus:outline-none focus:ring-2 transition-all ${
                   errors[`otp_${index}`] || errors.otp
                     ? "border-red-500 focus:ring-red-500"

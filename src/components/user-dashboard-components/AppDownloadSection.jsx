@@ -7,7 +7,7 @@ const AppDownloadSection = () => {
             Get PayBack for Your <br /> Workouts
           </h1>
           <p className="text-sm md:text-lg mb-6 font-semibold opacity-90 leading-relaxed">
-            Log your progress, join fitness challenges, and earn real rewards. Available now on iOS and Android.
+            Compete with friends in weekly fitness challenges, stay accountable, and earn real rewards while getting fit together!
           </p>
           <div className="flex justify-center md:justify-start flex-row gap-4">
             {/* Google Play Button */}

@@ -13,12 +13,18 @@ const OverlayMenu = ({ isOpen, onClose }) => {
   };
 
   const handleDeepLink = () => {
-    // Try to open the app
-    window.location.href = "paybackfitness://signin";
-
-    setTimeout(() => {
+    // Find the deep link URL from navigation links
+    const deepLinkItem = navigationLinks.find((link) => link.isDeepLink);
+    if (deepLinkItem && deepLinkItem.deepLinkUrl) {
+      // Try to open the app using deep link
+      window.location.href = deepLinkItem.deepLinkUrl;
+      setTimeout(() => {
+        onClose();
+      }, 500);
+    } else {
+      // Fallback to just closing if no deep link found
       onClose();
-    }, 1000);
+    }
   };
 
   if (!isOpen) return null;
@@ -40,8 +46,8 @@ const OverlayMenu = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Close Button */}
-          <button onClick={onClose} className="text-white hover:text-[#4BEEA2] transition-colors duration-200">
+          {/* Close Button - triggers deep link to return to app */}
+          <button onClick={handleDeepLink} className="text-white hover:text-[#4BEEA2] transition-colors duration-200">
             <X size={24} />
           </button>
         </div>
@@ -80,10 +86,7 @@ const OverlayMenu = ({ isOpen, onClose }) => {
                 return (
                   <button
                     key={link.label}
-                    onClick={() => {
-                      window.location.href = link.deepLinkUrl;
-                      setTimeout(onClose, 500);
-                    }}
+                    onClick={handleDeepLink}
                     className="w-full flex items-center gap-2 px-4 py-2 rounded-md transition-colors duration-200 hover:bg-[#ffffff]/5"
                   >
                     <span className="text-[#ffffff]/50">
