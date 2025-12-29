@@ -75,7 +75,7 @@ const PurchaseHistoryTable = () => {
             <thead>
               <tr className="border-b border-[#ffffff]/7">
                 <th className="text-left text-[#ffffff]/50 py-3 px-4">Sr #</th>
-                <th className="text-left text-[#ffffff]/50 py-3 px-4">Number Of Coins</th>
+                <th className="text-left text-[#ffffff]/50 py-3 px-4">PF Points</th>
                 <th className="text-left text-[#ffffff]/50 py-3 px-4">Purchasing Date</th>
                 <th className="text-left text-[#ffffff]/50 py-3 px-4">Purchasing Time</th>
                 <th className="text-left text-[#ffffff]/50 py-3 px-4">Status</th>
@@ -112,7 +112,7 @@ const PurchaseHistoryTable = () => {
     return (
       <div className="flex flex-col items-center justify-center mt-20">
         <img src="/images/NoPFCoins.svg" alt="PayBack Fitness Logo" className="" />
-        <p className="text-white text-lg">No PF Coins purchased yet!</p>
+        <p className="text-white text-lg">No PF Points purchased yet!</p>
       </div>
     );
   }
@@ -125,7 +125,7 @@ const PurchaseHistoryTable = () => {
           <thead>
             <tr className="text-sm border-b border-[#ffffff]/7">
               <th className="text-left text-[#ffffff]/50 py-3 px-4">Sr #</th>
-              <th className="text-left text-[#ffffff]/50 py-3 px-4">Number Of Coins</th>
+              <th className="text-left text-[#ffffff]/50 py-3 px-4">PF Points</th>
               <th className="text-left text-[#ffffff]/50 py-3 px-4">Purchasing Date</th>
               <th className="text-left text-[#ffffff]/50 py-3 px-4">Purchasing Time</th>
               <th className="text-left text-[#ffffff]/50 py-3 px-4">Status</th>

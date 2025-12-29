@@ -149,7 +149,7 @@ const ProfileSettingsMain = () => {
         <div className="bg-[#ffffff]/7 rounded-xl p-6">
           <h2 className="text-2xl font-bold text-white mb-4">Delete Account</h2>
           <p className="text-[#ffffff]/50 text-sm mb-6 leading-relaxed">
-            Deleting your account will permanently remove your profile and all data. Any remaining PF Coins will be forfeited and cannot be recovered. If you
+            Deleting your account will permanently remove your profile and all data. Any remaining PF Points will be forfeited and cannot be recovered. If you
             have an active subscription or are part of a group, your account will only be deleted after those are completed.
           </p>
           <button onClick={handleDeleteAccount} className="cursor-pointer flex items-center gap-2  text-[#F65E53] rounded-lg transition-colors">
@@ -320,7 +320,7 @@ const ProfileSettingsMain = () => {
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleDeleteAccountConfirm}
         title="Delete Account"
-        message="Are you sure you want to delete your account? This action cannot be undone. All your data, PF Coins, and subscriptions will be permanently lost."
+        message="Are you sure you want to delete your account? This action cannot be undone. All your data, PF Points, and subscriptions will be permanently lost."
         confirmText="Delete Account"
         cancelText="Cancel"
         confirmButtonColor="bg-red-600 hover:bg-red-700"

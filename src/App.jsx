@@ -31,6 +31,7 @@ function App() {
           <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
 
           {/* Protected Routess */}
+
           <Route path="/" element={<ProtectedRoute children={<UserDashboard />} />} />
           <Route path="/dashboard" element={<ProtectedRoute children={<UserDashboard />} />} />
           <Route path="/onboarding-referral-code" element={<ProtectedRoute children={<ReferralCodePage />} />} />
@@ -38,7 +39,7 @@ function App() {
           <Route path="/onboarding-subscription" element={<ProtectedRoute children={<SubscriptionPage />} />} />
           <Route path="/success" element={<ProtectedRoute children={<PaymentSuccessPage />} />} />
           <Route path="/cancel" element={<ProtectedRoute children={<PaymentFailurePage />} />} />
-          <Route path="/pf-coins" element={<ProtectedRoute children={<PFCoinsPage />} />} />
+          <Route path="/pf-points" element={<ProtectedRoute children={<PFCoinsPage />} />} />
           <Route path="/profile-settings" element={<ProtectedRoute children={<ProfileSettingsPage />} />} />
         </Routes>
         <CustomToaster />

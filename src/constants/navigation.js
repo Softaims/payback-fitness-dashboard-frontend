@@ -11,8 +11,8 @@ export const navigationLinks = [
     exact: true,
   },
   {
-    label: "PF Coins",
-    path: "/pf-coins",
+    label: "PF Points",
+    path: "/pf-points",
     icon: Dollar,
     exact: false,
   },

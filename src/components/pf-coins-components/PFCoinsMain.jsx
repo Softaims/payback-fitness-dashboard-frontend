@@ -37,7 +37,7 @@ const PFCoinsMain = () => {
   return (
     <div className="min-h-screen p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white">PF Coins</h1>
+        <h1 className="text-3xl font-bold text-white">PF Points</h1>
       </div>
 
       {/* Stats Section */}

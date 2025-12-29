@@ -36,12 +36,12 @@ const PurchaseResultModal = ({ isOpen, onClose, isSuccess, amount }) => {
         )}
 
         {/* Title */}
-        <h1 className="text-white text-3xl font-bold mb-4">{isSuccess ? "PF Coins Purchased!" : "Purchase Failed!"}</h1>
+        <h1 className="text-white text-3xl font-bold mb-4">{isSuccess ? "PF Points Purchased!" : "Purchase Failed!"}</h1>
 
         {/* Description */}
         <p className="text-[#ffffff]/70 text-sm mb-8 leading-relaxed">
           {isSuccess
-            ? `You just purchased ${amount}PF Coins – start using them for groups and challenges.`
+            ? `You just purchased ${amount}PF Points – start using them for groups and challenges.`
             : "We're sorry, but your payment could not be processed. This could be due to insufficient funds, an expired card, or a temporary issue."}
         </p>
 
@@ -50,7 +50,7 @@ const PurchaseResultModal = ({ isOpen, onClose, isSuccess, amount }) => {
           onClick={onClose}
           className="w-full font-bold py-3 px-4 rounded-[30px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 bg-[#4BEEA2] cursor-pointer hover:bg-[#3dd48a]"
         >
-          {isSuccess ? "View My PF Coins" : "View My PF Coins"}
+          {isSuccess ? "View My PF Points" : "View My PF Points"}
         </button>
       </div>
     </div>

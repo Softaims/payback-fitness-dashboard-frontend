@@ -23,7 +23,7 @@ const PFCoinsMain = () => {
 
   const handlePurchase = (amount) => {
     // TODO: Implement purchase logic
-    console.log(`Purchasing ${amount} PF Coins`);
+    console.log(`Purchasing ${amount} PF Points`);
     // After successful purchase, refresh the data
     fetchPurchaseHistory(1, 10);
   };
@@ -31,7 +31,7 @@ const PFCoinsMain = () => {
   return (
     <div className="min-h-screen p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white">PF Coins</h1>
+        <h1 className="text-3xl font-bold text-white">PF Points</h1>
       </div>
 
       {/* Stats Section */}
