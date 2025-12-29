@@ -12,18 +12,64 @@ const OverlayMenu = ({ isOpen, onClose }) => {
     return location.pathname.startsWith(path);
   };
 
+  // Detect if running in a webview (in-app browser from mobile app)
+  const isInWebView = () => {
+    try {
+      // Check for React Native WebView
+      if (window.ReactNativeWebView) return true;
+
+      // Check for Android webview interface
+      if (window.Android && typeof window.Android !== "undefined") return true;
+
+      // Check user agent for webview indicators
+      const userAgent = window.navigator.userAgent || window.navigator.vendor || "";
+      const webviewPatterns = [
+        /wv/i, // Android webview
+        /WebView/i, // Generic webview
+      ];
+
+      if (webviewPatterns.some((pattern) => pattern.test(userAgent))) return true;
+
+      // Check if we're in an iframe (often indicates webview)
+      try {
+        if (window.self !== window.top) return true;
+      } catch {
+        // If we can't access window.top, we're likely in a webview
+        return true;
+      }
+
+      return false;
+    } catch {
+      return false;
+    }
+  };
+
   const handleDeepLink = () => {
-    // Find the deep link URL from navigation links
+    onClose(); // Close the menu first
+
+    // If in webview (opened from mobile app), try to go back/close the webview
+    if (isInWebView()) {
+      // Use window.history.back() to go back to the app (like clicking browser back button)
+      // This works reliably in webviews
+      try {
+        window.history.back();
+      } catch (e) {
+        // If history.back() fails, try window.close() as fallback
+        try {
+          window.close();
+        } catch {
+          // If both fail, at least we closed the menu
+          console.log("Could not navigate back from webview");
+        }
+      }
+      return;
+    }
+
+    // If in regular browser, use deep link to open the app
     const deepLinkItem = navigationLinks.find((link) => link.isDeepLink);
     if (deepLinkItem && deepLinkItem.deepLinkUrl) {
       // Try to open the app using deep link
       window.location.href = deepLinkItem.deepLinkUrl;
-      setTimeout(() => {
-        onClose();
-      }, 500);
-    } else {
-      // Fallback to just closing if no deep link found
-      onClose();
     }
   };
 

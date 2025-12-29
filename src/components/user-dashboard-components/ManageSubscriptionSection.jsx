@@ -91,7 +91,7 @@ const ManageSubscriptionSection = () => {
             {/* Top Section - Plan Details and Price */}
             <div className="flex flex-col items-start justify-start md:flex-row md:items-start md:justify-between mb-6">
               <div className="flex items-center gap-3 mb-4 md:mb-0">
-                <h3 className="text-lg md:text-xl font-semibold text-white">Current Plan</h3>
+                <h3 className="text-sm md:text-xl font-semibold text-white">Current Plan</h3>
                 <span className="bg-[#4BEEA2]/10 text-[#4BEEA2] px-3 py-1 rounded-full text-xs md:text-sm font-semibold">
                   {subscription.planName || "Monthly"}
                 </span>
@@ -132,7 +132,7 @@ const ManageSubscriptionSection = () => {
 
             {/* Bottom Section - Action */}
             <div className="flex flex-col items-start md:flex-row md:items-start md:justify-between gap-4">
-              <p className="text-xs md:text-sm text-white md:text-[#ffffff]/50 whitespace-nowrap">Renew, cancel or change your subscription plan</p>
+              <p className="text-[11px] md:text-sm text-white md:text-[#ffffff]/50 whitespace-nowrap">Renew, cancel or change your subscription plan</p>
               <button
                 onClick={handleManageSubscription}
                 disabled={portalLoading}
