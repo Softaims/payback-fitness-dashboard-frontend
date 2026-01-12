@@ -5,6 +5,17 @@ import { navigationLinks } from "../../constants/navigation";
 const OverlayMenu = ({ isOpen, onClose }) => {
   const location = useLocation();
 
+  // Check if user is in mobile app web view
+  const isInMobileAppWebView = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroidWebView = /wv/i.test(userAgent);
+    const isIOSWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(userAgent);
+    const hasAppIdentifier = /PaybackFitness|paybackfitness/i.test(userAgent);
+    const hasAppWindowProperty = window.ReactNativeWebView || window.webkit?.messageHandlers;
+
+    return isAndroidWebView || isIOSWebView || hasAppIdentifier || hasAppWindowProperty;
+  };
+
   const isActive = (path, exact = false) => {
     if (exact) {
       return location.pathname === path;
@@ -12,66 +23,16 @@ const OverlayMenu = ({ isOpen, onClose }) => {
     return location.pathname.startsWith(path);
   };
 
-  // Detect if running in a webview (in-app browser from mobile app)
-  const isInWebView = () => {
-    try {
-      // Check for React Native WebView
-      if (window.ReactNativeWebView) return true;
-
-      // Check for Android webview interface
-      if (window.Android && typeof window.Android !== "undefined") return true;
-
-      // Check user agent for webview indicators
-      const userAgent = window.navigator.userAgent || window.navigator.vendor || "";
-      const webviewPatterns = [
-        /wv/i, // Android webview
-        /WebView/i, // Generic webview
-      ];
-
-      if (webviewPatterns.some((pattern) => pattern.test(userAgent))) return true;
-
-      // Check if we're in an iframe (often indicates webview)
-      try {
-        if (window.self !== window.top) return true;
-      } catch {
-        // If we can't access window.top, we're likely in a webview
-        return true;
-      }
-
-      return false;
-    } catch {
-      return false;
-    }
-  };
-
   const handleDeepLink = () => {
-    onClose(); // Close the menu first
+    window.location.href = "paybackfitness://signin";
 
-    // If in webview (opened from mobile app), try to go back/close the webview
-    if (isInWebView()) {
-      // Use window.history.back() to go back to the app (like clicking browser back button)
-      // This works reliably in webviews
-      try {
-        window.history.back();
-      } catch (e) {
-        // If history.back() fails, try window.close() as fallback
-        try {
-          window.close();
-        } catch {
-          // If both fail, at least we closed the menu
-          console.log("Could not navigate back from webview");
-        }
-      }
-      return;
-    }
-
-    // If in regular browser, use deep link to open the app
-    const deepLinkItem = navigationLinks.find((link) => link.isDeepLink);
-    if (deepLinkItem && deepLinkItem.deepLinkUrl) {
-      // Try to open the app using deep link
-      window.location.href = deepLinkItem.deepLinkUrl;
-    }
+    setTimeout(() => {
+      onClose();
+    }, 1000);
   };
+
+  // Filter out deeplink items if in mobile app web view
+  const filteredNavigationLinks = isInMobileAppWebView() ? navigationLinks.filter((link) => !link.isDeepLink) : navigationLinks;
 
   if (!isOpen) return null;
 
@@ -93,7 +54,7 @@ const OverlayMenu = ({ isOpen, onClose }) => {
           </div>
 
           {/* Close Button - triggers deep link to return to app */}
-          <button onClick={handleDeepLink} className="text-white hover:text-[#4BEEA2] transition-colors duration-200">
+          <button onClick={onClose} className="text-white hover:text-[#4BEEA2] transition-colors duration-200">
             <X size={24} />
           </button>
         </div>
@@ -103,7 +64,7 @@ const OverlayMenu = ({ isOpen, onClose }) => {
           <h2 className="text-[#ffffff]/50 text-sm font-medium mb-2">Menu</h2>
 
           <div className="space-y-1">
-            {navigationLinks.map((link) => {
+            {filteredNavigationLinks.map((link) => {
               const IconComponent = link.icon;
               const active = !link.isExternal && isActive(link.path, link.exact);
               const iconClasses = active ? "text-[#4BEEA2]" : "text-[#ffffff]/50";

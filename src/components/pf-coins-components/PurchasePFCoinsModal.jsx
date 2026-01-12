@@ -79,14 +79,14 @@ const PurchasePFCoinsModal = ({ isOpen, onClose }) => {
                 value={coinAmount}
                 onChange={handleInputChange}
                 placeholder="Enter Number of PF Points"
-                className={`w-full bg-[#ffffff]/7 rounded-[30px] px-4 py-3 text-white placeholder-[#ffffff]/50 placeholder:text-sm focus:outline-none transition-colors
+                className={`w-full bg-[#ffffff]/7 rounded-[30px] px-4 py-3 text-white placeholder-[#ffffff]/50 placeholder:text-xs focus:outline-none transition-colors
   [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
     errors.coinAmount ? "border border-red-500 focus:border-red-500" : "border border-[#ffffff]/10 focus:border-[#4BEEA2]"
   }`}
               />
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
                 {errors.coinAmount && <AlertCircle className="w-4 h-4 text-red-500" />}
-                <span className="text-[#ffffff]/50 text-sm">PF Points</span>
+                <span className="text-[#ffffff]/50 text-xs">PF Points</span>
               </div>
             </div>
             {errors.coinAmount && (

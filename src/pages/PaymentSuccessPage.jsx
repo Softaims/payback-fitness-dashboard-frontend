@@ -30,7 +30,8 @@ const PaymentSuccessPage = () => {
 
         {/* Description */}
         <p className="text-[#ffffff]/50 text-sm mb-8 leading-relaxed">
-          Welcome to PayBack Fitness - your journey starts now. Let's build habits, crush your goals, and earn rewards every week!
+          Welcome to PayBack Fitness. You are now part of a competitive fitness experience. Compete with others in weekly fitness challenges, build momentum,
+          and earn real rewards for showing up.
         </p>
 
         {/* Go to Home Page Button */}
