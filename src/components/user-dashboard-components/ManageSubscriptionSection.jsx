@@ -9,7 +9,7 @@ const ManageSubscriptionSection = () => {
   const { subscription, subscriptionLoading, fetchCurrentSubscription } = useSubscriptionStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
-
+  console.log("subscription", subscription);
   useEffect(() => {
     if (!subscription) {
       fetchCurrentSubscription();
@@ -86,7 +86,7 @@ const ManageSubscriptionSection = () => {
               <div className="h-12 w-40 bg-[#ffffff]/10 rounded-lg"></div>
             </div>
           </div>
-        ) : subscription?.planName && isStripeSubscription ? (
+        ) : subscription?.planName && subscription?.isActive && isStripeSubscription ? (
           <div className="rounded-xl p-8 mb-8 bg-[#ffffff]/7">
             {/* Top Section - Plan Details and Price */}
             <div className="flex flex-col items-start justify-start md:flex-row md:items-start md:justify-between mb-6">
@@ -145,7 +145,7 @@ const ManageSubscriptionSection = () => {
               </button>
             </div>
           </div>
-        ) : isAppOrPlayStoreManaged ? (
+        ) : subscription?.isActive && isAppOrPlayStoreManaged ? (
           <div className="rounded-xl p-8 mb-8 bg-[#ffffff]/7">
             <h3 className="text-lg md:text-xl font-semibold text-white mb-4">Manage your subscription in the app store</h3>
             <p className="text-sm md:text-base text-[#ffffff]/80 leading-relaxed">
