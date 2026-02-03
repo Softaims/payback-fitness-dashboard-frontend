@@ -1,10 +1,13 @@
-import { DataTable, GroupStatusBadge, UserActionsDropdown } from "../../components/dashboard";
+import { useNavigate } from "react-router-dom";
+import { Eye } from "lucide-react";
+import { DataTable, GroupStatusBadge, ActionsDropdown } from "../../components/dashboard";
 
 /**
  * Created Groups Tab Component
  * Displays groups created by the user
  */
 const CreatedGroupsTab = ({ groups, loading }) => {
+  const navigate = useNavigate();
   const columns = [
     {
       key: "group",
@@ -86,7 +89,17 @@ const CreatedGroupsTab = ({ groups, loading }) => {
     {
       key: "action",
       label: "Action",
-      render: (_, row) => <UserActionsDropdown userId={row.groupId} />,
+      render: (_, row) => (
+        <ActionsDropdown
+          actions={[
+            {
+              icon: Eye,
+              label: "View Detail",
+              onClick: () => navigate(`/admin/groups/${row.groupId}`),
+            },
+          ]}
+        />
+      ),
     },
   ];
 

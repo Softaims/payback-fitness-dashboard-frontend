@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Eye } from "lucide-react";
 import AdminLayout from "../layouts/AdminLayout";
 import api from "../../shared/lib/apiClient";
 import customToast from "../../shared/lib/toast";
@@ -6,7 +8,7 @@ import {
   DataTable,
   UserAvatar,
   SearchInput,
-  UserActionsDropdown,
+  ActionsDropdown,
   Pagination,
 } from "../components/dashboard";
 
@@ -14,6 +16,7 @@ import {
  * User Management Page
  */
 const UserManagement = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -109,7 +112,17 @@ const UserManagement = () => {
     {
       key: "action",
       label: "Action",
-      render: (_, row) => <UserActionsDropdown userId={row.id} />,
+      render: (_, row) => (
+        <ActionsDropdown
+          actions={[
+            {
+              icon: Eye,
+              label: "View Detail",
+              onClick: () => navigate(`/admin/users/${row.id}`),
+            },
+          ]}
+        />
+      ),
     },
   ];
 
