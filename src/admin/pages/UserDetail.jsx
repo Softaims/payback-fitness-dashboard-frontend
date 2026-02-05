@@ -4,7 +4,7 @@ import { ArrowLeft, UsersRound, ShoppingCart, Gift, CreditCard, Plus } from "luc
 import AdminLayout from "../layouts/AdminLayout";
 import api from "../../shared/lib/apiClient";
 import customToast from "../../shared/lib/toast";
-import { UserAvatar, TabNavigation, Modal } from "../components/dashboard";
+import { UserAvatar, TabNavigation, Modal, SkeletonUserDetail } from "../components/dashboard";
 import JoinedGroupsTab from "./user-detail/JoinedGroupsTab";
 import CreatedGroupsTab from "./user-detail/CreatedGroupsTab";
 import PFPurchaseHistoryTab from "./user-detail/PFPurchaseHistoryTab";
@@ -160,12 +160,11 @@ const UserDetail = () => {
   if (loading) {
     return (
       <AdminLayout>
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#4BEEA2]/20 border-t-[#4BEEA2] rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-[#FFFFFF]/50">Loading user details...</p>
-          </div>
-        </div>
+        <button className="flex items-center gap-2 text-[#FFFFFF]/70 mb-6">
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm font-medium">User Detail</span>
+        </button>
+        <SkeletonUserDetail />
       </AdminLayout>
     );
   }

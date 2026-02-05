@@ -11,11 +11,12 @@ import { MoreVertical } from "lucide-react";
  */
 const ActionsDropdown = ({ actions }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const containerRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -24,13 +25,26 @@ const ActionsDropdown = ({ actions }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (isOpen && menuRef.current) {
+      // Small delay to ensure dropdown is rendered
+      setTimeout(() => {
+        menuRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest",
+        });
+      }, 10);
+    }
+  }, [isOpen]);
+
   const handleActionClick = (action) => {
     action.onClick();
     setIsOpen(false);
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative" ref={containerRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="p-2 hover:bg-[#FFFFFF]/5 rounded-lg transition-colors"
@@ -40,7 +54,10 @@ const ActionsDropdown = ({ actions }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-[#1a2e23] border border-[#FFFFFF]/10 rounded-lg shadow-lg z-10">
+        <div
+          ref={menuRef}
+          className="absolute right-0 mt-2 w-48 bg-[#1a2e23] border border-[#FFFFFF]/10 rounded-lg shadow-xl z-50 overflow-hidden"
+        >
           {actions.map((action, index) => {
             const Icon = action.icon;
             return (

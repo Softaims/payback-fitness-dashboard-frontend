@@ -9,6 +9,8 @@ import {
   GroupStatusBadge,
   Dropdown,
   DataTable,
+  SkeletonGroupDetail,
+  SkeletonChart,
 } from "../components/dashboard";
 import GroupProgressChart from "../components/group/GroupProgressChart";
 
@@ -89,12 +91,11 @@ const GroupDetail = () => {
   if (loading) {
     return (
       <AdminLayout>
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#4BEEA2]/20 border-t-[#4BEEA2] rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-[#FFFFFF]/50">Loading group details...</p>
-          </div>
-        </div>
+        <button className="flex items-center gap-2 text-[#FFFFFF]/70 mb-6">
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm font-medium">Group Detail</span>
+        </button>
+        <SkeletonGroupDetail />
       </AdminLayout>
     );
   }
@@ -301,9 +302,7 @@ const GroupDetail = () => {
             </div>
 
             {progressLoading ? (
-              <div className="flex items-center justify-center h-[300px]">
-                <div className="w-12 h-12 border-4 border-[#4BEEA2]/20 border-t-[#4BEEA2] rounded-full animate-spin"></div>
-              </div>
+              <SkeletonChart height="300px" />
             ) : (
               <GroupProgressChart
                 data={progressData?.chartData || []}

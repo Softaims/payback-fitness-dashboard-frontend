@@ -12,6 +12,7 @@ import {
   DataTable,
   UserAvatar,
   Pagination,
+  SkeletonDashboard,
 } from "../components/dashboard";
 
 /**
@@ -86,12 +87,7 @@ const AdminDashboard = () => {
   if (loading) {
     return (
       <AdminLayout>
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-[#4BEEA2]/20 border-t-[#4BEEA2] rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-[#FFFFFF]/50">Loading dashboard...</p>
-          </div>
-        </div>
+        <SkeletonDashboard />
       </AdminLayout>
     );
   }

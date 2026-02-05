@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { SkeletonTable } from "./Skeleton";
 
 /**
  * DataTable Component
@@ -22,14 +23,7 @@ const DataTable = ({
   className = "",
 }) => {
   if (loading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-[#4BEEA2]/20 border-t-[#4BEEA2] rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-[#FFFFFF]/50 text-sm">Loading data...</p>
-        </div>
-      </div>
-    );
+    return <SkeletonTable columns={columns.length} rows={5} className={className} />;
   }
 
   if (!data || data.length === 0) {
@@ -45,7 +39,7 @@ const DataTable = ({
   }
 
   return (
-    <div className={`overflow-x-auto ${className}`}>
+    <div className={`overflow-x-auto scrollbar-hide ${className}`}>
       <table className="w-full">
         <thead>
           <tr className="border-b border-[#FFFFFF]/10">
