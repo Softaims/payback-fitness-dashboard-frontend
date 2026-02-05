@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSubscriptionStore } from "../../store/subscriptionStore";
+import { useSubscriptionStore } from "../../user/store/subscriptionStore";
 import SubscriptionModal from "./SubscriptionModal";
 import api from "../../lib/apiClient";
 import customToast from "../../lib/toast";
