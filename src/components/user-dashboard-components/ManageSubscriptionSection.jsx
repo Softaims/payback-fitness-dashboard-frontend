@@ -117,8 +117,8 @@ const ManageSubscriptionSection = () => {
             <div className="mb-6">
               <p className="text-xs md:text-sm text-[#ffffff]/50 mb-2">Next Subscription Renewal Date:</p>
               <p className="text-xs md:text-sm text-white font-medium">
-                {subscription.currentPeriodEnd
-                  ? new Date(subscription.currentPeriodEnd).toLocaleDateString("en-US", {
+                {subscription.expiresAt
+                  ? new Date(subscription.expiresAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
                       day: "numeric",
