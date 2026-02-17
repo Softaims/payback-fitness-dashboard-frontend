@@ -85,48 +85,6 @@ const AdminRoutes = () => {
         }
       />
 
-      <Route
-        path="/subscriptions"
-        element={
-          <AdminRoute>
-            <div className="flex items-center justify-center min-h-screen">
-              <div className="text-center">
-                <h1 className="text-3xl font-bold text-white mb-4">Subscriptions Management</h1>
-                <p className="text-[#FFFFFF]/50">Coming soon...</p>
-              </div>
-            </div>
-          </AdminRoute>
-        }
-      />
-
-      <Route
-        path="/analytics"
-        element={
-          <AdminRoute>
-            <div className="flex items-center justify-center min-h-screen">
-              <div className="text-center">
-                <h1 className="text-3xl font-bold text-white mb-4">Analytics</h1>
-                <p className="text-[#FFFFFF]/50">Coming soon...</p>
-              </div>
-            </div>
-          </AdminRoute>
-        }
-      />
-
-      <Route
-        path="/settings"
-        element={
-          <AdminRoute>
-            <div className="flex items-center justify-center min-h-screen">
-              <div className="text-center">
-                <h1 className="text-3xl font-bold text-white mb-4">Settings</h1>
-                <p className="text-[#FFFFFF]/50">Coming soon...</p>
-              </div>
-            </div>
-          </AdminRoute>
-        }
-      />
-
       {/* Catch all - redirect to dashboard */}
       <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
     </Routes>

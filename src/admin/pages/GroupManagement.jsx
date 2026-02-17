@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Eye } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import AdminLayout from "../layouts/AdminLayout";
 import api from "../../shared/lib/apiClient";
 import customToast from "../../shared/lib/toast";
@@ -67,6 +67,27 @@ const GroupManagement = () => {
   const handleStatusFilterChange = (value) => {
     setStatusFilter(value);
     setCurrentPage(1); // Reset to first page when filtering
+  };
+
+  const handleDeleteGroup = async (groupId, groupName) => {
+    if (
+      !window.confirm(
+        `Are you sure you want to delete "${groupName}"? This action cannot be undone and will remove all associated data including members, workouts, and progress.`,
+      )
+    ) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      await api.delete(`/api/admin/groups/${groupId}`);
+      customToast.success("Group deleted successfully");
+      fetchGroups(); // Refresh the list
+    } catch (error) {
+      customToast.error(error?.message || "Failed to delete group");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const columns = [
@@ -152,6 +173,12 @@ const GroupManagement = () => {
               icon: Eye,
               label: "View Detail",
               onClick: () => navigate(`/admin/groups/${row.groupId}`),
+            },
+            {
+              icon: Trash2,
+              label: "Delete Group",
+              onClick: () => handleDeleteGroup(row.groupId, row.groupName),
+              className: "text-red-400 hover:text-red-300",
             },
           ]}
         />

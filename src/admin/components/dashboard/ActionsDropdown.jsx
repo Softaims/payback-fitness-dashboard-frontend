@@ -7,7 +7,7 @@ import { MoreVertical } from "lucide-react";
  * Generic dropdown menu for row actions in tables
  *
  * @param {Array} actions - Array of action objects
- *   Each action should have: { icon: Component, label: string, onClick: function }
+ *   Each action should have: { icon: Component, label: string, onClick: function, className?: string }
  */
 const ActionsDropdown = ({ actions }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +64,7 @@ const ActionsDropdown = ({ actions }) => {
               <button
                 key={index}
                 onClick={() => handleActionClick(action)}
-                className="w-full flex items-center gap-3 px-4 py-3 text-sm text-white hover:bg-[#FFFFFF]/5 transition-colors first:rounded-t-lg last:rounded-b-lg"
+                className={`w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-[#FFFFFF]/5 transition-colors first:rounded-t-lg last:rounded-b-lg ${action.className || "text-white"}`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{action.label}</span>
@@ -83,6 +83,7 @@ ActionsDropdown.propTypes = {
       icon: PropTypes.elementType.isRequired,
       label: PropTypes.string.isRequired,
       onClick: PropTypes.func.isRequired,
+      className: PropTypes.string,
     })
   ).isRequired,
 };
