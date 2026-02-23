@@ -1,9 +1,11 @@
 import { z } from "zod";
 
-const passwordSchema = z.string({
-  required_error: "Password is required",
-  invalid_type_error: "Password must be a string",
-});
+const passwordSchema = z
+  .string({
+    required_error: "Password is required",
+    invalid_type_error: "Password must be a string",
+  })
+  .min(1, "Password is required");
 
 const emailSchema = z
   .string({
