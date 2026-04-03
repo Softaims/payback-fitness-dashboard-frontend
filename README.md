@@ -35,6 +35,8 @@ npm install
 
 ### Environment
 
+Create a `.env` file in the project root:
+
 ```env
 VITE_SERVER_URL=http://localhost:3000
 ```
