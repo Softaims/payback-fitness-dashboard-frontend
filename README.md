@@ -1,16 +1,133 @@
-# React + Vite
+# Payback Fitness — Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The web dashboard for the Payback Fitness platform, serving two distinct surfaces: a user-facing app for managing fitness challenge groups and tracking progress, and an internal admin panel for managing users, groups, and platform analytics.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + Vite |
+| Routing | React Router v7 |
+| State | Zustand |
+| Styling | Tailwind CSS v4 |
+| Charts | Recharts |
+| Icons | Lucide React |
+| HTTP | Axios |
+| Validation | Zod |
+| Notifications | react-hot-toast |
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js ≥ 20
+- A running instance of the [backend API](../backend/README.md)
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment
+
+```env
+VITE_SERVER_URL=http://localhost:3000
+```
+
+### Running
+
+```bash
+npm run dev
+```
+
+The dev server starts at `http://localhost:5173` with HMR enabled.
+
+---
+
+## Project Structure
+
+```
+src/
+├── user/
+│   ├── components/     # User-facing UI components
+│   ├── routes/         # Page components and route definitions
+│   ├── constants/      # Enums, config constants
+│   └── utils/          # User-domain utilities
+├── admin/
+│   ├── components/     # Admin-specific UI components
+│   ├── layouts/        # Admin shell and sidebar layouts
+│   ├── pages/          # Admin page components
+│   ├── routes/         # Admin route definitions
+│   └── store/          # Admin-scoped Zustand stores
+└── shared/
+    ├── components/     # Cross-cutting UI primitives
+    ├── hooks/          # Shared React hooks
+    ├── lib/            # Axios instance, token helpers
+    ├── utils/          # General utilities
+    └── constants/      # App-wide constants
+```
+
+### Routing
+
+The app uses two top-level route trees with separate auth guards:
+
+- `/` → User routes (onboarding, groups, workouts, progress)
+- `/admin` → Admin routes (protected by admin role check)
+
+Auth state is derived from the JWT stored in `localStorage`, decoded client-side with `jwt-decode`.
+
+---
+
+## Key Features
+
+**User surface:**
+- Authentication (email/password, Google OAuth, magic link)
+- Onboarding flow with subscription plan selection (Stripe)
+- Group creation, joining via invite code, and member management
+- Workout logging with type, duration, and notes
+- Weekly progress tracking against group goal
+- PF Coins balance and transaction history
+- Referral code sharing and status tracking
+
+**Admin surface:**
+- Platform overview dashboard with key metrics
+- User management — search, suspend, edit, delete
+- Group management — inspect, force-complete, reset challenges
+- PF Coins management — purchase and redemption oversight
+- Analytics and reporting views
+
+---
+
+## Build & Deployment
+
+```bash
+# Production build (output in /dist)
+npm run build
+
+# Preview the production build locally
+npm run preview
+
+# Serve the built output (production)
+npm run start
+```
+
+Vite outputs static assets to `/dist`. Deploy to any static host (Vercel, Netlify, S3 + CloudFront, etc.) or serve via the bundled `serve` package using `npm run start`.
+
+Ensure `VITE_SERVER_URL` points to the correct API base URL for the target environment before building — Vite bakes environment variables into the bundle at build time.
+
+---
+
+## Scripts Reference
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start Vite dev server with HMR |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build locally |
+| `npm run start` | Serve `/dist` in production |
+| `npm run lint` | Run ESLint |
